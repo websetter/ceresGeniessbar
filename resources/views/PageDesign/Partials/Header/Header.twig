@@ -1,7 +1,6 @@
-<!-- Insert markup for header here -->
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 
-{{ component( "CeresGeniessbar::Customer.Components.UserLoginHandler" ) }}
+{{ component( "Ceres::Customer.Components.UserLoginHandler" ) }}
 {{ component( "Ceres::PageDesign.Components.ShippingCountrySelect" ) }}
 {{ component( "Ceres::PageDesign.Components.MobileNavigation" ) }}
 {{ component( "Ceres::ItemList.Components.ItemSearch" ) }}
@@ -16,9 +15,13 @@
 {% set currencyFormatSelect = config("Ceres.currency.format_selection") %}
 {% set companyLogo = config("Ceres.header.company_logo") %}
 
-<header class="cat-{{ category.id }}">
-  <div class="container-max">
-    <div id="logo">
+<header class="top-bar">
+  <div>
+    <div class="container-max">
+      <div class="row">
+        {{ LayoutContainer.show("Ceres::Header.LeftSide") }}
+
+        <div id="logo">
       <a class="brand" href="/">
         {% if ('http' in companyLogo)
           or('layout/' in companyLogo) %}
@@ -28,63 +31,67 @@
         {% endif %}
       </a>
     </div>
-    <div id="shopNav">
-      <ul id="controlsList" class="controls-list list-inline">
-        <li class="list-inline-item control-search">
-          <a class="anicon anicon-search-xcross" aria-label="toggle search" data-toggle="collapse" href="#searchBox" aria-expanded="{% if services.template.isSearch() %}true{% else %}false{% endif %}" aria-controls="searchBox" data-parent="#controlsList">
-            <span class="fa fa-search" aria-hidden="true"></span>
-            Suche
-          </a>
-        </li>
-        <li class="list-inline-item control-user">
-          <user-login-handler template="#vue-user-login-handler" :user-data="{{ services.customer.getContact() | json_encode() }}"></user-login-handler>
-        </li>
 
-        <li class="list-inline-item control-basket">
-          <a v-toggle-basket-preview="v-toggle-basket-preview" href="#" class="toggle-basket-preview">
-            {% if config("Ceres.header.basket_values") != "sum" %}
-              <span class="badge-right" v-basket-item-quantity="this.$store.state.basket.data.itemQuantity">0</span>
-            {% endif %}
+        <ul id="controlsList" class="controls-list list-inline">
 
-            <i v-waiting-animation="this.$store.state.basket.isBasketLoading" waiting-class="fa fa-refresh fa-spin" class="fa fa-shopping-cart" aria-hidden="true"></i>
-            {% if config("Ceres.header.basket_values") != "quantity" %}
-              {% if services.customer.showNetPrices() %}
-                <span class="badge" v-basket-item-sum="this.$store.state.basket.data.itemSumNet">0,00
+          <li class="list-inline-item control-search">
+            <a class="anicon anicon-search-xcross" aria-label="toggle search" data-toggle="collapse" href="#searchBox" aria-expanded="{% if services.template.isSearch() %}true{% else %}false{% endif %}" aria-controls="searchBox" data-parent="#controlsList">
+              <span class="anicon-search-item" aria-hidden="true"></span>
+            </a>
+          </li>
+
+          <li class="list-inline-item control-user">
+            <user-login-handler template="#vue-user-login-handler" :user-data="{{ services.customer.getContact() | json_encode() }}"></user-login-handler>
+          </li>
+
+          <li class="list-inline-item control-basket">
+            <a v-toggle-basket-preview="v-toggle-basket-preview" href="#" class="toggle-basket-preview">
+              {% if config("Ceres.header.basket_values") != "sum" %}
+                <span class="badge-right" v-basket-item-quantity="this.$store.state.basket.data.itemQuantity">0</span>
+              {% endif %}
+
+              <i v-waiting-animation="this.$store.state.basket.isBasketLoading" waiting-class="fa fa-refresh fa-spin" class="fa fa-shopping-cart" aria-hidden="true"></i>
+              {% if config("Ceres.header.basket_values") != "quantity" %}
+                <span class="badge" v-if="!$store.state.basket.showNetPrices" v-basket-item-sum="this.$store.state.basket.data.itemSum">0,00
                   {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
-              {% else %}
-                <span class="badge" v-basket-item-sum="this.$store.state.basket.data.itemSum">0,00
+                <span class="badge" v-else="v-else" v-cloak="v-cloak" v-basket-item-sum="this.$store.state.basket.data.itemSumNet">0,00
                   {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
               {% endif %}
-            {% endif %}
-          </a>
+            </a>
 
-          {% if config("Ceres.basket.preview_type") != "right" %}
-            <basket-preview template="#vue-basket-preview-hover" :basket-data="{{ services.basket.getBasketForTemplate() | json_encode() }}"></basket-preview>
-          {% endif %}
+            {% if config("Ceres.basket.preview_type") != "right" %}
+              <basket-preview template="#vue-basket-preview-hover" :basket-data="{{ services.basket.getBasketForTemplate() | json_encode() }}" :show-net-prices={{ showNetPrices | json_encode } }="}"></basket-preview>
+            {% endif %}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="menuLinks">
+      <ul>
+        <li>
+          <a href="https://www.geniess-bar.de" title="zur Startseite">Startseite</a>
+        </li>
+        <li class="divider">|</li>
+        <li>
+          <a href="https://www.geniess-bar.de/content/gutscheine/" title="zu unseren Geschenkgutscheinen">Geschenkgutscheine</a>
+        </li>
+        <li class="divider">|</li>
+        <li>
+          <a href="https://www.geniess-bar.de/content/firmenkunden/" title="Firmenkunden">Firmenkunden</a>
+        </li>
+        <li class="divider">|</li>
+        <li>
+          <a href="https://www.geniess-bar.de/content/ihr-eigenes-logo/" title="Ihre eigenen Etiketten">Ihre eigenen Etiketten</a>
         </li>
       </ul>
     </div>
   </div>
-  <div class="menuLinks">
-    <ul>
-      <li>
-        <a href="https://www.geniess-bar.de" title="zur Startseite">Startseite</a>
-      </li>
-      <li class="divider">|</li>
-      <li>
-        <a href="https://www.geniess-bar.de/content/gutscheine/" title="zu unseren Geschenkgutscheinen">Geschenkgutscheine</a>
-      </li>
-      <li class="divider">|</li>
-      <li>
-        <a href="https://www.geniess-bar.de/content/firmenkunden/" title="Firmenkunden">Firmenkunden</a>
-      </li>
-      <li class="divider">|</li>
-      <li>
-        <a href="https://www.geniess-bar.de/content/ihr-eigenes-logo/" title="Ihre eigenen Etiketten">Ihre eigenen Etiketten</a>
-      </li>
-    </ul>
-  </div>
 </header>
+
+<!-- breadcrumb -->
+{% if not services.template.isHome()and not services.template.isMyAccount()and not services.template.isCheckout() %}
+  {% include "Ceres::PageDesign.Partials.Header.Breadcrumb" %}
+{% endif %}
 
 {% if category.linklist == "Y" %}
   {% set initialCategory = {
@@ -109,7 +116,7 @@
 
             <div class="currency-list col-xs-12">
               <div class="list-title">
-                <strong>{{ trans("Ceres::Template.currency") }}</strong>
+                <strong>{{ trans("Ceres::Template.headerCurrency") }}</strong>
                 <hr>
               </div>
               <ul>
@@ -140,7 +147,7 @@
 
               <div class="language-settings">
                 <div class="list-title">
-                  <strong>{{ trans("Ceres::Template.generalSelectLanguage") }}</strong>
+                  <strong>{{ trans("Ceres::Template.headerSelectLanguage") }}</strong>
                   <hr>
                 </div>
 
@@ -149,9 +156,9 @@
                 <ul>
                   {% for language in languageList %}
                     <li{% if lang == language %} class="active" {% endif %}>
-                      <a href="{% if languageUrls[language] is defined %}{{ languageUrls[language] ~ queryString() }}{% else %}/{{ language }}{% endif %}" data-update-url="data-update-url">
+                      <a href="{% if languageUrls[language] is defined %}{{ languageUrls[language] ~ queryString() }}{% else %}/{{ language }}{{ urls.trailingSlashSuffix }}{% endif %}" data-update-url="data-update-url">
                         <i class="flag-icon flag-icon-{{ language }}"></i>
-                        {{ trans("Ceres::Template." ~ language) }}
+                        {{ trans("Ceres::Template.header" ~ language | capitalize) }}
                       </a>
                     </li>
                   {% endfor %}
@@ -161,10 +168,10 @@
             <div class="country-settings-inner countries col-lg-6">
               <div class="shipping-settings">
                 <div class="list-title">
-                  <strong>{{ trans("Ceres::Template.generalSelectShippingCountry") }}</strong>
+                  <strong>{{ trans("Ceres::Template.headerSelectShippingCountry") }}</strong>
                   <hr>
                 </div>
-                <shipping-country-select template="#vue-shipping-country-select" :selectable="{{ services.template.isCheckout() | json_encode() }}"></shipping-country-select>
+                <shipping-country-select :disable-input="{{ services.template.isCheckout() | json_encode() }}"></shipping-country-select>
               </div>
             </div>
           </div>
