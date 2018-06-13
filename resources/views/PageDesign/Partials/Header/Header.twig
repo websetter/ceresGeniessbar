@@ -66,11 +66,12 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-            {% include "CeresGeniessbar::PageDesign.Partials.Header.Navigation" %}
+            </div>          
         </div>
 </header>
-
+<div id="kacheln">
+  {% include "CeresGeniessbar::PageDesign.Partials.Header.Navigation" %}
+</div>
 
 <!-- breadcrumb -->
 {% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() %}
