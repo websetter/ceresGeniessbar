@@ -8,58 +8,41 @@
 {{ component( "Ceres::Basket.Components.BasketPreviewHover" ) }}
 
 {% set lang = services.sessionStorage.getLang() %}
+{% set companyLogo  = config("Ceres.header.company_logo") %}
 {% set enabledRoutes = config("IO.routing.enabled_routes") | split(', ') %}
 {% set activeCurrencies = config("Ceres.currency.available_currencies") | split(', ') %}
 {% set enableCurrencySelect = config("Ceres.currency.enable_selection") == "true" and activeCurrencies | length > 0 %}
 {% set currencyFormat = config("Ceres.currency.format") %}
 {% set currencyFormatSelect = config("Ceres.currency.format_selection") %}
 
-<header class="top-bar">
+<header>
         <div>
             <div class="container-max">
                 <div class="row">
                     {{ LayoutContainer.show("Ceres::Header.LeftSide") }}
 
+                    <a class="navbar-brand pull-lg-left" href="/">
+                       {% if ('http' in companyLogo) or ('layout/' in companyLogo) %}
+                           <img alt="{{ companyName }}" src="{{ companyLogo }}" class="img-fluid"/>
+                       {% else %}
+                           <img alt="{{ companyName }}" src="{{ plugin_path('Ceres') }}/{{ companyLogo }}" class="img-fluid"/>
+                       {% endif %}
+                    </a>
                     <ul id="controlsList" class="controls-list list-inline">
+                      <li class="list-inline-item control-search">
+                          <a class="anicon anicon-search-xcross" aria-label="toggle search"
+                             data-toggle="collapse" href="#searchBox"
+                             aria-expanded="{% if services.template.isSearch() %}true{% else %}false{% endif %}"
+                             aria-controls="searchBox"
+                             data-parent="#controlsList">
+                              <span class="anicon-search-item" aria-hidden="true"></span>
+                          </a>
+                      </li>
 
                         <li class="list-inline-item control-user">
                             <user-login-handler template="#vue-user-login-handler"
                                                 :user-data="{{ services.customer.getContact() | json_encode() }}"></user-login-handler>
                         </li>
-                        <li class="list-inline-item dropdown control-languages">
-                            <a class="" data-toggle="collapse" href="#countrySettings" aria-expanded="false"
-                               aria-controls="countrySettings"
-                               data-parent="#controlsList">
-                                <i class="flag-icon flag-icon-{{ lang }}"></i>
-                            </a>
-                        </li>
-
-                        {% if enableCurrencySelect == "true" %}
-                            <li class="list-inline-item dropdown control-languages">
-                                <a class=""
-                                   data-toggle="collapse"
-                                   href="#currencySelect"
-                                   aria-expanded="false"
-                                   aria-controls="currencySelect"
-                                   data-parent="#controlsList">
-                                    <span>{{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
-                                </a>
-                            </li>
-                        {% endif %}
-                        <li class="list-inline-item control-search">
-                            <a class="anicon anicon-search-xcross" aria-label="toggle search"
-                               data-toggle="collapse" href="#searchBox"
-                               aria-expanded="{% if services.template.isSearch() %}true{% else %}false{% endif %}"
-                               aria-controls="searchBox"
-                               data-parent="#controlsList">
-                                <span class="anicon-search-item" aria-hidden="true"></span>
-                            </a>
-                        </li>
-                        {% if "wish-list" in enabledRoutes or "all" in enabledRoutes %}
-                            <li class="list-inline-item control-wish-list">
-                                <wish-list-count :init-ids="{{ services.wishList.getItemWishList() | json_encode }}"></wish-list-count>
-                            </li>
-                        {% endif %}
                         <li class="list-inline-item control-basket">
                             <a v-toggle-basket-preview href="#" class="toggle-basket-preview">
                                 {% if config("Ceres.header.basket_values") != "sum" %}
@@ -84,7 +67,6 @@
                     </ul>
                 </div>
             </div>
-            {% include "CeresGeniessbar::PageDesign.Partials.Header.Navigation" %}
         </div>
 </header>
 
