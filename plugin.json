@@ -1,0 +1,40 @@
+{
+    "version"           :   "0.0.1",
+    "license"           :   "AGPL-3.0",
+    "name"              :   "CeresGeniessbar",
+    "marketplaceName"   :   {"de":"Ceres Hermko","en":"Ceres Hermko"},
+    "pluginIcon"        :   "icon_plugin_xs.png",
+    "description"       :   "Theme für Hermko.",
+    "shortDescription"  :   { "de": "Theme für Ceres.", "en": "Theme for Ceres." },
+    "namespace"         :   "CeresGeniessbar",
+    "author"            :   "werk38",
+    "keywords"          :   ["plugins", "layout", "theme", "ceres"],
+    "price"             :   0,
+    "categories"        :   [3518],
+    "type"              :   "theme",
+    "require"           :   ["Ceres"],
+    "serviceProvider"   :   "CeresGeniessbar\\Providers\\CeresGeniessbarServiceProvider",
+    "dataProviders"     :
+    [
+        {
+            "key"           :"CeresGeniessbar\\Containers\\CeresGeniessbarContainer",
+            "name"          :"Stylesheet",
+            "description"   :"Add changes to the CSS file"
+        },
+        {
+            "key"           :"CeresGeniessbar\\Containers\\CeresGeniessbarItemListContainer1",
+            "name"          :"First item list",
+            "description"   :"Display a configurable list of items in your online store"
+        },
+        {
+            "key"           :"CeresGeniessbar\\Containers\\CeresGeniessbarItemListContainer2",
+            "name"          :"Second item list",
+            "description"   :"Display a configurable list of items in your online store"
+        },
+        {
+            "key"           :"CeresGeniessbar\\Containers\\CeresGeniessbarItemListContainer3",
+            "name"          :"Third item list",
+            "description"   :"Display a configurable list of items in your online store"
+        }
+    ]
+}
