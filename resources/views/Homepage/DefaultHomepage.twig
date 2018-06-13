@@ -1,32 +1,13 @@
 <!-- Insert markup for default homepage here -->
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 
-{% set overrideHomepageContainer = LayoutContainer.show("Ceres::Homepage") %}
+{% set overrideHomepageContainer = "" %}
+{% for content in container("Ceres::Homepage") if content.plugin != "Plenty" %}
+    {% set overrideHomepageContainer = overrideHomepageContainer ~ content.result %}
+{% endfor %}
 {% if overrideHomepageContainer | trim is empty %}
 
-  {% set lang = services.sessionStorage.getLang() %}
-
-  {% set heroExtra1 = {
-    item: services.itemLoader.loadForTemplate('Ceres::Homepage.Homepage', itemLoaderPresets.items, {
-      variationIds: [config("Ceres.homepage.heroExtraItemId1")]
-    }).documents[0].data,
-    url: config("Ceres.homepage.heroExtraImageUrl1")
-  } %}
-  {% set heroExtra2 = {
-    item: services.itemLoader.loadForTemplate('Ceres::Homepage.Homepage', itemLoaderPresets.items, {
-      variationIds: [config("Ceres.homepage.heroExtraItemId2")]
-    }).documents[0].data,
-    url: config("Ceres.homepage.heroExtraImageUrl2")
-  } %}
-
-  {% if heroExtra1.url | trim is empty and heroExtra1.item.texts is not empty %}
-    {% set heroExtra1Image = heroExtra1.item.images | itemImages | orderByKey('position') | first %}
-    {% set heroExtra1 = heroExtra1 | merge({url: heroExtra1Image.url}) %}
-  {% endif %}
-  {% if heroExtra2.url | trim is empty and heroExtra2.item.texts is not empty %}
-    {% set heroExtra2Image = heroExtra2.item.images | itemImages | orderByKey('position') | first %}
-    {% set heroExtra2 = heroExtra2 | merge({url: heroExtra2Image.url}) %}
-  {% endif %}
+    {% set lang = services.sessionStorage.getLang() %}
 
   {% set category1 = services.category.get(config("Ceres.homepage.homepageCategory1"), lang) %}
   {% set category2 = services.category.get(config("Ceres.homepage.homepageCategory2"), lang) %}
@@ -38,14 +19,14 @@
   {% set paginatedCategoryList1 = services.itemLoader.loadForTemplate('Ceres::ItemList.ItemListView', itemLoaderPresets.categoryList, {
     'categoryId': category3.id,
     'page': 1,
-    'items': 3,
+    'items': 4,
     'sorting': itemSort
   }) %}
 
   {% set paginatedCategoryList2 = services.itemLoader.loadForTemplate('Ceres::ItemList.ItemListView', itemLoaderPresets.categoryList, {
     'categoryId': category6.id,
     'page': 1,
-    'items': 3,
+    'items': 4,
     'sorting': itemSort
   }) %}
 
@@ -107,7 +88,7 @@
       *
       {{ trans("Ceres::Template.itemInclVAT") }}
       {{ trans("Ceres::Template.itemExclusive") }}
-      <a href="https://www.geniess-bar.de/bestellvorgang/versand-und-kosten/" title="{{ trans(" ceres::template.itemshippingcosts") }}"="ceres::template.itemShippingCosts") }}"">{{ trans("Ceres::Template.itemShippingCosts") }}</a>
+      <a href="https://www.geniess-bar.de/bestellvorgang/versand-und-kosten/" title="{{ trans(" ceres::template.itemshippingcosts") }}">{{ trans("Ceres::Template.itemShippingCosts") }}</a>
     </p>
   </div>
 {% else %}
