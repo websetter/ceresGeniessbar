@@ -3,23 +3,19 @@
 {% set companyName  = config("Ceres.header.company_name") %}
 {% set useMegaMenu  = config("Ceres.header.megamenu_levels") > 1 %}
 
-<nav class="navbar">
+<nav class="navbar">      
+         <button id="btnMainMenuToggler" v-open-mobile-navigation class="navbar-toggler hidden-lg-up" type="button">
+             &#9776;
+         </button>
 
-        <div class="row">
-               <button id="btnMainMenuToggler" v-open-mobile-navigation class="navbar-toggler hidden-lg-up" type="button">
-                   &#9776;
-               </button>
-
-            <div id="mainNavbarCollapsable">
-                <ul class="breadcrumb">
-                    <li class="btnClose"></li>
-                </ul>
-                {% if showHeaderNavBar == "top" or showHeaderNavBar == "both" or not services.template.isCategory() %}
-                    {# includeCached('Ceres::PageDesign.Partials.Header.NavigationList.twig') #}
-                    {% include "Ceres::PageDesign.Partials.Header.NavigationList" %}
-                {% endif %}
-            </div>
-
-        </div>
+      <div id="mainNavbarCollapsable">
+          <ul class="breadcrumb">
+              <li class="btnClose"></li>
+          </ul>
+          {% if showHeaderNavBar == "top" or showHeaderNavBar == "both" or not services.template.isCategory() %}
+              {# includeCached('Ceres::PageDesign.Partials.Header.NavigationList.twig') #}
+              {% include "CeresGeniessbar::PageDesign.Partials.Header.NavigationList" %}
+          {% endif %}
+      </div>
 
 </nav>
