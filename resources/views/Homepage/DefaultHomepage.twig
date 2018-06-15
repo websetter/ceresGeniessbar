@@ -11,13 +11,13 @@
 
   {% set category1 = services.category.get(config("Ceres.homepage.homepageCategory1"), lang) %}
   {% set category2 = services.category.get(config("Ceres.homepage.homepageCategory2"), lang) %}
-  {% set category3 = services.category.get(config("Ceres.homepage.homepageCategory3"), lang) %}
+  {% set category3 = services.category.get(config(154, lang) %}
   {% set category4 = services.category.get(config("Ceres.homepage.homepageCategory4"), lang) %}
   {% set category5 = services.category.get(config("Ceres.homepage.homepageCategory5"), lang) %}
   {% set category6 = services.category.get(config("Ceres.homepage.homepageCategory6"), lang) %}
 
   {% set paginatedCategoryList1 = services.itemLoader.loadForTemplate('Ceres::ItemList.ItemListView', itemLoaderPresets.categoryList, {
-    'categoryId': 158,
+    'categoryId': category3.id,
     'page': 1,
     'items': 4,
     'sorting': itemSort
@@ -33,7 +33,7 @@
   {% set categoryList1 = paginatedCategoryList1.documents %}
   {% set categoryList2 = paginatedCategoryList2.documents %}
 
-  {{ component( "Ceres::ItemList.Components.ItemList") }}
+  {{ component( "CeresGeniessbar::ItemList.Components.ItemList") }}
   {{ component( "Ceres::ItemList.Components.CategoryImageCarousel") }}
   {{ component( "Ceres::Basket.Components.AddToBasket" ) }}
 
@@ -80,9 +80,8 @@
     <div class="row">
       {% set homepageContainer6 = LayoutContainer.show("Ceres::Homepage.Container6") %}
 
-      {% if categoryList1 is not empty or homepageContainer6 | trim is not empty %}
+
         <div class="m-b-2 clearfix topProdukte">
-          {% if homepageContainer6 | trim is empty %}
             <ul class="product-list grid">
               {% for item in categoryList1 %}
                 <li class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
@@ -92,11 +91,8 @@
                 </li>
               {% endfor %}
             </ul>
-          {% else %}
-            {{ homepageContainer6 }}
-          {% endif %}
         </div>
-      {% endif %}
+      
 
     </div>
 
