@@ -37,7 +37,7 @@
     </a>
   </div>
 
-  <div class="home container-max">
+  <div class="container-max">
     <div id="kacheln">
       {% include "CeresGeniessbar::PageDesign.Partials.Header.Navigation" %}
     </div>
@@ -49,13 +49,17 @@
     {% endif %}
 
     <mobile-navigation :navigation-tree-data="{{ categories | json_encode }}" :initial-category="{{ initialCategory | json_encode }}" template="#vue-mobile-navigation"></mobile-navigation>
+  </div>
     <div id="banner">
+      <div class="container-max">
         {{ categorySlider.details.first.description2 | raw }}
+      </div>
     </div>
+    <div class="container-max">
     <div class="row">
         <div class="m-b-2 clearfix topProdukte">
             <ul class="product-list grid">
-              {% for item in categoryList1 %}
+              {% for item in itemList %}
                 <li class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                   {% include "CeresGeniessbar::Category.Item.Partials.CategoryListItem" with {
                     'item' : item
