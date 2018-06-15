@@ -7,44 +7,26 @@
 {% endfor %}
 {% if overrideHomepageContainer | trim is empty %}
 
-    {% set lang = services.sessionStorage.getLang() %}
-
-  {% set category1 = services.category.get(config("Ceres.homepage.homepageCategory1"), lang) %}
-  {% set category2 = services.category.get(config("Ceres.homepage.homepageCategory2"), lang) %}
-  {% set category3 = services.category.get(154, lang) %}
-  {% set category4 = services.category.get(config("Ceres.homepage.homepageCategory4"), lang) %}
-  {% set category5 = services.category.get(config("Ceres.homepage.homepageCategory5"), lang) %}
-  {% set category6 = services.category.get(config("Ceres.homepage.homepageCategory6"), lang) %}
-
+  {% set lang = services.sessionStorage.getLang() %}
+  {% set category1 = services.category.get(154, lang) %}
   {% set paginatedCategoryList1 = services.itemLoader.loadForTemplate('Ceres::ItemList.ItemListView', itemLoaderPresets.categoryList, {
-    'categoryId': category3.id,
+    'categoryId': category1.id,
     'page': 1,
     'items': 4,
     'sorting': itemSort
   }) %}
-
-  {% set paginatedCategoryList2 = services.itemLoader.loadForTemplate('Ceres::ItemList.ItemListView', itemLoaderPresets.categoryList, {
-    'categoryId': category6.id,
-    'page': 1,
-    'items': 4,
-    'sorting': itemSort
-  }) %}
-
   {% set categoryList1 = paginatedCategoryList1.documents %}
-  {% set categoryList2 = paginatedCategoryList2.documents %}
 
   {{ component( "CeresGeniessbar::ItemList.Components.ItemList") }}
   {{ component( "Ceres::ItemList.Components.CategoryImageCarousel") }}
   {{ component( "Ceres::Basket.Components.AddToBasket" ) }}
 
-  {% set homepageContainer1 = LayoutContainer.show("Ceres::Homepage.Container1") %}
 
   <div id="homeSlider" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       {% if categorySlider is not defined %}
         {% set categorySlider = services.category.get(241, lang) %}
       {% endif %}
-
       {{ categorySlider.details.first.description | raw }}
     </div>
     <a class="carousel-control-prev" href="#homeSlider" role="button" data-slide="prev">
@@ -56,15 +38,9 @@
   </div>
 
   <div class="home container-max">
-
     <div id="kacheln">
       {% include "CeresGeniessbar::PageDesign.Partials.Header.Navigation" %}
     </div>
-
-    <!-- breadcrumb -->
-    {% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() %}
-        {% include "Ceres::PageDesign.Partials.Header.Breadcrumb" %}
-    {% endif %}
 
     {% if category.linklist == "Y" %}
         {% set initialCategory = { id: category.id } %}
@@ -73,14 +49,10 @@
     {% endif %}
 
     <mobile-navigation :navigation-tree-data="{{ categories | json_encode }}" :initial-category="{{ initialCategory | json_encode }}" template="#vue-mobile-navigation"></mobile-navigation>
-
-
-    <div id="banner"></div>
-
+    <div id="banner">
+        {{ categorySlider.details.first.description2 | raw }}
+    </div>
     <div class="row">
-      {% set homepageContainer6 = LayoutContainer.show("Ceres::Homepage.Container6") %}
-
-
         <div class="m-b-2 clearfix topProdukte">
             <ul class="product-list grid">
               {% for item in categoryList1 %}
@@ -92,10 +64,7 @@
               {% endfor %}
             </ul>
         </div>
-
-
     </div>
-
     <p class="VAT">
       *
       {{ trans("Ceres::Template.itemInclVAT") }}
