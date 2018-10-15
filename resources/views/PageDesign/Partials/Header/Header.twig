@@ -68,12 +68,14 @@
                 </div>
               {% endif %}
             <div id="bottomBar">
+              <div class="container-max">
               <ul>
                 <li><a href="{{ trans("GeniessBar::Template.LinkNavBarStartseite") }}" title="{{ trans("GeniessBar::Template.NavBarStartseite") }}">{{ trans("GeniessBar::Template.NavBarStartseite") }}</a></li>
                 <li><a href="{{ trans("GeniessBar::Template.LinkNavBarGutschein") }}" title="{{ trans("GeniessBar::Template.NavBarGutschein") }}">{{ trans("GeniessBar::Template.NavBarGutschein") }}</a></li>
                 <li><a href="{{ trans("GeniessBar::Template.LinkNavBarFirmenkunde") }}" title="{{ trans("GeniessBar::Template.NavBarFirmenkunde") }}">{{ trans("GeniessBar::Template.NavBarFirmenkunde") }}</a></li>
                 <li><a href="{{ trans("GeniessBar::Template.LinkNavBarLogo") }}" title="{{ trans("GeniessBar::Template.NavBarLogo") }}">{{ trans("GeniessBar::Template.NavBarLogo") }}</a></li>
               </ul>
+            </div>
             </div>
 </header>
 {% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() %}
