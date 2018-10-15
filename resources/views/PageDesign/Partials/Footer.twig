@@ -1,53 +1,39 @@
-<!-- Insert markup for footer here -->
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 
+{% set numberOfCols = config('Ceres.footer.number_of_cols') %}
+{% set displayedCategories = [] %}
+
 <footer>
-  <div class="container-max">
-    <div id="footerBox">
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-3">
-          <h3>Kontakt</h3>
-          <p>
-            <span class="fa fa-map-marker"></span><span class="adress">Johand-Dahlem-Str. 64<br>63814 Mainnaschaff</span></p>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3">
-          <h3>Informationen</h3>
-          <ul>
-            <li>
-              <a href="" title="">Über uns</a>
-            </li>
-            <li>
-              <a href="" title="">Kontakt</a>
-            </li>
-            <li>
-              <a href="" title="">Impressum</a>
-            </li>
-            <li>
-              <a href="" title="">AGB</a>
-            </li>
-            <li>
-              <a href="" title="">Datenschutzerklärung</a>
-            </li>
-            <li>
-              <a href="" title="">Widerrufsrecht</a>
-            </li>
-            <li>
-              <a href="" title="">Versand und Kosten</a>
-            </li>
-            <li>
-              <a href="" title="">Newsletter</a>
-            </li>
+
+  <div class="container-max footer-content">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-3 contact">
+          <h4>Kontakt</h4>
+          {% include "GeniessBar::Customer.Components.Contact.ContactCard" %}
+          </div>
+      <div class="col-xs-12 col-sm-12 col-md-3 info">
+          <h4>Informationen</h4>
+          <ul class="list-unstyled">
+            <li><a href="{{ trans("GeniessBar::Template.LinkAboutUs") }}">{{ trans('GeniessBar::Template.FooterAboutUs') }}</a></li>
+            <li><a href="{{ urls.legalDisclosure }}">{{ trans('GeniessBar::Template.FooterLegalDisclosure') }}</a></li>
+            <li><a href="{{ urls.gtc }}">{{ trans('GeniessBar::Template.checkoutGtc') }}</a></li>
+            <li><a href="{{ urls.privacyPolicy }}">{{ trans('GeniessBar::Template.footerPrivacy') }}</a></li>
+            <li><a href="{{ urls.cancellationRights }}">{{ trans('GeniessBar::Template.footerCancellation') }}</a></li>
+            <li><a href="{{ trans("GeniessBar::Template.LinkFooterPaymentAndShipping") }}">{{ trans('GeniessBar::Template.FooterPaymentAndShipping') }}</a></li>
+            <li><a href="{{ trans("GeniessBar::Template.LinkFooterNewsletter") }}">{{ trans('GeniessBar::Template.FooterNewsletter') }}</a></li>
+
+
           </ul>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3">
-          <h3>Zahlungsarten</h3>
-					<h3>Folgen Sie uns</h3>
-					<span class="fa fa-facebook"></span>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3"></div>
-				<p>Käufersiegel folgt</p>
       </div>
+      <div class="col-xs-12 col-sm-12 col-md-4 payment">
+          <h4>Zahlungsarten</h4>
+          <p class="small">Design by WERK38<br>&copy 2018 GeniessBar!</p>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-4 payment">
+          <h4>Käufersiegel</h4>
+
+      </div>
+
     </div>
-		<img id="footerLogo" src="https://cdn03.plentymarkets.com/9mle78gfrmwz/frontend/templateCeres/logo_geniess_bar.jpg" alt="Logo">
   </div>
 </footer>

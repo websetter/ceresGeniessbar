@@ -1,6 +1,6 @@
 <?php
 
-namespace CeresGeniessbar\Providers;
+namespace GeniessBar\Providers;
 
 use Ceres\Caching\NavigationCacheSettings;
 use Ceres\Caching\SideNavigationCacheSettings;
@@ -11,13 +11,14 @@ use Plenty\Plugin\Templates\Twig;
 use IO\Helper\TemplateContainer;
 use IO\Extensions\Functions\Partial;
 use Plenty\Plugin\ConfigRepository;
+use GeniessBar\Contexts\MyContext;
 
 
 /**
- * Class CeresGeniessbarServiceProvider
- * @package CeresGeniessbar\Providers
+ * Class GeniessBarServiceProvider
+ * @package GeniessBar\Providers
  */
-class CeresGeniessbarServiceProvider extends ServiceProvider
+class GeniessBarServiceProvider extends ServiceProvider
 {
     const PRIORITY = 0;
 
@@ -29,13 +30,19 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
     public function boot(Twig $twig, Dispatcher $dispatcher, ConfigRepository $config)
     {
 
-        $enabledOverrides = explode(", ", $config->get("CeresGeniessbar.templates.override"));
+        $enabledOverrides = explode(", ", $config->get("GeniessBar.templates.override"));
+
+        $dispatcher->listen('IO.ctx.item', function (TemplateContainer $templateContainer, $templateData = [])
+        {
+            $templateContainer->setContext( MyContext::class);
+            return false;
+        }, 0);
 
         // Override partials
         $dispatcher->listen('IO.init.templates', function (Partial $partial) use ($enabledOverrides)
         {
-            pluginApp(Container::class)->register('CeresGeniessbar::PageDesign.Partials.Header.NavigationList.twig', NavigationCacheSettings::class);
-            pluginApp(Container::class)->register('CeresGeniessbar::PageDesign.Partials.Header.SideNavigation.twig', SideNavigationCacheSettings::class);
+            pluginApp(Container::class)->register('GeniessBar::PageDesign.Partials.Header.NavigationList.twig', NavigationCacheSettings::class);
+            pluginApp(Container::class)->register('GeniessBar::PageDesign.Partials.Header.SideNavigation.twig', SideNavigationCacheSettings::class);
 
             $partial->set('head', 'Ceres::PageDesign.Partials.Head');
             $partial->set('header', 'Ceres::PageDesign.Partials.Header.Header');
@@ -44,22 +51,22 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             if (in_array("head", $enabledOverrides) || in_array("all", $enabledOverrides))
             {
-                $partial->set('head', 'CeresGeniessbar::PageDesign.Partials.Head');
+                $partial->set('head', 'GeniessBar::PageDesign.Partials.Head');
             }
 
             if (in_array("header", $enabledOverrides) || in_array("all", $enabledOverrides))
             {
-                $partial->set('header', 'CeresGeniessbar::PageDesign.Partials.Header.Header');
+                $partial->set('header', 'GeniessBar::PageDesign.Partials.Header.Header');
             }
 
             if (in_array("page_design", $enabledOverrides) || in_array("all", $enabledOverrides))
             {
-                $partial->set('page-design', 'CeresGeniessbar::PageDesign.PageDesign');
+                $partial->set('page-design', 'GeniessBar::PageDesign.PageDesign');
             }
 
             if (in_array("footer", $enabledOverrides) || in_array("all", $enabledOverrides))
             {
-                $partial->set('footer', 'CeresGeniessbar::PageDesign.Partials.Footer');
+                $partial->set('footer', 'GeniessBar::PageDesign.Partials.Footer');
             }
 
             return false;
@@ -71,7 +78,7 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.home', function (TemplateContainer $container)
             {
-                $container->setTemplate('CeresGeniessbar::Homepage.Homepage');
+                $container->setTemplate('GeniessBar::Homepage.Homepage');
                 return false;
             }, self::PRIORITY);
         }
@@ -82,7 +89,7 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.category.content', function (TemplateContainer $container)
             {
-                $container->setTemplate('CeresGeniessbar::Category.Content.CategoryContent');
+                $container->setTemplate('GeniessBar::Category.Content.CategoryContent');
                 return false;
             }, self::PRIORITY);
         }
@@ -93,7 +100,7 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.category.item', function (TemplateContainer $container)
             {
-                $container->setTemplate('CeresGeniessbar::Category.Item.CategoryItem');
+                $container->setTemplate('GeniessBar::Category.Item.CategoryItem');
                 return false;
             }, self::PRIORITY);
         }
@@ -104,7 +111,7 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.basket', function (TemplateContainer $container)
             {
-                $container->setTemplate('CeresGeniessbar::Basket.Basket');
+                $container->setTemplate('GeniessBar::Basket.Basket');
                 return false;
             }, self::PRIORITY);
         }
@@ -115,7 +122,7 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.checkout', function (TemplateContainer $container)
             {
-                $container->setTemplate('CeresGeniessbar::Checkout.CheckoutView');
+                $container->setTemplate('GeniessBar::Checkout.CheckoutView');
                 return false;
             }, self::PRIORITY);
         }
@@ -126,7 +133,7 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.confirmation', function (TemplateContainer $container)
             {
-                $container->setTemplate('CeresGeniessbar::Checkout.OrderConfirmation');
+                $container->setTemplate('GeniessBar::Checkout.OrderConfirmation');
                 return false;
             }, self::PRIORITY);
         }
@@ -137,7 +144,7 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.login', function (TemplateContainer $container)
             {
-                $container->setTemplate('CeresGeniessbar::Customer.Login');
+                $container->setTemplate('GeniessBar::Customer.Login');
                 return false;
             }, self::PRIORITY);
         }
@@ -148,7 +155,7 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.register', function (TemplateContainer $container)
             {
-                $container->setTemplate('CeresGeniessbar::Customer.Register');
+                $container->setTemplate('GeniessBar::Customer.Register');
                 return false;
             }, self::PRIORITY);
         }
@@ -159,7 +166,7 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.item', function (TemplateContainer $container)
             {
-                $container->setTemplate('CeresGeniessbar::Item.SingleItemWrapper');
+                $container->setTemplate('GeniessBar::Item.SingleItemWrapper');
                 return false;
             }, self::PRIORITY);
         }
@@ -170,7 +177,7 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.search', function (TemplateContainer $container)
             {
-                $container->setTemplate('CeresGeniessbar::ItemList.ItemListView');
+                $container->setTemplate('GeniessBar::ItemList.ItemListView');
                 return false;
             }, self::PRIORITY);
         }
@@ -181,7 +188,7 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.my-account', function (TemplateContainer $container)
             {
-                $container->setTemplate('CeresGeniessbar::MyAccount.MyAccount');
+                $container->setTemplate('GeniessBar::MyAccount.MyAccount');
                 return false;
             }, self::PRIORITY);
         }
@@ -192,7 +199,7 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.cancellation-rights', function (TemplateContainer $container)
             {
-                $container->setTemplate('CeresGeniessbar::StaticPages.CancellationRights');
+                $container->setTemplate('GeniessBar::StaticPages.CancellationRights');
                 return false;
             }, self::PRIORITY);
         }
@@ -203,7 +210,7 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.legal-disclosure', function (TemplateContainer $container)
             {
-                $container->setTemplate('CeresGeniessbar::StaticPages.LegalDisclosure');
+                $container->setTemplate('GeniessBar::StaticPages.LegalDisclosure');
                 return false;
             }, self::PRIORITY);
         }
@@ -214,7 +221,7 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.privacy-policy', function (TemplateContainer $container)
             {
-                $container->setTemplate('CeresGeniessbar::StaticPages.PrivacyPolicy');
+                $container->setTemplate('GeniessBar::StaticPages.PrivacyPolicy');
                 return false;
             }, self::PRIORITY);
         }
@@ -225,7 +232,7 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.terms-conditions', function (TemplateContainer $container)
             {
-                $container->setTemplate('CeresGeniessbar::StaticPages.TermsAndConditions');
+                $container->setTemplate('GeniessBar::StaticPages.TermsAndConditions');
                 return false;
             }, self::PRIORITY);
         }
@@ -236,7 +243,7 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.item-not-found', function (TemplateContainer $container)
             {
-                $container->setTemplate('CeresGeniessbar::StaticPages.ItemNotFound');
+                $container->setTemplate('GeniessBar::StaticPages.ItemNotFound');
                 return false;
             }, self::PRIORITY);
         }
@@ -247,7 +254,7 @@ class CeresGeniessbarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.page-not-found', function (TemplateContainer $container)
             {
-                $container->setTemplate('CeresGeniessbar::StaticPages.PageNotFound');
+                $container->setTemplate('GeniessBar::StaticPages.PageNotFound');
                 return false;
             }, self::PRIORITY);
         }

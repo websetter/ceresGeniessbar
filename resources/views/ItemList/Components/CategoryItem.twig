@@ -14,12 +14,8 @@
 {% endif %}
 
 <script type="x/template" id="vue-category-item">
-    <article class="cmp cmp-product-thumb cmp-product-thumb--grid">
+    <article class="product-inner themefromItemList">
         <div class="thumb-inner">
-            <add-to-basket :item="itemData" :use-large-scale="true" :item-url="itemData | itemURL"></add-to-basket>
-
-            <div class="thumb-background"></div>
-
             <div class="thumb-image">
                 <div class="square-container">
                     <div class="square-inner main-image">
@@ -35,45 +31,34 @@
                     </div>
                 </div>
             </div>
-
-            <!-- STORE SPECIALS -->
-            <item-store-special v-if="storeSpecial" :store-special="storeSpecial"
-                                :recommended-retail-price="itemData.prices.rrp"
-                                :variation-retail-price="itemData.prices.default"
-                                :decimal-count="decimalCount"></item-store-special>
-            <!-- ./STORE SPECIALS -->
-
-            <!-- ITEM DETAILS -->
+            <hr>
             <div class="thumb-content">
-                <a :href="itemData | itemURL" class="thumb-title small">
-                    ${ itemData | itemName }
-                </a>
-                <div class="thumb-meta">
-                    <div class="prices">
-                        <div v-if="itemData.prices.rrp && itemData.prices.rrp.price.value > 0" class="price-view-port">
-                            <del class="crossprice">
-                                ${ itemData.prices.rrp.price.formatted }
-                            </del>
-                        </div>
-
-                        <div class="price">
-                            ${ itemData.prices.default.unitPrice.formatted } *
-                        </div>
-                    </div>
-
-                    <div class="category-unit-price" v-if="!(itemData.unit.unitOfMeasurement === 'C62' && itemData.unit.content === 1)">
-                        <span>${ itemData.unit.content }</span>
-                        <span>${ itemData.unit.names.name }</span>
-                        <span v-if="itemData.variation.mayShowUnitPrice">| ${ itemData.prices.default.basePrice }</span>
-                    </div>
+              <a :href="itemData | itemURL" class="thumb-title">
+                  ${ itemData | itemName }
+              </a>
+              <p class="shortDesc">${ itemData.texts.shortDescription }</p>
+              <div class="prices">
+                  <div v-if="itemData.prices.rrp && itemData.prices.rrp.price.value > 0 && itemData.prices.rrp.price.value > itemData.prices.default.unitPrice.value" class="price-view-port">
+                      <span class="crossprice">
+                          {{ trans("GeniessBar::Template.UVP") }} ${ itemData.prices.rrp.price.formatted }
+                      </span>
+                  </div>
+                  <div class="price">
+                      ${ itemData.prices.default.unitPrice.formatted } *
+                  </div>
+              </div>
+                <div class="category-unit-price" v-if="!(itemData.unit.unitOfMeasurement === 'C62' && itemData.unit.content === 1)">
+                    <span>${ itemData.unit.content }</span>
+                    <span>${ itemData.unit.names.name }</span>
+                    <span v-if="itemData.variation.mayShowUnitPrice">| ${ itemData.prices.default.basePrice }</span>
                 </div>
-                <add-to-basket :item="itemData" :item-url="itemData | itemURL"></add-to-basket>
-                <span class="vat small text-muted">
-                            * {{ trans("Ceres::Template.itemInclVAT") }} {{ trans("Ceres::Template.itemExclusive") }}
-                    <a {% if shippingCat is not empty %} data-toggle="modal" href="#shippingscosts"{% endif %} title="{{ trans("Ceres::Template.itemShippingCosts") }}">{{ trans("Ceres::Template.itemShippingCosts") }}</a>
-                </span>
-            </div>
-            <!-- ./ITEM DETAILS  -->
+              </div>
+                <hr>
+                <div class="artSold" v-if="itemData.variationProperties">
+                    <p>Bereits ${ itemData.variationProperties[0].values.value } Mal verkauft</p>
+                    <hr>
+                </div>
+
         </div>
     </article>
 </script>

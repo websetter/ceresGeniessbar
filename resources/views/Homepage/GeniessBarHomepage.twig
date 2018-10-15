@@ -1,0 +1,103 @@
+{% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
+{% import "Ceres::PageDesign.Macros.ItemName" as ItemName %}
+
+{% set overrideHomepageContainer = "" %}
+{% for content in container("Ceres::Homepage") if content.plugin != "Plenty" %}
+    {% set overrideHomepageContainer = overrideHomepageContainer ~ content.result %}
+{% endfor %}
+{% import "GeniessBar::Category.Macros.CategoryTree" as Tree %}
+{# if HomeContent is not defined #}
+  {# set HomeContent = services.category.get(1422, lang) #}
+{# endif #}
+
+{% if overrideHomepageContainer | trim is empty %}
+
+    {% set lang = services.sessionStorage.getLang() %}
+    {% set category1 = services.category.get(config("Ceres.homepage.homepageCategory1"), lang) %}
+    {% set category2 = services.category.get(config("Ceres.homepage.homepageCategory2"), lang) %}
+    {% set category3 = services.category.get(config("Ceres.homepage.homepageCategory3"), lang) %}
+    {% set category4 = services.category.get(config("Ceres.homepage.homepageCategory4"), lang) %}
+    {% set category5 = services.category.get(config("Ceres.homepage.homepageCategory5"), lang) %}
+    {% set category6 = services.category.get(config("Ceres.homepage.homepageCategory6"), lang) %}
+
+    {% set paginatedCategoryList1 =
+    services.itemLoader.loadForTemplate(
+    'Ceres::ItemList.ItemListView',
+    itemLoaderPresets.categoryList,
+    {'categoryId': category3.id, 'page':1, 'items':4, 'sorting': itemSort}) %}
+
+    {% set paginatedCategoryList2 =
+    services.itemLoader.loadForTemplate(
+    'Ceres::ItemList.ItemListView',
+    itemLoaderPresets.categoryList,
+    {'categoryId': category6.id, 'page':1, 'items':4, 'sorting': itemSort}) %}
+
+    {% set categoryList1 = paginatedCategoryList1.documents %}
+    {% set categoryList2 = paginatedCategoryList2.documents %}
+
+    {{ component( "Ceres::ItemList.Components.ItemList") }}
+    {{ component( "Ceres::ItemList.Components.CategoryImageCarousel") }}
+    {{ component( "Ceres::Basket.Components.AddToBasket" ) }}
+
+
+    <div class="home container-max">
+      <div id="angebote">
+        {% set homepageContainer6 = LayoutContainer.show("Ceres::Homepage.Container6") %}
+        {% if categoryList1 is not empty or homepageContainer6 | trim is not empty %}
+            <div class="m-b-2 clearfix">
+                {% if homepageContainer6 | trim is empty %}
+                    <div class="section-header m-b-1">
+                        <h2>{{ category3.details[0].name }}</h2>
+                        <a href="{{ services.category.getURL(category3, lang) }}"
+                           class="section-link-all"><i
+                                    class="fa fa-angle-double-right"
+                                    aria-hidden="true"></i> {{ trans("Ceres::Template.homepageShowAll") }}</a>
+                    </div>
+                    <ul class="product-list row grid">
+                        {% for item in categoryList1 %}
+                            <li class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                {% include "Ceres::Category.Item.Partials.CategoryListItem" with { 'item': item } %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    {{ homepageContainer6 }}
+                {% endif %}
+            </div>
+        {% endif %}
+      </div>
+
+
+      <div id="kacheln">
+            {{ Tree.get_nav_bar_kacheln(categories, "") }}          
+      </div>
+
+      <div class="topProdukte">
+        {% set homepageContainer9 = LayoutContainer.show("Ceres::Homepage.Container9") %}
+        {% if categoryList2 is not empty or homepageContainer9 | trim is not empty %}
+            <div class="m-b-2 clearfix">
+                {% if homepageContainer9 | trim is empty %}
+                    <div class="section-header m-b-1">
+                        <h2>{{ category6.details[0].name }}</h2>
+                        <a href="{{ services.category.getURL(category6, lang) }}"
+                           class="section-link-all"><i
+                                    class="fa fa-angle-double-right"
+                                    aria-hidden="true"></i> {{ trans("Ceres::Template.homepageShowAll") }}</a>
+                    </div>
+                    <ul class="product-list row grid">
+                        {% for item in categoryList2 %}
+                            <li class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                {% include "Ceres::Category.Item.Partials.CategoryListItem" with { 'item': item } %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    {{ homepageContainer9 }}
+                {% endif %}
+            </div>
+        {% endif %}
+      </div>
+  </div>
+{% else %}
+    {{ overrideHomepageContainer | raw }}
+{% endif %}

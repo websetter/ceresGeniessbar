@@ -1,14 +1,14 @@
 {{ services.lastSeen.setLastSeenMaxCount(config("Ceres.item.lists.last_seen_number")) }}
 
-{{ component( "CeresGeniessbar::Item.Components.VariationSelect" ) }}
-{{ component( "CeresGeniessbar::Item.Components.ItemImageCarousel" ) }}
-{{ component( "CeresGeniessbar::Item.Components.AddToWishList" ) }}
+{{ component( "GeniessBar::Item.Components.VariationSelect" ) }}
+{{ component( "GeniessBar::Item.Components.ItemImageCarousel" ) }}
+{{ component( "GeniessBar::Item.Components.AddToWishList" ) }}
 {{ component( "Ceres::Item.Components.OrderProperties" ) }}
 {{ component( "Ceres::Item.Components.OrderPropertyList" ) }}
-{{ component( "CeresGeniessbar::Item.Components.SingleItem" ) }}
+{{ component( "GeniessBar::Item.Components.SingleItem" ) }}
 {{ component( "Ceres::Item.Components.GraduatedPrices" ) }}
-{{ component( "CeresGeniessbar::Basket.Components.AddToBasket" ) }}
-
+{{ component( "GeniessBar::Basket.Components.AddToBasket" ) }}
+{{ component( "Ceres::Item.Components.ItemBundle" ) }}
 
 <single-item v-cloak template="#vue-single-item" :item-data="{{ item | json_encode }}" :variation-list-data="{{ variations | json_encode }}" :attribute-name-map="{{attributeNameMap | json_encode}}">
     <div slot="BeforePrice">{{ LayoutContainer.show("Ceres::SingleItem.BeforePrice", item.documents[0].data) }}</div>
@@ -21,4 +21,28 @@
     <template slot="AddDetailTabsContent">{{ LayoutContainer.show("Ceres::SingleItem.AddDetailTabsContent", item.documents[0].data) }}</template>
     <div slot="ItemListContainer">{{ LayoutContainer.show("Ceres::SingleItem.ItemListContainer", item) }}</div>
     <div slot="FeedbackContainer">{{ LayoutContainer.show("Ceres::SingleItem.FeedbackContainer", item) }}</div>
+    <div slot="Eigenschaft">
+      {%  for variationProperty in item.documents[0].data.variationProperties %}
+      	 {% if variationProperty.property.id == 1 %}
+                    <!-- {{ variationProperty.property.names.name }}-->
+      	   <p>Bereits {{ variationProperty.values.value }} Mal verkauft.</p>
+           <hr>
+      	{% endif %}
+      {% endfor %}
+      </div>
+
+
+      <p class="downloads" slot="Download">
+        {%  for variationProperty in item.documents[0].data.variationProperties %}
+           {% if variationProperty.property.id == 4 %}
+             <span class="tabStop">{{ trans("GeniessBar::Template.singleItemDownloads") }}: </span><span class="downloadDatei hidden">{{ variationProperty.values.value }}</span>
+             <span class="tabStop2"><ul class="data"><li>&nbsp;</li></ul></span>
+          {% endif %}
+        {% endfor %}
+      </p>
+      <div slot="CrossSellingAccessory">
+         {{ component("GeniessBar::Containers.Components.ContainerItemList") }}
+         {{ LayoutContainer.show("Ceres::SingleItem.ItemListContainer", accessory) }}
+         <container-item-list :items="{{ accessory| json_encode }}"></container-item-list>
+     </div>
 </single-item>

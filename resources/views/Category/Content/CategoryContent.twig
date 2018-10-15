@@ -1,7 +1,7 @@
 {% extends getPartial('page-design') %}
 
 {% block PartialHead %}
-    <title>{{ category.details[0].metaTitle }} | {{ ceresConfig.header.companyName }}</title>
+    <title>{{ category.details[0].metaTitle }} | {{ trans("Ceres::Template.headerCompanyName") }}</title>
 
     <meta name="description" content="{{ category.details[0].metaDescription }}">
     <meta name="keywords" content="{{ category.details[0].metaKeywords }}">
@@ -10,16 +10,9 @@
 {% endblock %}
 
 {% block PageBody %}
-
-    {% include category_template( category.id, lang, webstoreConfig.webstoreId ) ignore missing %}
-
-    {% if categoryDesc is not defined %}
-      {% set categoryDesc = services.category.get( category.id, lang) %}
-    {% endif %}
-
-
-<div class="beschreibung">
-      {{ categoryDesc.details.first.description | raw }}
+    <div class="container contentText">
+      <div class="row">
+      {% include category_template( category.id, lang, webstoreConfig.webstoreId ) ignore missing %}
+    </div>
   </div>
-
 {% endblock %}

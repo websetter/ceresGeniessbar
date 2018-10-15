@@ -1,8 +1,9 @@
 <script type="x/template" id="vue-variation-select">
     <div>
-        <div class="isSelect" v-for="(attribute, attributeId) in attributes">
+    <hr>
+        <div v-for="(attribute, attributeId) in attributes">
             <div class="input-unit">
-                <select class="custom-select text-gray-dark" v-model="selectedAttributes[attributeId]" @change="onSelectionChange(selectedAttributes[attributeId])">
+                <select class="custom-select" v-model="selectedAttributes[attributeId]" @change="onSelectionChange(selectedAttributes[attributeId])">
                         <option :value="null">{{ trans("Ceres::Template.singleItemPleaseSelect") }}</option>
                         <option
                             v-for="(attributeValue, attributeValueId) in attribute.values"

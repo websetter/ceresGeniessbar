@@ -1,4 +1,4 @@
-# Release Notes for CeresVanilla
+# Release Notes for GeniessBar
 
 ## v0.0.1 (2017-08-02)
 

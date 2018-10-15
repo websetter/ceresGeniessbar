@@ -1,12 +1,7 @@
-<!-- Insert markup for navigation list here -->
-{% import "Ceres::Category.Macros.CategoryTree" as Tree %}
+{% import "GeniessBar::Category.Macros.CategoryTree" as Tree %}
 
 {% set lang = services.sessionStorage.getLang() %}
 
-<ul class="mainmenu">
+<ul class="mainmenu">  
     {{ Tree.get_nav_bar(categories, "") }}
-    <li><a href="" title=""><img scr="https://www.geniess-bar.de/images/gallery/rest/neukunden-rabat.jpg" alt=""></a></li>
-    <li><a href="" title=""><img scr="https://www.geniess-bar.de/images/gallery/rest/newsletter-anmeldung.jpg" alt=""></a></li>
-    <li><a href="" title=""><img scr="https://www.geniess-bar.de/images/gallery/rest/flaschen-retro.jpg" alt=""></a></li>
-    <li><a href="" title=""><img scr="https://www.geniess-bar.de/images/gallery/rest/flaschen-ettiket.jpg" alt=""></a></li>
 </ul>

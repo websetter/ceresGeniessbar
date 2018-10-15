@@ -1,5 +1,4 @@
-<!-- Insert markup for side navigation here -->
-{% import "Ceres::Category.Macros.CategoryTree" as Tree %}
+{% import "GeniessBar::Category.Macros.CategoryTree" as Tree %}
 
 {% set lang = services.sessionStorage.getLang() %}
 {% set categoryBreadcrumbs = services.category.getHierarchy() %}

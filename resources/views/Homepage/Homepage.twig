@@ -4,7 +4,7 @@
 
 {% set showDefaultHomepage = config("Ceres.default.homepage") %}
 {% set companyLogo  = config("Ceres.header.company_logo") %}
-{% set companyName  = config("Ceres.header.company_name") %}
+{% set companyName  = trans("Ceres::Template.headerCompanyName") %}
 
 {% block PartialHead %}
     <meta name="description" content="{{ trans('Ceres::Template.homepageMetaDescription') }}">
@@ -20,11 +20,34 @@
         {"@context": "http://schema.org","@type": "WebSite","url": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}","potentialAction":{"@type": "SearchAction","target": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}/search?query={search_term}","query-input": "required name=search_term"}}
     </script>
 
-    <title>{{ trans("Ceres::Template.headerCompanyName") }}</title>
+    <title>{{ companyName }}</title>
 {% endblock %}
 
 {% block PageBody %}
 
-    {% include 'CeresGeniessbar::Homepage.DefaultHomepage.twig' %} 
+    {% if ceresConfig.homepage.showShopBuilderContent or request.get('isContentBuilder') == 1 %}
+
+        <div class="home container-max">
+            <div class="row">
+                <div class="col">
+                    {% for content in container("Ceres::Homepage") if content.plugin == "Plenty" %}
+                        {{ content.result|raw }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+
+
+        {% block ThemeHomepage %}
+          <main>
+            {% include 'GeniessBar::Homepage.GeniessBarHomepage.twig' %}
+          </main>
+        {% endblock %}
+
+    {% endif %}
+
+
 
 {% endblock %}
