@@ -84,7 +84,7 @@
   <div id="menuKacheln">
     <div class="container-max">
       {% for category in categories %}
-        <div class="kachel{% for category1 in categoryBreadcrumbs %}{% if category1.details[0].name == category.details[0].name %} active{% endif %}{% endfor %}">
+        <div class="kachel">
             <a href="{{ category.details[0].nameUrl }}">{{ category.details[0].name }}</a>
         </div>
       {% endfor %}
