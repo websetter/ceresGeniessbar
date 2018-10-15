@@ -1,11 +1,12 @@
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 {% import "Ceres::PageDesign.Macros.ItemName" as ItemName %}
+{% import "GeniessBar::Category.Macros.CategoryTree" as Tree %}
 
 {% set overrideHomepageContainer = "" %}
 {% for content in container("Ceres::Homepage") if content.plugin != "Plenty" %}
     {% set overrideHomepageContainer = overrideHomepageContainer ~ content.result %}
 {% endfor %}
-{% import "GeniessBar::Category.Macros.CategoryTree" as Tree %}
+
 {# if HomeContent is not defined #}
   {# set HomeContent = services.category.get(1422, lang) #}
 {# endif #}
@@ -69,7 +70,11 @@
 
 
       <div id="kacheln">
-            {{ Tree.get_nav_bar_kacheln(categories, "") }}          
+        {% for category in categories %}
+          {% for child in category.children %}
+            {{ child.details[0].name }}
+          {% endfor %}
+        {% endfor %}
       </div>
 
       <div class="topProdukte">
