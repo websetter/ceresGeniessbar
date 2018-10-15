@@ -80,6 +80,15 @@
             </div>
 </header>
 {% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() %}
+  <div id="menuKacheln">
+      {% for category in categories %}
+        <div class="kachel">
+            <a href="{{ category.details[0].nameUrl }}">{{ category.details[0].name }}</a>
+        </div>
+      {% endfor %}
+  </div>
+{% endif %}
+{% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() %}
   <div id="breadcrumbs">
     {% include "GeniessBar::PageDesign.Partials.Header.Breadcrumb" %}
   </div>
