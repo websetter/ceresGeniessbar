@@ -70,11 +70,13 @@
 
 
       <div id="kacheln">
+        <ul>
         {% for category in categories %}
-          {% for child in category.children %}
-            {{ child.details[0].name }}
-          {% endfor %}
+          {# for child in category.children #}
+              <li><a href="{{ category.details[0].nameUrl }}">{{ category.details[0].name }}</a></li>
+          {# endfor #}
         {% endfor %}
+      </ul>
       </div>
 
       <div class="topProdukte">
