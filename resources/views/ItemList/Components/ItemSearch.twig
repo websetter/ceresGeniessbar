@@ -1,14 +1,15 @@
 <script type="x/template" id="vue-item-search">
     <div class="search-box-inner">
         <div class="search-box-shadow-frame">
+        <button class="search-submit" type="submit" @click="search()">
+            <i class="fa fa-search sm-up"></i>
+        </button>
             <input type="search" class="search-input" v-model="currentSearchString" @input="autocomplete($event.target.value)"
                 @keyup.enter="prepareSearch()" @keyup.down="keydown()" @keyup.up="keyup()"
                 @focus="isSearchFocused = true" @blur="setIsSearchFocused(false)"
                 >
 
-            <button class="search-submit" type="submit" @click="search()">
-                <i class="fa fa-search sm-up"></i>
-            </button>
+
 
             <div class="autocomplete-suggestions" v-if="isSearchFocused && autocompleteResult.length">
                 <div class="autocomplete-suggestion" v-for="(item, index) in autocompleteResult" :key="index" @click="selectAutocompleteItem(item)" :class="{ 'autocomplete-selected': selectedAutocompleteIndex === index }">
