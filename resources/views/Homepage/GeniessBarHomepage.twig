@@ -70,13 +70,26 @@
 
 
       <div id="kacheln">
-        <ul>
-        {% for category in categories %}
-          {# for child in category.children #}
-              <li><a href="{{ category.details[0].nameUrl }}">{{ category.details[0].name }}</a></li>
-          {# endfor #}
-        {% endfor %}
-      </ul>
+        <div class="row">
+          {% for category in categories %}
+            <div class="col-xs-12 col-sm-3">
+                <a href="{{ category.details[0].nameUrl }}">{{ category.details[0].name }}</a>
+                <img src="https://cdn03.plentymarkets.com/9mle78gfrmwz/frontend/templateCeres/images/Absinth.jpg" alt="default">
+            </div>
+          {% endfor %}
+          <div class="col-xs-12 col-sm-3">
+            <img src="https://cdn03.plentymarkets.com/9mle78gfrmwz/frontend/templateCeres/images/5-Euro.jpg" alt="Nekunden Rabatt">
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <img src="https://cdn03.plentymarkets.com/9mle78gfrmwz/frontend/templateCeres/images/Handschrift.jpg" alt="Flaschen im Rero Look">
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <img src="https://cdn03.plentymarkets.com/9mle78gfrmwz/frontend/templateCeres/images/Label.jpg" alt="Flaschen mit Etiketten">
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <img src="https://cdn03.plentymarkets.com/9mle78gfrmwz/frontend/templateCeres/images/20-prozent.jpg" alt="Newsletter anmelden">
+          </div>
+        </div>
       </div>
 
       <div class="topProdukte">
