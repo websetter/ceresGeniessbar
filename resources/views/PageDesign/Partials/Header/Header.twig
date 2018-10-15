@@ -80,6 +80,7 @@
             </div>
 </header>
 {% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() %}
+<nav class="catMenu">
   <div id="menuKacheln">
     <div class="container-max">
       {% for category in categories %}
@@ -92,6 +93,7 @@
   <div id="breadcrumbs">
     {% include "GeniessBar::PageDesign.Partials.Header.Breadcrumb" %}
   </div>
+</nav>
 {% endif %}
 
 {% if category.linklist == "Y" %}
