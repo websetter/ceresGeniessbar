@@ -80,23 +80,9 @@
   </div>
 </header>
 {% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() %}
-<nav class="catMenu">
-  <div id="menuKacheln">
-    <div class="container-max">
-      <div class="kachelBig">
-          <a href="{{ currentCategory.details[0].nameUrl }}">{{ curretnCategory.details[0].name }}<img src="{{ currentCategory.details[0].image2Path }}"></a>
-      </div>
-      {% for category in categories %}
-        <div class="kachel">
-            <a href="{{ category.details[0].nameUrl }}">{{ category.details[0].name }}</a>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-  <div id="breadcrumbs">
+<div class="catMenu">
     {% include "GeniessBar::PageDesign.Partials.Header.Breadcrumb" %}
-  </div>
-</nav>
+</div>
 {% endif %}
 
 {% if category.linklist == "Y" %}
