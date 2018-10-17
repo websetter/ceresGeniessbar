@@ -19,16 +19,16 @@
   <div class="row">
 
 
-    <main class="col-xs-12 categoriegrid page-content categoryItem cat-id-{{ category.id}}">
-      <div class="catIntro">
+    <div class="col-xs-12 categoriegrid page-content categoryItem cat-id-{{ category.id}}">  
             <h1 class="category-title">{{ category.details[0].name }}</h1>
             <div id="category-description-container" class="category-description">{{ category.details[0].description | raw }}</div>
-        </div>
+
+
         <item-list-sorting template="#vue-item-list-sorting" :sorting-list="{{ searchOptions.sorting | json_encode }}" :default-sorting="{{ searchOptions.defaultSorting | json_encode }}"></item-list-sorting>
     <items-per-page
             template="#vue-items-per-page"
             :pagination-values="{{ searchOptions.itemsPerPage | json_encode }}"></items-per-page>
-    </aside>
+
         <div id="twig-rendered-item-list" class="item-list-frame{% if ceresConfig.item.loadingAnimationType == "blur" %} blur-effect{% endif %}">
             {% if ceresConfig.item.loadingAnimationType != "blur" %}
                 {% include "Ceres::ItemList.Partials.LoadingAnimation" %}
@@ -46,7 +46,7 @@
             <item-list template="#vue-item-list" :total-items-data="{{ itemCountTotal }}" :category-id="{{ category.id }}"></item-list>
         </div>
         <div id="category-description-container2" class="category-description">{{ category.details[0].description2 | raw }}</div>
-    </main>
+    </div>
 
   </div>
 </div>

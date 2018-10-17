@@ -16,73 +16,76 @@
 {% set companyLogo  = config("Ceres.header.company_logo") %}
 
 <header id="page-header" class="top-bar">
-            <div class="container-max">
-              <div id="logo">
-                  <a href="{{ homepageURL }}">
-                      {% if ('http' in companyLogo) or ('layout/' in companyLogo) %}
-                          <img alt="{{ companyName }}" src="{{ companyLogo }}" class="img-fluid"/>
-                      {% else %}
-                          <img alt="{{ companyName }}" src="{{ plugin_path('Ceres') }}/{{ companyLogo }}" class="img-fluid"/>
+      <div class="container-max">
+        <div id="logo">
+            <a href="{{ homepageURL }}">
+                {% if ('http' in companyLogo) or ('layout/' in companyLogo) %}
+                    <img alt="{{ companyName }}" src="{{ companyLogo }}" class="img-fluid"/>
+                {% else %}
+                    <img alt="{{ companyName }}" src="{{ plugin_path('Ceres') }}/{{ companyLogo }}" class="img-fluid"/>
+                {% endif %}
+            </a>
+        </div>
+          <ul id="controlsList" class="controls-list list-inline">
+              <li class="list-inline-item control-user">
+                  <user-login-handler>
+                      <a data-toggle="modal">
+                          <i class="fa fa-user" aria-hidden="true"></i>
+                          <span class="hidden-xs-down">{{ trans("Ceres::Template.login") }}</span>
+                      </a>
+                      <span class="pipe"></span>
+                      <a data-toggle="modal">
+                          <i class="fa fa-user-plus" aria-hidden="true"></i>
+                          <span class="hidden-xs-down">{{ trans("Ceres::Template.loginRegister") }}</span>
+                      </a>
+                  </user-login-handler>
+              </li>
+              <li class="list-inline-item control-basket">
+                  <a v-toggle-basket-preview href="#" class="toggle-basket-preview">
+                      {% if config("Ceres.header.basket_values") != "sum" %}
+                          <span class="badge-right" v-basket-item-quantity="this.$store.state.basket.data.itemQuantity">0</span>
+                      {% endif %}
+
+                      <i v-waiting-animation="this.$store.state.basket.isBasketLoading" waiting-class="fa fa-refresh fa-spin" class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      <span class="hidden-md-down">Warenkorb |</span>
+                      {% if config("Ceres.header.basket_values") != "quantity" %}
+                          <span class="badge" v-if="!$store.state.basket.showNetPrices" v-basket-item-sum="this.$store.state.basket.data.itemSum">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
+                          <span class="badge" v-else v-cloak v-basket-item-sum="this.$store.state.basket.data.itemSumNet">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
                       {% endif %}
                   </a>
-              </div>
-                <ul id="controlsList" class="controls-list list-inline">
-                    <li class="list-inline-item control-user">
-                        <user-login-handler>
-                            <a data-toggle="modal">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <span class="hidden-xs-down">{{ trans("Ceres::Template.login") }}</span>
-                            </a>
-                            <span class="pipe"></span>
-                            <a data-toggle="modal">
-                                <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                <span class="hidden-xs-down">{{ trans("Ceres::Template.loginRegister") }}</span>
-                            </a>
-                        </user-login-handler>
-                    </li>
-                    <li class="list-inline-item control-basket">
-                        <a v-toggle-basket-preview href="#" class="toggle-basket-preview">
-                            {% if config("Ceres.header.basket_values") != "sum" %}
-                                <span class="badge-right" v-basket-item-quantity="this.$store.state.basket.data.itemQuantity">0</span>
-                            {% endif %}
 
-                            <i v-waiting-animation="this.$store.state.basket.isBasketLoading" waiting-class="fa fa-refresh fa-spin" class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <span class="hidden-md-down">Warenkorb |</span>
-                            {% if config("Ceres.header.basket_values") != "quantity" %}
-                                <span class="badge" v-if="!$store.state.basket.showNetPrices" v-basket-item-sum="this.$store.state.basket.data.itemSum">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
-                                <span class="badge" v-else v-cloak v-basket-item-sum="this.$store.state.basket.data.itemSumNet">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
-                            {% endif %}
-                        </a>
-
-                        {% if config("Ceres.basket.preview_type") != "right" %}
-                            <basket-preview template="#vue-basket-preview-hover" :show-net-prices="{{ showNetPrices | json_encode }}"></basket-preview>
-                        {% endif %}
-                    </li>
-                    <li id="searchBox">
-                        <item-search template="#vue-item-search"></item-search>
-                    </li>
-                </ul>
-              </div>
-              {% if  services.template.isHome() %}
-                <div id="sliderHome">
-                  <img src="https://www.geniess-bar.de/images/gallery/Slider/slider-essig-oel.jpg">
-                </div>
-              {% endif %}
-            <div id="bottomBar">
-              <div class="container-max">
-              <ul>
-                <li><a href="{{ trans("GeniessBar::Template.LinkNavBarStartseite") }}" title="{{ trans("GeniessBar::Template.NavBarStartseite") }}">{{ trans("GeniessBar::Template.NavBarStartseite") }}</a></li>
-                <li><a href="{{ trans("GeniessBar::Template.LinkNavBarGutschein") }}" title="{{ trans("GeniessBar::Template.NavBarGutschein") }}">{{ trans("GeniessBar::Template.NavBarGutschein") }}</a></li>
-                <li><a href="{{ trans("GeniessBar::Template.LinkNavBarFirmenkunde") }}" title="{{ trans("GeniessBar::Template.NavBarFirmenkunde") }}">{{ trans("GeniessBar::Template.NavBarFirmenkunde") }}</a></li>
-                <li><a href="{{ trans("GeniessBar::Template.LinkNavBarLogo") }}" title="{{ trans("GeniessBar::Template.NavBarLogo") }}">{{ trans("GeniessBar::Template.NavBarLogo") }}</a></li>
-              </ul>
-            </div>
-            </div>
+                  {% if config("Ceres.basket.preview_type") != "right" %}
+                      <basket-preview template="#vue-basket-preview-hover" :show-net-prices="{{ showNetPrices | json_encode }}"></basket-preview>
+                  {% endif %}
+              </li>
+              <li id="searchBox">
+                  <item-search template="#vue-item-search"></item-search>
+              </li>
+          </ul>
+        </div>
+        {% if  services.template.isHome() %}
+          <div id="sliderHome">
+            <img src="https://www.geniess-bar.de/images/gallery/Slider/slider-essig-oel.jpg">
+          </div>
+        {% endif %}
+      <div id="bottomBar">
+        <div class="container-max">
+        <ul>
+          <li><a href="{{ trans("GeniessBar::Template.LinkNavBarStartseite") }}" title="{{ trans("GeniessBar::Template.NavBarStartseite") }}">{{ trans("GeniessBar::Template.NavBarStartseite") }}</a></li>
+          <li><a href="{{ trans("GeniessBar::Template.LinkNavBarGutschein") }}" title="{{ trans("GeniessBar::Template.NavBarGutschein") }}">{{ trans("GeniessBar::Template.NavBarGutschein") }}</a></li>
+          <li><a href="{{ trans("GeniessBar::Template.LinkNavBarFirmenkunde") }}" title="{{ trans("GeniessBar::Template.NavBarFirmenkunde") }}">{{ trans("GeniessBar::Template.NavBarFirmenkunde") }}</a></li>
+          <li><a href="{{ trans("GeniessBar::Template.LinkNavBarLogo") }}" title="{{ trans("GeniessBar::Template.NavBarLogo") }}">{{ trans("GeniessBar::Template.NavBarLogo") }}</a></li>
+        </ul>
+      </div>
+  </div>
 </header>
 {% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() %}
 <nav class="catMenu">
   <div id="menuKacheln">
     <div class="container-max">
+      <div class="kachelBig">
+          <a href="{{ currentCategory.details[0].nameUrl }}">{{ curretnCategory.details[0].name }}<img src="{{ curretnCategory.details[0].image2Path }}"></a>
+      </div>
       {% for category in categories %}
         <div class="kachel">
             <a href="{{ category.details[0].nameUrl }}">{{ category.details[0].name }}</a>
