@@ -6,10 +6,10 @@
         <div id="menuKacheln">
             {% set lastCategory = categoryBreadcrumbs | last %}
             {% if lastCategory.details is defined %}
-                <div class="kachelBig"><span>{{ lastCategory.details[0].name }}</span></div>
+                <div class="kachelBig"><img scr="{{ lastCategory.details[0].image2Path }}" /></div>
             {% else %}
                 <div class="kachelBig" v-cloak v-if="$store.state.item.variation.documents">
-                    <span>${ $store.state.item.variation.documents[0].data | itemName }</span>
+                    <img src="${ $store.state.item.variation.documents[0].data | image2Path }" />
                 </dv>
             {% endif %}
 
