@@ -18,7 +18,13 @@
 
             {% for category in categories %}
               <div class="kachel">
-                  <a href="{{ category.details[0].nameUrl }}">{{ category.details[0].name }}</a>
+                  <a href="{{ category.details[0].nameUrl }}">
+                    {% if category.details[0].image2Path is not empty %}
+                      <img src="{{ category.details[0].image2Path }}" />
+                      {% else %}
+                      <p>{{ category.details[0].name }}</p>
+                      {% endif %}
+                </a>
               </div>
             {% endfor %}
         </div>
