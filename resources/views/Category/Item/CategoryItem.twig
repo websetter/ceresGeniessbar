@@ -38,14 +38,16 @@
         {% endif %}
         </div>
         <div class="col-xs-12 col-sm-9">
+          <div class="row">
           {% set childCat = services.category.getChildren(category.id, lang) %}
           {% for child in childCat %}
-            <div class="kachel">
+            <div class="kachel col-xs-12 col-sm-3">
               <a href="{{category.details[0].nameUrl}}/{{ child.details[0].nameUrl }}">
                 <p>{{ child.details[0].name }} </p>
               </a>
             </div>
             {% endfor %}
+          </div>
         </div>
       </div>
 
