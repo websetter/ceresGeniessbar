@@ -4,7 +4,7 @@
 {% if categoryBreadcrumbs is not empty %}
     <nav data-component="breadcrumbs" data-renderer="twig" class="container-max">
         <div id="menuKacheln" class="row">
-          <dv cass"col-xs-12 col-sm-3 col-md-5">
+          <dv class="col-xs-12 col-sm-3 col-md-5">
             {% set lastCategory = categoryBreadcrumbs | last %}
             {% if lastCategory.details is defined %}
                 <div class="kachelBig"><img src="/documents/{{ lastCategory.details[0].image2Path }}" /></div>
