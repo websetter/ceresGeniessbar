@@ -10,9 +10,14 @@
 {% endblock %}
 
 {% block PageBody %}
+{% if Content is not defined %}
+  {% set Content = services.category.get(category.id, lang) %}
+{% endif %}
+
     <div class="container contentText">
       <div class="row">
       {% include category_template( category.id, lang, webstoreConfig.webstoreId ) ignore missing %}
+      {{ Content.details.first.description | raw }}
     </div>
   </div>
 {% endblock %}
