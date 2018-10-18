@@ -89,16 +89,14 @@
           </a>
           {{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", item.data) }}
           <div class="prices">
-              {% if item.data.prices.rrp is defined and item.data.prices.rrp.price.value != 0 and item.data.prices.rrp.price.value > item.data.prices.default.unitPrice.value %}
-                  <div class="price-view-port">
-                      <span class="crossprice">
-                         {{ trans("GeniessBar::Template.UVP") }} {{ item.data.prices.rrp.price.formatted }}
-                      </span>
-                  </div>
-              {% endif %}
               <div class="price">
                  <span class="small">ab</span> {{ item.data.prices.default.unitPrice.formatted }}
               </div>
+              {% if item.data.prices.rrp is defined and item.data.prices.rrp.price.value != 0 and item.data.prices.rrp.price.value > item.data.prices.default.unitPrice.value %}
+                  <div class="price-view-port">
+                      <span class="crossprice">{{ trans("GeniessBar::Template.UVP") }} {{ item.data.prices.rrp.price.formatted }}</span>
+                  </div>
+              {% endif %}
               {% if not (item.data.unit.unitOfMeasurement == 'C62' and item.data.unit.content == 1) %}
                   <div class="category-unit-price small">
                       {% if item.data.variation.mayShowUnitPrice %}
