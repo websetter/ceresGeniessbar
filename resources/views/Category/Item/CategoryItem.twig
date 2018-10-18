@@ -14,12 +14,12 @@
     {{ component( "GeniessBar::ItemList.Components.CategoryItem" ) }}
 
     {% set shippingCat = config("Ceres.global.shippingCostsCategoryId") %}
+    {% set lastCategory = categoryBreadcrumbs | first %}
 
 <div class="container">
   <div class="catMenu">
     <div id="menuKacheln" class="row">
       <div class="col-xs-12 col-sm-3 col-md-5">
-        {% set lastCategory = categoryBreadcrumbs | first %}
         {% if lastCategory.details is defined %}
             <div class="kachelBig"><img src="/documents/{{ lastCategory.details[0].image2Path }}" /></div>
         {% else %}
@@ -29,10 +29,11 @@
         {% endif %}
       </div>
       <div class="col-xs-12 col-sm-9 col-md-7">
+        <p>{{ lastCategory }}</p>
+        <p>{{ lastCategory.id }}</p>
 
         {% for category in categories %}
-        {% set lastCategory = categoryBreadcrumbs | first %}
-        {% if category.id is not same as lastCategory.id %}
+          {% if category.id is not same as lastCategory.id %}
           <div class="kachel">
               <a href="{{ category.details[0].nameUrl }}">
                 {% if category.details[0].image2Path is not empty %}
