@@ -99,7 +99,6 @@
       <div id="vue-rendered-item-list" style="display:none">
           <item-list template="#vue-item-list" :total-items-data="{{ itemCountTotal }}" :category-id="{{ category.id }}"></item-list>
       </div>
-      <div id="category-description-container2" class="category-description">{{ category.details[0].description2 | raw }}</div>
     </div>
     <div class="col-xs-7 vat">
         <p>* Alle Preise inkl. ges. MwSt. zzgl. <a href="/bestellvorgang/versand-und-kosten/" title="">Versankosten</a></p>
@@ -115,6 +114,9 @@
                 </div>
             </div>
         {% endif %}
+    </div>
+    <div class="col-xs-12">
+      <div id="category-description-container2" class="category-description">{{ category.details[0].description2 | raw }}</div>
     </div>
   </div>
 </div>
