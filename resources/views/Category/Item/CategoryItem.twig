@@ -33,7 +33,6 @@
         <p>{{ lastCategory.id }}</p>
 
         {% for category in categories %}
-          {% if category.id is not same as lastCategory.id %}
           <div class="kachel">
               <a href="{{ category.details[0].nameUrl }}">
                 {% if category.details[0].image2Path is not empty %}
@@ -42,8 +41,7 @@
                 <p>{{ category.details[0].name }}</p>
                 {% endif %}
             </a>
-          </div>
-          {% endif %}
+          </div>          
         {% endfor %}
 
     </div>
