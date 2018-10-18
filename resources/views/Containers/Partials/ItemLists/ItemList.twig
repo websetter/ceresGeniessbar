@@ -33,10 +33,9 @@
                   <h2>{{ trans("GeniessBar::Template.singleItemCrossSellingTitle") }}</h2>
                 {% endif %}
             {% endif %}
-
             {% include 'GeniessBar::Containers.Partials.ItemLists.ItemListHeader' with { itemListNo: itemListNo, listType: listType, isHome: isHome } %}
         </div>
-          {% endif %}
+    {% endif %}
         <container-item-list :items="{{ itemList | json_encode }}"></container-item-list>
     {% endif %}
 </div>
