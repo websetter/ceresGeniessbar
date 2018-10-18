@@ -9,7 +9,7 @@
           <div class="col-xs-12 col-sm-4"><a href="javascript:window.history.back()" title="zurück"><span class="fa fa-angle-left"></span>Zurück zur Produktübersicht</a></div>
           <div class="col-xs-12 col-sm-4"><a href="#" title="zurück"><span class="fa fa-edit"></span><add-to-wish-list :variation-id="currentVariation.variation.id"></add-to-wish-list></a></div>
           <div class="col-xs-12 col-sm-4"><a href="javascript:window.print()" title="zurück"><span class="fa fa-print"></span>Angebot drucken</a></div>
-        </div>      
+        </div>
             <div class="row">
                 <div class="col-md-5 col-lg-7 single-leftside">
                     <div class="row">
@@ -53,6 +53,7 @@
 
 
                     <div class="prices">
+                      <span class="tabStop">Preis: </span>
                       <div class="price">
                         <span ref="variationTotalPrice" :content="currentVariation.prices.default.price.value">
                             ${ variationTotalPrice | currency(currentVariation.prices.default.currency) }
