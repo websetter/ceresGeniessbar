@@ -43,26 +43,20 @@
 
                 {% if  item.data.item.storeSpecial.id == 1 %}
 
-                    {% set storeSpecialColor = 'danger' %}
-                    {% set percent = 0 %}
-                    {% if item.data.prices.rrp is defined %}
-                        {% set percent = (1 - item.data.prices.default.unitPrice.value / item.data.prices.rrp.price.value ) * -100 %}
-                    {% endif %}
-
-                    {% if percent <= 0 %}
-                        {% set dezimalcount = ceresConfig.item.storeSpecial %}
-                        {% set percent = percent | number_format(dezimalcount, ',', '.') %}
-                        {% set storeSpecial = percent ~"%" %}
-                    {% endif %}
+                <div class="special-tags bg-red">
+                    <span class="tag">Sale!</span>
+                  </div>
 
                 {% elseif  item.data.item.storeSpecial.id == 2 %}
 
-                    {% set storeSpecialColor = 'primary' %}
+                <div class="special-tags bg-green">
+                    <span class="tag">Neu!</span>
+                  </div>
 
                 {% elseif  item.data.item.storeSpecial.id == 3 %}
-
-                    {% set storeSpecialColor = 'success' %}
-
+                    <div class="special-tags bg-success">
+                        <span class="tag">{{ storeSpecial }}</span>
+                    </div>
                 {% endif %}
 
                 {% if item.data.variation.bundleType == "bundle" %}
@@ -71,12 +65,6 @@
                         {{ trans("Ceres::Template.itemBundle") }}
                     </span>
                 </div>
-                {% else %}
-                <div class="special-tags bg-{{ storeSpecialColor }}">
-                    <span class="tag">
-                        {{ storeSpecial }}
-                    </span>
-                  </div>
                 {% endif %}
 
         {% endif %}
