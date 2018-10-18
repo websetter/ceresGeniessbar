@@ -11,30 +11,14 @@
 
 <div class="page-content container {% if isSearch %} searchPage{% endif %}">
     {% if ceresConfig.header.showNavBars == "side" or ceresConfig.header.showNavBars == "both" %}
-      <aside class="col-xs-3">
-        <div class="sidebar-categories">
-          <p class="asideHeadline">Kategorien</p>
-            {{ include('GeniessBar::PageDesign.Partials.Header.SideNavigation.twig') }}
-        </div>
-        {{ LayoutContainer.show("Ceres::CategoryItem.SideNavBarBottom") }}
-        <div class="filterPanel">
-            <p class="asideHeadline">Produktfilter</p>
-            {% set overrideSearchFilters = LayoutContainer.show("Ceres::Search.Filter", facets ) %}
-            {% if overrideSearchFilters | trim is empty %}
-                <item-filter-list :facet-data="{{ facets | json_encode }}"></item-filter-list>
-            {% else %}
-                {{ overrideSearchFilters }}
-            {% endif %}
-          </div>
-            <p class="asideHeadline">Sortierung</p>
+
           <item-list-sorting template="#vue-item-list-sorting" :sorting-list="{{ searchOptions.sorting | json_encode }}" :default-sorting="{{ searchOptions.defaultSorting | json_encode }}"></item-list-sorting>
       <items-per-page
               template="#vue-items-per-page"
               :pagination-values="{{ searchOptions.itemsPerPage | json_encode }}"></items-per-page>
-      </aside>
-    {% endif %}
-    <main class="{% if ceresConfig.header.showNavBars == "side" or ceresConfig.header.showNavBars == "both" %}col-sm-9 {% endif %}categoriegrid itemListView">
 
+    {% endif %}
+    <div class="categoriegrid itemListView">
         <div class="row">
             <div class="col-xs-12">
                 <h1 class="h2" id="searchPageTitle">{{ trans("Ceres::Template.itemSearchResults") }} {{ searchString }}</h1>
@@ -55,7 +39,7 @@
                 </div>
             </div>
         {% endif %}
-    </main>
+    </div>
 </div>
 {% endblock %}
 
