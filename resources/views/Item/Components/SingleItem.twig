@@ -5,7 +5,7 @@
 <script type="x/template" id="vue-single-item">
     <div>
         <div class="single container-max page-content">
-        <div class="row">
+        <div class="row singleNav">
           <div class="col-xs-12 col-sm-4"><a href="javascript:window.history.back()" title="zurück"><span class="fa fa-angle-left"></span>Zurück zur Produktübersicht</a></div>
           <div class="col-xs-12 col-sm-4"><a href="#" title="zurück"><span class="fa fa-edit"></span><add-to-wish-list :variation-id="currentVariation.variation.id"></add-to-wish-list></a></div>
           <div class="col-xs-12 col-sm-4"><a href="javascript:window.print()" title="zurück"><span class="fa fa-print"></span>Angebot drucken</a></div>
@@ -62,11 +62,12 @@
                         </div>
                         {% if ('item.recommendedPrice' in itemData or 'all' in itemData) %}
                             <div class="crossprice" v-if="currentVariation.prices.rrp && currentVariation.prices.rrp.price.value > 0 && currentVariation.prices.rrp.price.value > currentVariation.prices.default.price.value">
-                                <span class="t small">
+                                <span class="small">
                                     statt ${ currentVariation.prices.rrp.price.formatted }
                                 </span>
                             </div>
                         {% endif %}
+                        <p>{{ trans("GeniessBar::Template.singleItemINKL") }}  {{ vat.rate }}% {{ trans("GeniessBar::Template.singleItemZZGL") }} <a href="{{ trans("GeniessBar::Template.LinkFooterPaymentAndShipping") }}" target="blank">{{ trans("GeniessBar::Template.singleItemINKL") }}</a></p>
                         <div class="base-price text-muted" v-if="currentVariation.unit">
                             <div v-if="currentVariation.variation.mayShowUnitPrice">
                                 {{ trans("Ceres::Template.singleItemUnitPrice") }}
