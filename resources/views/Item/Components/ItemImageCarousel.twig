@@ -12,7 +12,9 @@
       </div>
       <div class="col-xs-12">
         <div id="thumbs">
+        <div class="border">
           <img :alt="getAltText(imagePreview)" @click="goTo(index)" class="thumb" v-bind:class="{ 'active': currentItem === index }" :src="imagePreview.url" v-for="(imagePreview, index) in carouselImages">
+          </div>
         </div>
       </div>
     </div>
