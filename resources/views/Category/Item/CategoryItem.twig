@@ -96,8 +96,21 @@
       </div>
       <div id="category-description-container2" class="category-description">{{ category.details[0].description2 | raw }}</div>
     </div>
-    <div class="col-xs-12 vat">
+    <div class="col-xs-7 vat">
         <p>* Alle Preise inkl. ges. MwSt. zzgl. <a href="/bestellvorgang/versand-und-kosten/" title="">Versankosten</a></p>
+
+    </div>
+    <div class="col-xs-5">
+        {% if ceresConfig.pagination.position in ['bottom', 'top_bottom'] %}
+            <div class="list-controls m-b-3 row">
+                <div class="col-xs-12">
+                    <pagination template="#vue-pagination"></pagination>
+                    <noscript>
+                        {% include "Ceres::Category.Item.Partials.Pagination" %}
+                    </noscript>
+                </div>
+            </div>
+        {% endif %}
     </div>
   </div>
 </div>
