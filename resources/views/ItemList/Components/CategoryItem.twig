@@ -50,7 +50,7 @@
                         <span v-if="itemData.variation.mayShowUnitPrice">Grundpreis ${ item.data.prices.default.basePrice }</span>
                     </div>
               </div>
-              <a href="{{ itemUrl }}" class="basket btn">
+              <a :href="itemData | itemURL" class="basket btn">
                   <span class="fa fa-shopping-cart"></span>
               </a>
             </div>
