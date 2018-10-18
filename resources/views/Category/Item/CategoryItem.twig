@@ -19,7 +19,7 @@
   <div class="catMenu">
     <div id="menuKacheln" class="row">
       <div class="col-xs-12 col-sm-3 col-md-5">
-        {% set lastCategory = categoryBreadcrumbs | last %}
+        {% set lastCategory = categoryBreadcrumbs | first %}
         {% if lastCategory.details is defined %}
             <div class="kachelBig"><img src="/documents/{{ lastCategory.details[0].image2Path }}" /></div>
         {% else %}
