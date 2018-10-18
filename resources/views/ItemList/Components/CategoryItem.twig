@@ -31,7 +31,16 @@
                     </div>
                 </div>
             </div>
-            <hr>
+
+            <!-- STORE SPECIALS -->
+               <item-store-special v-if="storeSpecial || itemData.variation.bundleType == 'bundle'"
+                                   :store-special="storeSpecial"
+                                   :recommended-retail-price="itemData.prices.rrp"
+                                   :variation-retail-price="itemData.prices.default"
+                                   :decimal-count="decimalCount"
+                                   :bundle-type="itemData.variation.bundleType"></item-store-special>
+               <!-- ./STORE SPECIALS -->
+
             <div class="thumb-content">
               <a :href="itemData | itemURL" class="thumb-title">
                   ${ itemData | itemName }
@@ -43,11 +52,11 @@
                   </div>
                   <div v-if="itemData.prices.rrp && itemData.prices.rrp.price.value > 0 && itemData.prices.rrp.price.value > itemData.prices.default.unitPrice.value" class="price-view-port">
                       <span class="crossprice small">
-                         {{ trans("GeniessBar::Template.UVP") }} ${ item.data.prices.rrp.price.formatted }
+                         {{ trans("GeniessBar::Template.UVP") }} ${ itemData.prices.rrp.price.formatted }
                       </span>
                   </div>
                   <div class="category-unit-price small" v-if="!(itemData.unit.unitOfMeasurement === 'C62' && itemData.unit.content === 1)">
-                        <span v-if="itemData.variation.mayShowUnitPrice">Grundpreis ${ item.data.prices.default.basePrice }</span>
+                        <span v-if="itemData.variation.mayShowUnitPrice">Grundpreis ${ itemData.prices.default.basePrice }</span>
                     </div>
               </div>
               <a :href="itemData | itemURL" class="basket btn">

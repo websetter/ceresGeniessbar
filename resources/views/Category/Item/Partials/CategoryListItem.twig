@@ -37,22 +37,15 @@
         <!-- STORE SPECIALS -->
 
         {% if item.data.item.storeSpecial.id > 0 or item.data.variation.bundleType == "bundle" %}
-
             {% set storeSpecial = item.data.item.storeSpecial.names.name %}
-
-
                 {% if  item.data.item.storeSpecial.id == 1 %}
-
                 <div class="special-tags bg-red">
                     <span class="tag">Sale!</span>
                   </div>
-
                 {% elseif  item.data.item.storeSpecial.id == 2 %}
-
                 <div class="special-tags bg-green">
                     <span class="tag">Neu!</span>
                   </div>
-
                 {% elseif  item.data.item.storeSpecial.id == 3 %}
                     <div class="special-tags bg-success">
                         <span class="tag">{{ storeSpecial }}</span>
