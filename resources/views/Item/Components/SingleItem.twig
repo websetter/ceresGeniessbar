@@ -67,8 +67,8 @@
                                 </span>
                             </div>
                         {% endif %}
-                        <p>{{ trans("GeniessBar::Template.singleItemINKL") }}  {{ vat.rate }}% {{ trans("GeniessBar::Template.singleItemZZGL") }} <a href="{{ trans("GeniessBar::Template.LinkFooterPaymentAndShipping") }}" target="blank">{{ trans("GeniessBar::Template.singleItemINKL") }}</a></p>
-                        <div class="base-price text-muted" v-if="currentVariation.unit">
+                        <p>{{ trans("GeniessBar::Template.singleItemINKL") }}  {{ currentVariation.prices.rrp.vat.value }}%<br>{{ trans("GeniessBar::Template.singleItemZZGL") }} <a href="{{ trans("GeniessBar::Template.LinkFooterPaymentAndShipping") }}" target="blank">{{ trans("GeniessBar::Template.singleItemVersand") }}</a></p>
+                        <div class="base-price" v-if="currentVariation.unit">
                             <div v-if="currentVariation.variation.mayShowUnitPrice">
                                 {{ trans("Ceres::Template.singleItemUnitPrice") }}
                                 <span class="base-price-value">
