@@ -19,6 +19,7 @@
                     </div>
                 </div>
                 <div class="col-md-7 col-lg-5 single-rightside" v-stick-in-parent>
+                  <div class="border">
                   <h1>${ currentVariation | itemName }</h1>
                   <slot name="BeforePrice"></slot>
 
@@ -92,6 +93,7 @@
 
                     <slot name="AdditionalContentAfterAddToBasket"></slot>
                     <slot name="AdditionalContentAfterVAT"></slot>
+                </div>
                 </div>
 
                 <!-- ITEM DESCRIPTION -->
