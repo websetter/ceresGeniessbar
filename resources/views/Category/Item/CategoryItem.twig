@@ -31,16 +31,20 @@
       <div class="col-xs-12 col-sm-9 col-md-7">
 
         {% for category in categories %}
+        {% set lastCategory = categoryBreadcrumbs | first %}
+        {% if category.id !== lastCategory.id %}
           <div class="kachel">
               <a href="{{ category.details[0].nameUrl }}">
-                {% if category.details[0].image2Path is not empty and category.id is not lastCategory.id %}
-                  <img src="/documents/{{ category.details[0].image2Path }}" />
-                  {% else %}
-                  <p>{{ category.details[0].name }}</p>
-                  {% endif %}
+                {% if category.details[0].image2Path is not empty %}
+                <img src="/documents/{{ category.details[0].image2Path }}" />
+                {% else %}
+                <p>{{ category.details[0].name }}</p>
+                {% endif %}
             </a>
           </div>
+          {% endif %}
         {% endfor %}
+
     </div>
   </div>
 </div>
