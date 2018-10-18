@@ -94,15 +94,6 @@
                                 <a class="nav-link active" data-toggle="tab" :href="'#details-' +  currentVariation.variation.id" role="tab">{{ trans("Ceres::Template.singleItemDescription") }}</a>
                             </li>
                         {% endif %}
-
-                        {% if 'item.technical_data' in itemData or 'all' in itemData %}
-                            <li class="nav-item" v-if="isTechnicalDataTabActive">
-                                <a :class="{ 'active': !isDescriptionTabActive && isTechnicalDataTabActive }" class="nav-link" data-toggle="tab" :href="'#data-' + currentVariation.variation.id" role="tab">{{ trans("Ceres::Template.singleItemTechnicalData") }}</a>
-                            </li>
-                        {% endif %}
-
-
-
                         <li class="nav-item accessoryTab">
                           <a class="nav-link" data-toggle="tab" :href="'#accessory-' +  currentVariation.variation.id" role="tab">Zubehör</a>
                         </li>
@@ -117,13 +108,6 @@
                         {% if 'item.description' in itemData or 'all' in itemData %}
                             <div class="tab-pane active" :id="'details-' + currentVariation.variation.id" role="tabpanel" v-if="isDescriptionTabActive">
                                 <div class="m-y-2" v-html="currentVariation.texts.description">
-                                </div>
-                            </div>
-                        {% endif %}
-
-                        {% if 'item.technical_data' in itemData or 'all' in itemData %}
-                            <div :class="{ 'active': !isDescriptionTabActive && isTechnicalDataTabActive }" class="tab-pane" :id="'data-' + currentVariation.variation.id" role="tabpanel" v-if="isTechnicalDataTabActive">
-                                <div class="m-y-2" v-html="currentVariation.texts.technicalData">
                                 </div>
                             </div>
                         {% endif %}
