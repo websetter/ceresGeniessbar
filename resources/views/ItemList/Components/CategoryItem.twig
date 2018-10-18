@@ -38,13 +38,13 @@
               </a>
 
               <div class="prices">
-                <div v-if="itemData.prices.rrp && itemData.prices.rrp.price.value > 0 && itemData.prices.rrp.price.value > itemData.prices.default.unitPrice.value" class="price-view-port">
-                          <span class="crossprice small">
-                             {{ trans("GeniessBar::Template.UVP") }} ${ item.data.prices.rrp.price.formatted }
-                          </span>
-                      </div>
                   <div class="price">
                      <span class="small">ab</span>  ${ itemData.prices.default.unitPrice.formatted } *
+                  </div>
+                  <div v-if="itemData.prices.rrp && itemData.prices.rrp.price.value > 0 && itemData.prices.rrp.price.value > itemData.prices.default.unitPrice.value" class="price-view-port">
+                      <span class="crossprice small">
+                         {{ trans("GeniessBar::Template.UVP") }} ${ item.data.prices.rrp.price.formatted }
+                      </span>
                   </div>
                   <div class="category-unit-price small" v-if="!(itemData.unit.unitOfMeasurement === 'C62' && itemData.unit.content === 1)">
                         <span v-if="itemData.variation.mayShowUnitPrice">Grundpreis ${ item.data.prices.default.basePrice }</span>
