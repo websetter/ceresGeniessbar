@@ -32,7 +32,7 @@
 
         {% for category in categories %}
         {% set lastCategory = categoryBreadcrumbs | first %}
-        {% if category.id !== lastCategory.id %}
+        {% if category.id is not same as lastCategory.id %}
           <div class="kachel">
               <a href="{{ category.details[0].nameUrl }}">
                 {% if category.details[0].image2Path is not empty %}
