@@ -53,6 +53,7 @@
 
 
                     <div class="prices">
+                    <hr>
                       <span class="tabStop">Preis: </span>
                       <div class="price">
                         <span ref="variationTotalPrice" :content="currentVariation.prices.default.price.value">
@@ -67,7 +68,7 @@
                                 </span>
                             </div>
                         {% endif %}
-                        <p>{{ trans("GeniessBar::Template.singleItemINKL") }}  {{ currentVariation.prices.rrp.vat.value }}%<br>{{ trans("GeniessBar::Template.singleItemZZGL") }} <a href="{{ trans("GeniessBar::Template.LinkFooterPaymentAndShipping") }}" target="blank">{{ trans("GeniessBar::Template.singleItemVersand") }}</a></p>
+                        <p>{{ trans("GeniessBar::Template.singleItemINKL") }}  ${currentVariation.prices.rrp.vat.value }%<br>{{ trans("GeniessBar::Template.singleItemZZGL") }} <a href="{{ trans("GeniessBar::Template.LinkFooterPaymentAndShipping") }}" target="blank">{{ trans("GeniessBar::Template.singleItemVersand") }}</a></p>
                         <div class="base-price" v-if="currentVariation.unit">
                             <div v-if="currentVariation.variation.mayShowUnitPrice">
                                 {{ trans("Ceres::Template.singleItemUnitPrice") }}
