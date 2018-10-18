@@ -33,7 +33,7 @@
         {% for category in categories %}
           <div class="kachel">
               <a href="{{ category.details[0].nameUrl }}">
-                {% if category.details[0].image2Path is not empty %}
+                {% if category.details[0].image2Path is not empty and category.id is not lastCategory.id %}
                   <img src="/documents/{{ category.details[0].image2Path }}" />
                   {% else %}
                   <p>{{ category.details[0].name }}</p>
