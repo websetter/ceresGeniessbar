@@ -29,19 +29,21 @@
         {% endif %}
       </div>
       <div class="col-xs-12 col-sm-9 col-md-7">
-        <p>{{ lastCategory.id }}</p>
-        <p>{{ category.id }}</p>
 
         {% for category in categories %}
-          <div class="kachel">
-              <a href="{{ category.details[0].nameUrl }}">
-                {% if category.details[0].image2Path is not empty %}
-                <img src="/documents/{{ category.details[0].image2Path }}" />
-                {% else %}
-                <p>{{ category.details[0].name }}</p>
-                {% endif %}
-            </a>
-          </div>
+          {% if category.id is same as lastCategory.id %}
+          <!-- Nothing-->
+          {% else %}
+            <div class="kachel">
+                <a href="{{ category.details[0].nameUrl }}">
+                  {% if category.details[0].image2Path is not empty %}
+                  <img src="/documents/{{ category.details[0].image2Path }}" />
+                  {% else %}
+                  <p>{{ category.details[0].name }}</p>
+                  {% endif %}
+              </a>
+            </div>
+          {% endif %}
         {% endfor %}
 
     </div>
