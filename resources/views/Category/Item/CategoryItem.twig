@@ -16,6 +16,34 @@
     {% set shippingCat = config("Ceres.global.shippingCostsCategoryId") %}
 
 <div class="container">
+  <div class="catMenu">
+    <div id="menuKacheln" class="row">
+      <div class="col-xs-12 col-sm-3 col-md-5">
+        {% set lastCategory = categoryBreadcrumbs | last %}
+        {% if lastCategory.details is defined %}
+            <div class="kachelBig"><img src="/documents/{{ lastCategory.details[0].image2Path }}" /></div>
+        {% else %}
+            <div class="kachelBig" v-cloak v-if="$store.state.item.variation.documents">
+                <img src="/documents/${ $store.state.item.variation.documents[0].data | image2Path }" />
+            </div>
+        {% endif %}
+      </div>
+      <div class="col-xs-12 col-sm-9 col-md-7">
+
+        {% for category in categories %}
+          <div class="kachel">
+              <a href="{{ category.details[0].nameUrl }}">
+                {% if category.details[0].image2Path is not empty %}
+                  <img src="/documents/{{ category.details[0].image2Path }}" />
+                  {% else %}
+                  <p>{{ category.details[0].name }}</p>
+                  {% endif %}
+            </a>
+          </div>
+        {% endfor %}
+    </div>
+  </div>
+</div>
   <div class="row">
     <div class="col-xs-12 categoriegrid page-content categoryItem cat-id-{{ category.id}}">
       <h1 class="category-title">{{ category.details[0].name }}</h1>
@@ -67,6 +95,9 @@
           <item-list template="#vue-item-list" :total-items-data="{{ itemCountTotal }}" :category-id="{{ category.id }}"></item-list>
       </div>
       <div id="category-description-container2" class="category-description">{{ category.details[0].description2 | raw }}</div>
+    </div>
+    <div class="col-xs-12 vat">
+        <p>* Alle Preise inkl. ges. MwSt. zzgl. <a href="/bestellvorgang/versand-und-kosten/" title="">Versankosten</a></p>
     </div>
   </div>
 </div>

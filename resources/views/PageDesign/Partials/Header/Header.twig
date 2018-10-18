@@ -80,10 +80,9 @@
   </div>
 </header>
 {% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() %}
-<div class="catMenu">
+<!--<div class="catMenu">
     {% include "GeniessBar::PageDesign.Partials.Header.Breadcrumb" %}
-</div>
-{% endif %}
+</div{% endif %}-->
 
 {% if category.linklist == "Y" %}
     {% set initialCategory = { id: category.id } %}
