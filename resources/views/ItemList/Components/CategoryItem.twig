@@ -45,9 +45,12 @@
                       </div>
                   <div class="price">
                      <span class="small">ab</span>  ${ itemData.prices.default.unitPrice.formatted } *
-                  </div>                  
-              </div>
-                <a :href="itemData | itemURL" class="basket btn">
+                  </div>
+                  <div class="category-unit-price small" v-if="!(itemData.unit.unitOfMeasurement === 'C62' && itemData.unit.content === 1)">
+                        <span v-if="itemData.variation.mayShowUnitPrice">Grundpreis</span> {{ item.data.prices.default.basePrice }}</span>
+                    </div>
+              </div>             
+              <a href="{{ itemUrl }}" class="basket btn">
                   <span class="fa fa-shopping-cart"></span>
               </a>
             </div>
