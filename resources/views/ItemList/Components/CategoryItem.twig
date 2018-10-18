@@ -39,7 +39,7 @@
 
               <div class="prices">
                 <div v-if="itemData.prices.rrp && itemData.prices.rrp.price.value > 0 && itemData.prices.rrp.price.value > itemData.prices.default.unitPrice.value" class="price-view-port">
-                          <span class="crossprice">
+                          <span class="crossprice small">
                              {{ trans("GeniessBar::Template.UVP") }} ${ item.data.prices.rrp.price.formatted }
                           </span>
                       </div>
