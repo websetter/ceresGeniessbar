@@ -40,7 +40,7 @@
 
             {% set storeSpecial = item.data.item.storeSpecial.names.name %}
 
-            <div class="special-tags">
+
                 {% if  item.data.item.storeSpecial.id == 1 %}
 
                     {% set storeSpecialColor = 'danger' %}
@@ -66,20 +66,19 @@
                 {% endif %}
 
                 {% if item.data.variation.bundleType == "bundle" %}
-
-                    <span class="tag bg-info">
+                <div class="special-tags bg-info">
+                    <span class="tag">
                         {{ trans("Ceres::Template.itemBundle") }}
                     </span>
-
+                </div>
                 {% else %}
-
-                    <span class="tag bg-{{ storeSpecialColor }}">
+                <div class="special-tags bg-{{ storeSpecialColor }}">
+                    <span class="tag">
                         {{ storeSpecial }}
                     </span>
-
+                  </div>
                 {% endif %}
 
-            </div>
         {% endif %}
         <!-- ./STORE SPECIALS -->
 
@@ -94,7 +93,7 @@
               </div>
               {% if item.data.prices.rrp is defined and item.data.prices.rrp.price.value != 0 and item.data.prices.rrp.price.value > item.data.prices.default.unitPrice.value %}
                   <div class="price-view-port">
-                      <span class="crossprice">{{ trans("GeniessBar::Template.UVP") }} {{ item.data.prices.rrp.price.formatted }}</span>
+                      <span class="crossprice small">{{ trans("GeniessBar::Template.UVP") }} {{ item.data.prices.rrp.price.formatted }}</span>
                   </div>
               {% endif %}
               {% if not (item.data.unit.unitOfMeasurement == 'C62' and item.data.unit.content == 1) %}
