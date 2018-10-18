@@ -36,29 +36,21 @@
               <a :href="itemData | itemURL" class="thumb-title">
                   ${ itemData | itemName }
               </a>
-              <p class="shortDesc">${ itemData.texts.shortDescription }</p>
-              <div class="prices">
-                  <div v-if="itemData.prices.rrp && itemData.prices.rrp.price.value > 0 && itemData.prices.rrp.price.value > itemData.prices.default.unitPrice.value" class="price-view-port">
-                      <span class="crossprice">
-                          {{ trans("GeniessBar::Template.UVP") }} ${ itemData.prices.rrp.price.formatted }
-                      </span>
-                  </div>
-                  <div class="price">
-                      ${ itemData.prices.default.unitPrice.formatted } *
-                  </div>
-              </div>
-                <div class="category-unit-price" v-if="!(itemData.unit.unitOfMeasurement === 'C62' && itemData.unit.content === 1)">
-                    <span>${ itemData.unit.content }</span>
-                    <span>${ itemData.unit.names.name }</span>
-                    <span v-if="itemData.variation.mayShowUnitPrice">| ${ itemData.prices.default.basePrice }</span>
-                </div>
-              </div>
-                <hr>
-                <div class="artSold" v-if="itemData.variationProperties">
-                    <p>Bereits ${ itemData.variationProperties[0].values.value } Mal verkauft</p>
-                    <hr>
-                </div>
 
+              <div class="prices">
+                <div v-if="itemData.prices.rrp && itemData.prices.rrp.price.value > 0 && itemData.prices.rrp.price.value > itemData.prices.default.unitPrice.value" class="price-view-port">
+                          <span class="crossprice">
+                             {{ trans("GeniessBar::Template.UVP") }} {{ item.data.prices.rrp.price.formatted }}
+                          </span>
+                      </div>
+                  <div class="price">
+                     <span class="small">ab</span>  ${ itemData.prices.default.unitPrice.formatted } *
+                  </div>                  
+              </div>
+                <a :href="itemData | itemURL" class="basket btn">
+                  <span class="fa fa-shopping-cart"></span>
+              </a>
+            </div>
         </div>
     </article>
 </script>
