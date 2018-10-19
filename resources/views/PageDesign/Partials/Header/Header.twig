@@ -64,56 +64,21 @@
           </ul>
         </div>
         {% if  services.template.isHome() %}
-          <div id="slider">
-            <img src="https://www.geniess-bar.de/images/gallery/Slider/startseite-tropfen.jpg">
-          </div>
-        {% elseif category.id == 158 %}
-          <div id="slider">
-          <img src="https://www.geniess-bar.de/images/gallery/Slider/balsamico_creme.jpg">
-          </div>
-          {% elseif category.id == 28 %}
-          <div id="slider">
-          <img src="https://www.geniess-bar.de/images/gallery/Slider/balsam_essige.jpg">
-          </div>
-          {% elseif category.id == 124 %}
-          <div id="slider">
-          <img src="https://www.geniess-bar.de/images/gallery/Slider/feine_oele.jpg">
-          </div>
-          {% elseif category.id == 68 %}
-          <div id="slider">
-          <img src="https://www.geniess-bar.de/images/gallery/Slider/braende_und_spirituosen.jpg">
-          </div>
-          {% elseif category.id == 48 %}
-          <div id="slider">
-            <img src="https://www.geniess-bar.de/images/gallery/Slider/frucht_likoere.jpg">
-          </div>
-          {% elseif category.id == 154 %}
-          <div id="slider">
-            <img src="https://www.geniess-bar.de/images/gallery/Slider/absinth.jpg">
-          </div>
-          {% elseif category.id == 133 %}
-          <div id="slider">
-            <img src="https://www.geniess-bar.de/images/gallery/Slider/xl_gebinde.jpg">
-          </div>
-          {% elseif category.id == 94 %}
-          <div id="slider">
-            <img src="https://www.geniess-bar.de/images/gallery/Slider/flaschen_und_zubehoer.jpg">
-          </div>
-          {% elseif category.id == 109 %}
-          <div id="slider">
-            <img src="https://www.geniess-bar.de/images/gallery/Slider/sternenflaschen.jpg">
-          </div>
-          {% elseif category.id == 150 %}
-          <div id="slider">
-            <img src="https://www.geniess-bar.de/images/gallery/Slider/ihr_logo.jpg">
-          </div>
-          {% elseif category.id == 112 %}
-          <div id="slider">
-            <img src="https://www.geniess-bar.de/images/gallery/Slider/kombis_und_sets.jpg">
-          </div>
-          {% elseif category.id == 236 %}
-          <div id="slider">
-            <img src="https://www.geniess-bar.de/images/gallery/Slider/gin.jpg">
+          {% if categorySlider is not defined %}
+            {% set categorySlider = services.category.get(246, lang) %}
+          {% endif %}
+          <div id="slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              {{ categorySlider.details.first.description2 | raw }}
+            </div>
+            <a class="carousel-control-prev" href="#homeSlider" role="button" data-slide="prev">
+              <span class="fa fa-angle-left" aria-hidden="true"></span>
+              <span class="sr-only">Zurück</span>
+            </a>
+            <a class="carousel-control-next" href="#homeSlider" role="button" data-slide="next">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              <span class="sr-only">Weiter</span>
+            </a>
           </div>
         {% endif %}
       <div id="bottomBar">
