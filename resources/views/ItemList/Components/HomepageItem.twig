@@ -1,0 +1,55 @@
+{{ component( "Ceres::Basket.Components.AddToBasket" ) }}
+{{ component( "Ceres::ItemList.Components.CategoryImageCarousel") }}
+{{ component( "Ceres::ItemList.Components.ItemStoreSpecial" ) }}
+
+{% set lang = services.sessionStorage.getLang() %}
+{% set shippingCat = config("Ceres.global.shippingCostsCategoryId") %}
+
+{% if enableCarousel is not defined %}
+    {% if config("Ceres.item.enable_image_carousel") == "true" %}
+        {% set enableCarousel = "true" %}
+    {% else %}
+        {% set enableCarousel = "false" %}
+    {% endif %}
+{% endif %}
+
+<script type="x/template" id="vue-homepage-item">
+    <article class="product-inner themefromItemList homepageItem">
+        <div class="thumb-inner">
+            <div class="thumb-image">
+                <div class="square-container">
+                    <div class="square-inner main-image">
+                        <category-image-carousel template="#vue-category-image-carousel"
+                                                 :image-urls-data="itemData.images | itemImages(imageUrlAccessor)"
+                                                 :alt-text="itemData | itemName"
+                                                 :item-url="itemData | itemURL"
+                                                 :show-dots="{{ ceresConfig.item.categoryShowDots | json_encode }}"
+                                                 :show-nav="{{ ceresConfig.item.categoryShowNav | json_encode }}"
+                                                 :enable-carousel="{{ enableCarousel }}"
+                                                 ref="categoryImageCarousel">
+                        </category-image-carousel>
+                    </div>
+                </div>
+            </div>
+            <div class="thumb-content">
+              <a :href="itemData | itemURL" class="thumb-title">
+                  ${ itemData | itemName }
+              </a>
+
+              <div class="prices">
+                  <div class="price">
+                     <span class="small">ab</span>  ${ itemData.prices.default.unitPrice.formatted } *
+                  </div>
+                  <div v-if="itemData.prices.rrp && itemData.prices.rrp.price.value > 0 && itemData.prices.rrp.price.value > itemData.prices.default.unitPrice.value" class="price-view-port">
+                      <span class="crossprice small">
+                         {{ trans("GeniessBar::Template.UVP") }} ${ itemData.prices.rrp.price.formatted }
+                      </span>
+                  </div>
+                  <div class="category-unit-price small" v-if="!(itemData.unit.unitOfMeasurement === 'C62' && itemData.unit.content === 1)">
+                        <span v-if="itemData.variation.mayShowUnitPrice">Grundpreis ${ itemData.prices.default.basePrice }</span>
+                    </div>
+              </div>
+            </div>
+        </div>
+    </article>
+</script>
