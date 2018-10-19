@@ -36,6 +36,6 @@
             {% include 'GeniessBar::Containers.Partials.ItemLists.ItemListHeader' with { itemListNo: itemListNo, listType: listType, isHome: isHome } %}
         </div>
     {% endif %}
-        <container-item-list :items="{{ itemList | json_encode }}" :template="#vue-homepage-item"></container-item-list>
+        <container-item-list :items="{{ itemList | json_encode }}"></container-item-list>
     {% endif %}
 </div>
