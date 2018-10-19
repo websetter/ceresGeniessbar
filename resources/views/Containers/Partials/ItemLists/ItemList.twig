@@ -1,6 +1,6 @@
 {{ component( "GeniessBar::Containers.Components.ContainerItemList" ) }}
 {{ component( "Ceres::Containers.Components.LastSeenItemList" ) }}
-{{ component( "GeniessBar::ItemList.Components.HomepageItem" ) }}
+{{ component( "GeniessBar::ItemList.Components.CategoryItem" ) }}
 
 {% set listType = config("Ceres.item.lists." ~ itemListNo ~ ".list_type") %}
 {% set tagIds = config("Ceres.item.lists." ~ itemListNo ~ ".tag_ids") | split(",") %}
@@ -36,6 +36,10 @@
             {% include 'GeniessBar::Containers.Partials.ItemLists.ItemListHeader' with { itemListNo: itemListNo, listType: listType, isHome: isHome } %}
         </div>
     {% endif %}
-        <container-item-list :items="{{ itemList | json_encode }}"></container-item-list>
+    <item-list
+       :item-data="{{ itemList | json_encode }}"
+       :total-items-data="{{ itemCountTotal }}"
+       template="#vue-homepage-item">
+   </item-list>
     {% endif %}
 </div>
