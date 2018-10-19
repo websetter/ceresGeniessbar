@@ -64,8 +64,12 @@
           </ul>
         </div>
         {% if  services.template.isHome() %}
-          <div id="sliderHome">
+          <div id="slider">
             <img src="https://www.geniess-bar.de/images/gallery/Slider/slider-essig-oel.jpg">
+          </div>
+        {% elseif category.id == 158 %}
+          <div id="slider">
+            <img src="https://www.geniess-bar.de/images/gallery/Slider/balsamico_creme.jpg">
           </div>
         {% endif %}
       <div id="bottomBar">
