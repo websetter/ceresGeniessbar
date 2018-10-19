@@ -45,7 +45,7 @@
               <a :href="itemData | itemURL" class="thumb-title">
                   ${ itemData | itemName }
               </a>
-
+              <p class="short">${ itemData.texts.shortDescription }</p>
               <div class="prices">
                   <div class="price">
                      <span class="small">ab</span>  ${ itemData.prices.default.unitPrice.formatted } *

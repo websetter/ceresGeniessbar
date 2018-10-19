@@ -12,7 +12,6 @@
     {{ component( "Ceres::ItemList.Components.ItemsPerPage") }}
     {{ component( "Ceres::ItemList.Components.Pagination") }}
     {{ component( "GeniessBar::ItemList.Components.CategoryItem" ) }}
-    {{ component( "GeniessBar::ItemList.Components.HomepageItem" ) }}
 
     {% set shippingCat = config("Ceres.global.shippingCostsCategoryId") %}
     {% set lastCategory = categoryBreadcrumbs | first %}
@@ -101,7 +100,7 @@
         </ul>
       </div>
       <div id="vue-rendered-item-list" style="display:none">
-          <item-list template="#vue-homepage-item" :total-items-data="{{ itemCountTotal }}" :category-id="{{ category.id }}"></item-list>
+          <item-list template="#vue-item-list" :total-items-data="{{ itemCountTotal }}" :category-id="{{ category.id }}"></item-list>
       </div>
     </div>
     <div class="col-xs-7 vat">
