@@ -72,7 +72,7 @@
       <div id="kacheln">
         <div class="row">
           {% for category in categories %}
-            <div class="col-xs-12 col-sm-3">
+            <div class="col-xs-6 col-sm-6 col-md-3">
                   {% if category.details[0].image2Path is not empty %}
                   <a href="{{ category.details[0].nameUrl }}">
                   <img src="/documents/{{category.details[0].image2Path}}" alt="{{ category.details[0].name }}">
@@ -100,7 +100,7 @@
       </div>
 
       <div id="banner">
-        <p class="hidden">{{ items | json_encode }}</p>
+
       </div>
 
       <div class="topProdukte">
