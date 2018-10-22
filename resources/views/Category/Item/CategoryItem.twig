@@ -55,7 +55,7 @@
     <div class="col-xs-12 categoriegrid page-content categoryItem cat-id-{{ category.id}}">
       <h1 class="category-title">{{ category.details[0].name }}</h1>
       <div id="category-description-container" class="category-description">{{ category.details[0].description | raw }}</div>
-      <div class="row">
+      <div class="row catNav">
         <div class="col-xs-12 col-sm-3">
           <div class="sorting">
             <item-list-sorting template="#vue-item-list-sorting" :sorting-list="{{ searchOptions.sorting | json_encode }}" :default-sorting="{{ searchOptions.defaultSorting | json_encode }}"></item-list-sorting>
