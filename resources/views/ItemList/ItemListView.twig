@@ -10,12 +10,15 @@
     {{ component( "Ceres::ItemList.Components.Filter.ItemFilterTagList") }}
 
 <div class="page-content container {% if isSearch %} searchPage{% endif %}">
-  <item-list-sorting template="#vue-item-list-sorting" :sorting-list="{{ searchOptions.sorting | json_encode }}" :default-sorting="{{ searchOptions.defaultSorting | json_encode }}"></item-list-sorting>
-    <items-per-page
-              template="#vue-items-per-page"
-              :pagination-values="{{ searchOptions.itemsPerPage | json_encode }}"></items-per-page>
-
-
+  <h1 id="searchPageTitle">{{ trans("Ceres::Template.itemSearchResults") }} {{ searchString }}</h1>
+  <div class="row isSortingRow">
+    <div class="col-xs-12 col-sm-6">
+      <item-list-sorting template="#vue-item-list-sorting" :sorting-list="{{ searchOptions.sorting | json_encode }}" :default-sorting="{{ searchOptions.defaultSorting | json_encode }}"></item-list-sorting>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <items-per-page template="#vue-items-per-page" :pagination-values="{{ searchOptions.itemsPerPage | json_encode }}"></items-per-page>
+    </div>
+  </div>
     <div class="categoriegrid itemListView">
       {% if ceresConfig.pagination.position in ['top', 'top_bottom'] %}
       <div class="list-controls row">
@@ -29,7 +32,7 @@
     {% endif %}
         <div class="row">
             <div class="col-xs-12">
-                <h1 class="h2" id="searchPageTitle">{{ trans("Ceres::Template.itemSearchResults") }} {{ searchString }}</h1>
+
                 <div id="vue-rendered-item-list" class="item-list-frame">
                     <item-list
                         :item-data="{{ itemList | json_encode }}"
