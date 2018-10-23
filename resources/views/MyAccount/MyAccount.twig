@@ -100,9 +100,15 @@
         <!-- WISH LIST AREA -->
           <div class="row wishList">
               <h2>{{ trans("Ceres::Template.wishList") }}</h2>
-              <transition name="wish-list-no-items-transition">
-                <p class="h4 text-muted wish-list-no-items-label" v-if="!wishListIds[0]">{{ trans("Ceres::Template.wishListNoItems") }}</p>
-            </transition>
+              <li class="list-inline-item control-wish-list">
+                 <wish-list-count>
+                     <a>
+                         <span class="badge-right">0</span>
+                         <i class="fa fa-heart-o" aria-hidden="true"></i>
+                         <span>Zur Wunschliste</span>
+                     </a>
+                 </wish-list-count>
+             </li>
           </div>
           <!-- ./WISH LIST AREA -->
 
