@@ -17,9 +17,6 @@
     </div>
     <div class="col-xs-12 col-sm-6">
       <items-per-page template="#vue-items-per-page" :pagination-values="{{ searchOptions.itemsPerPage | json_encode }}"></items-per-page>
-    </div>
-  </div>
-    <div class="categoriegrid itemListView">
       {% if ceresConfig.pagination.position in ['top', 'top_bottom'] %}
       <div class="list-controls row">
           <div class="col-xs-12">
@@ -30,6 +27,9 @@
             </div>
         </div>
     {% endif %}
+    </div>
+  </div>
+    <div class="categoriegrid itemListView">
         <div class="row">
             <div class="col-xs-12">
 
