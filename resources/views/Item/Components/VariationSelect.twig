@@ -3,6 +3,7 @@
     <hr>
         <div v-for="(attribute, attributeId) in attributes">
             <div class="input-unit">
+              <label>${ attribute.name }</label>
                 <select class="custom-select" v-model="selectedAttributes[attributeId]" @change="onSelectionChange(selectedAttributes[attributeId])">
                         <option :value="null">{{ trans("Ceres::Template.singleItemPleaseSelect") }}</option>
                         <option
@@ -12,7 +13,7 @@
                             ${ attributeValue }
                         </option>
                 </select>
-                <label>${ attribute.name }</label>
+
             </div>
         </div>
     </div>
