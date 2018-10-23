@@ -11,7 +11,7 @@
     {{ component( "Ceres::MyAccount.Components.AccountSettings" ) }}
     {{ component( "Ceres::MyAccount.Components.History" ) }}
     {{ component( "Ceres::MyAccount.Components.BankDataSelect" ) }}
-    {{ component( "Ceres::WishList.Components.WishList" ) }}
+   {{ component( "Ceres::WishList.Components.WishList" ) }}
 
 
     {% set userObject = services.customer.getContact() %}
@@ -98,6 +98,7 @@
         <!-- ./ACCOUNT SETTINGS AREA -->
 
           <div class="row wishList">
+              <h2>{{ trans("Ceres::Template.wishList") }}</h2>
               <wish-list template="#vue-wish-list" :init-ids="{{ wishList | json_encode() }}"></wish-list>
           </div>
 
