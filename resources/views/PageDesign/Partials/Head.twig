@@ -79,14 +79,14 @@
 {% set currentCategoryID = "{{ category.id }}" %}
 
 {% if LayoutContainer.show("Ceres::Template.StyleOverwrite") | trim is empty %}
-    <link data-sass-root="{{ plugin_path('Ceres') }}" data-sass-original="{{ plugin_path('Ceres') }}/css/ceres.scss" rel="stylesheet" href="{{ plugin_path('Ceres') }}/css/ceres.css">
+    <link data-sass-root="{{ plugin_path('Ceres') }}" data-sass-original="{{ plugin_path('Ceres') }}/css/ceres.scss" media="screen" rel="stylesheet" href="{{ plugin_path('Ceres') }}/css/ceres.css">
     <!--<link rel="stylesheet" href="{{ plugin_path('GeniessBar') }}/css/main.css">-->
 {% endif %}
 
 {{ LayoutContainer.show("Ceres::Template.StyleOverwrite") }}
 
 
-<link rel="stylesheet" href="https://www.geniess-bar.de/layout/ceres/css/template.css">
+<link rel="stylesheet" href="https://www.geniess-bar.de/layout/ceres/css/template.css" media="screen"">
 <link rel="stylesheet" href="https://www.geniess-bar.de/layout/ceres/css/print.css" type="text/css" media="print" />
 
 <script  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
