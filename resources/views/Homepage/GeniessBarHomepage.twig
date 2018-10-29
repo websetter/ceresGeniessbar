@@ -75,9 +75,7 @@
             <div class="col-xs-6 col-sm-6 col-md-3">
                   {% if category.details[0].image2Path is not empty %}
                   <a href="{{ category.details[0].nameUrl }}">
-                    {% if category.details[0].shortDescription == "%" %}
-                      <span class="rabatt">Sale</span>
-                    {% endif %}
+                      <span class="rabatt">{{ category.details[0].shortDescription | raw }}</span>
                   <img src="/documents/{{category.details[0].image2Path}}" alt="{{ category.details[0].name }}">
                 </a>
                   {% else %}
