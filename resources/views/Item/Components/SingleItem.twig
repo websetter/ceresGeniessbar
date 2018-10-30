@@ -24,7 +24,7 @@
                   <div class="border">
                   <h1>${ currentVariation | itemName }</h1>
                   <slot name="BeforePrice"></slot>
-
+                  <slot name="AfterPrice"></slot>
                   <p class="articlenumber">
                     <span class="tabStop">{{ trans("Ceres::Template.singleItemNumber") }}: </span><span class="tabStop2">${ currentVariation.variation.number }</span>
                   </p>
@@ -81,7 +81,6 @@
                         </div>
                     </div>
 
-                    <slot name="AfterPrice"></slot>
                     <hr>
                     <p>Menge:</p>
                     <slot name="BeforeAddToBasket"></slot>
