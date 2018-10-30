@@ -6,8 +6,8 @@
 {% set catContent = services.category.get( category.id, lang) %}
 
 <div id="kacheln">
-  <div class="row">
-    {% for category in catContent %}
+  <div class="row test">
+    {% for category in categories %}
       <div class="col-xs-6 col-sm-6 col-md-3">
             {% if category.details[0].image2Path is not empty %}
             <a href="{{ category.details[0].nameUrl }}">
