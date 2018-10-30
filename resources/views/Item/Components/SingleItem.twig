@@ -9,6 +9,7 @@
     <div>
         <div class="single container-max page-content">
         <div class="row singleKachelmenu">
+        <p> {{ navigation.tree | json_encode }}</p>
           <div id="kacheln">
             <div class="row">
                 <div v-for="category in categories" class="col-xs-6 col-sm-6 col-md-3">
