@@ -1,0 +1,23 @@
+{% import "GeniessBar::Category.Macros.CategoryTree" as Tree %}
+
+{% set lang = services.sessionStorage.getLang() %}
+{% set categoryBreadcrumbs = services.category.getHierarchy() %}
+
+{% set catContent = services.category.get( category.id, lang) %}
+
+<div id="kacheln">
+  <div class="row">
+    {% for category in catContent %}
+      <div class="col-xs-6 col-sm-6 col-md-3">
+            {% if category.details[0].image2Path is not empty %}
+            <a href="{{ category.details[0].nameUrl }}">
+                <span class="rabatt">{{ category.details[0].shortDescription | raw }}</span>
+            <img src="/documents/{{category.details[0].image2Path}}" alt="{{ category.details[0].name }}">
+          </a>
+            {% else %}
+            <a href="{{ category.details[0].nameUrl }}">{{ category.details[0].name }}</a>
+          {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>

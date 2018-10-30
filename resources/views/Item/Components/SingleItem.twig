@@ -9,18 +9,7 @@
     <div>
         <div class="single container-max page-content">
         <div class="row singleKachelmenu">
-        <p> {{ navigation.tree | json_encode }}</p>
-          <div id="kacheln">
-            <div class="row">
-                <div v-for="category in categories" class="col-xs-6 col-sm-6 col-md-3">
-                    <a v-if="category.details[0].image2Path" href="{{ category.details[0].nameUrl }}">
-                        <span class="rabatt">{{ category.details[0].shortDescription | raw }}</span>
-                        <img src="/documents/{{category.details[0].image2Path}}" alt="{{ category.details[0].name }}">
-                    </a>
-                    <a v-else href="{{ category.details[0].nameUrl }}">{{ category.details[0].name }}</a>
-                </div>
-            </div>
-          </div>
+          {{ include('GeniessBar::PageDesign.Partials.Header.SingleNavigation.twig') }}        
         </div>
         <div class="row singleNav">
           <div class="col-xs-12"><span class="toggleMenu">Kategorien anzeigen <span class="fa fa-angle-down"></span></span></div>
