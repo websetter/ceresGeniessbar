@@ -70,7 +70,7 @@
           {{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", item.data) }}
           <div class="prices">
               <div class="price">
-                 <span class="small">ab</span> {{ item.data.prices.default.unitPrice.formatted }}
+                 <span class="small">ab</span> {{ item.data.prices.default.unitPrice.formatted }}*
               </div>
               {% if item.data.prices.rrp is defined and item.data.prices.rrp.price.value != 0 and item.data.prices.rrp.price.value > item.data.prices.default.unitPrice.value %}
                   <div class="price-view-port">

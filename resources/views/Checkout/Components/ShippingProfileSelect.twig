@@ -13,10 +13,14 @@
                 >
                 <label :for="'ShippingProfileID' +  _uid + shippingProfile.parcelServicePresetId">
                     <div class="icon">
-                        <img v-if="shippingProfile.parcelServicePresetId === 6" src="https://assets.aftership.com/couriers/svg/dhl.svg">
-                        <img v-if="shippingProfile.parcelServicePresetId === 9" src="https://assets.aftership.com/couriers/svg/dhl.svg">
-                        <img v-if="shippingProfile.parcelServicePresetId === 10" src="https://assets.aftership.com/couriers/svg/dhl.svg">
-                        <img v-if="shippingProfile.parcelServicePresetId === 12" src="https://assets.aftership.com/couriers/svg/dhl.svg">
+                        <img v-if="shippingProfile.parcelServicePresetId === 18" src="https://assets.aftership.com/couriers/svg/dpd.svg">
+                        <img v-if="shippingProfile.parcelServicePresetId === 19" src="https://assets.aftership.com/couriers/svg/dpd.svg">
+                        <img v-if="shippingProfile.parcelServicePresetId === 20" src="https://assets.aftership.com/couriers/svg/dpd.svg">
+                        <img v-if="shippingProfile.parcelServicePresetId === 21" src="https://assets.aftership.com/couriers/svg/gls.svg">
+                        <img v-if="shippingProfile.parcelServicePresetId === 22" src="https://assets.aftership.com/couriers/svg/gls.svg">
+                        <img v-if="shippingProfile.parcelServicePresetId === 24" src="https://assets.aftership.com/couriers/svg/gls.svg">
+                        <img v-if="shippingProfile.parcelServicePresetId === 8" src="https://assets.aftership.com/couriers/svg/deutsch-post.svg">
+                        <img v-if="shippingProfile.parcelServicePresetId === 14" src="https://assets.aftership.com/couriers/svg/deutsch-post.svg">
                     </div><!--
                     --><div class="content">
                         ${ shippingProfile.parcelServiceName } - ${ shippingProfile.parcelServicePresetName }

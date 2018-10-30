@@ -4,7 +4,7 @@
         <button class="search-submit" type="submit" @click="search()">
             <i class="fa fa-search sm-up"></i>
         </button>
-            <input type="search" class="search-input" v-model="currentSearchString" @input="autocomplete($event.target.value)"
+            <input placeholder="Suchen Sie nach Ihrem Lieblingsprodukt..." type="search" class="search-input" v-model="currentSearchString" @input="autocomplete($event.target.value)"
                 @keyup.enter="prepareSearch()" @keyup.down="keydown()" @keyup.up="keyup()"
                 @focus="isSearchFocused = true" @blur="setIsSearchFocused(false)"
                 >
