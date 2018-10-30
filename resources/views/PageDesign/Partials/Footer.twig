@@ -2,7 +2,17 @@
 
 {% set numberOfCols = config('Ceres.footer.number_of_cols') %}
 {% set displayedCategories = [] %}
-<a href="#" class="scrollTop"><span class="fa fa-angle-up"></span>zum Seitenanfang</a>
+
+<div class="container-max">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 vat">
+        <p>* Alle Preise inkl. ges. MwSt. zzgl. <a href="/bestellvorgang/versand-und-kosten/" title="">Versandkosten</a></p>
+    </div>
+    <div class="col-xs-12 col-sm-6 scroll">
+        <a href="#" class="scrollTop"><span class="fa fa-angle-up"></span>zum Seitenanfang</a>
+    </div>
+  </div>
+</div>
 <footer>
   <div class="container-max footer-content">
     <div class="row">

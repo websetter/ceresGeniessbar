@@ -105,7 +105,7 @@
         <img class="hidden-md-up" src="https://cdn03.plentymarkets.com/9mle78gfrmwz/frontend/templateCeres/images/100-prozent-service-sm.jpg" alt="100% Service" />
       </div>
 
-      <div class="topProdukte">        
+      <div class="topProdukte">
         {% set homepageContainer9 = LayoutContainer.show("Ceres::Homepage.Container9") %}
             {% if categoryList2 is not empty or homepageContainer9 | trim is not empty %}
                 <div class="m-b-2 clearfix">
@@ -123,10 +123,7 @@
                     {% endif %}
                 </div>
             {% endif %}
-      </div>
-      <div class="vat">
-          <p>* Alle Preise inkl. ges. MwSt. zzgl. <a href="/bestellvorgang/versand-und-kosten/" title="">Versandkosten</a></p>
-      </div>
+      </div>    
   </div>
 {% else %}
     {{ overrideHomepageContainer | raw }}
