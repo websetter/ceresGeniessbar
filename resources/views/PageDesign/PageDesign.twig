@@ -2,7 +2,7 @@
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 {% import "Ceres::PageDesign.Macros.Translations" as Translations %}
 {{ component( "Ceres::PageDesign.Components.Notifications" ) }}
-{{ component( "Ceres::Basket.Components.BasketPreview" ) }}
+{{ component( "GeniessBar::Basket.Components.BasketPreview" ) }}
 {{ component( "Ceres::Customer.Components.Login" ) }}
 {{ component( "Ceres::Customer.Components.Registration" ) }}
 {{ component( "Ceres::Basket.Components.AddItemToBasketOverlay" ) }}
@@ -128,94 +128,7 @@
         <add-item-to-basket-overlay template="#vue-add-item-to-basket-overlay" :basket-add-information="{{ ceresConfig.basket.addItemToBasketConfirm | json_encode() }}"></add-item-to-basket-overlay>
         <!-- ./BASKET MODAL -->
 
-        <!-- SHIPPINGCOSTS MODAL -->
-        <div id="shippingscosts-modal-wrapper">
-            <div class="modal fade" id="shippingscosts" tabindex="-1" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <div class="modal-title h3">{{ trans('Ceres::Template.shippingInfoCosts') }}</div>
-                        </div>
-                        <div class="modal-body">
-                            {% include category_template(ceresConfig.global.shippingCostsCategoryId, lang, webstoreConfig.webstoreId) ignore missing %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- ./SHIPPINGCOSTS MODAL -->
-        <!-- HOTLINE MODAL -->
-        <div id="hotline-modal-wrapper">
-          {% if hotlineModalContent is not defined %}
-            {% set hotlineModalContent = services.category.get(1418, lang) %}
-          {% endif %}
 
-          <div class="modal fade hotline-modal" id="hotline" tabindex="-1" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <div class="modal-title h3">{{ hotlineModalContent.details.first.description | raw }}</div>
-                        </div>
-                        <div class="container">
-                          <div class="row">
-                            {{ hotlineModalContent.details.first.description2 | raw }}
-                      </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- ./HOTLINE MODAL -->
-
-        <!-- SSL MODAL -->
-        <div id="ssl-modal-wrapper">
-          {% if sslModalContent is not defined %}
-            {% set sslModalContent = services.category.get(1419, lang) %}
-          {% endif %}
-
-          <div class="modal fade ssl-modal" id="ssl" tabindex="-1" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <div class="modal-title h3">{{ sslModalContent.details.first.description | raw }}</div>
-                        </div>
-                        <div class="container">
-                          <div class="row">
-                            {{ sslModalContent.details.first.description2 | raw }}
-                      </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- ./SSL MODAL -->
-
-        <!-- LIEFERUNG MODAL -->
-        <div id="lieferung-modal-wrapper">
-          {% if lieferungModalContent is not defined %}
-            {% set lieferungModalContent = services.category.get(1420, lang) %}
-          {% endif %}
-
-          <div class="modal fade lieferung-modal" id="lieferung" tabindex="-1" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <div class="modal-title h3">{{ lieferungModalContent.details.first.description | raw }}</div>
-                        </div>
-                        <div class="container">
-                          <div class="row">
-                            {{ lieferungModalContent.details.first.description2 | raw }}
-                      </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- ./LIEFERUNG MODAL -->
     </div>
 </div>
 
