@@ -1,6 +1,6 @@
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 
-{{ component( "Ceres::Customer.Components.UserLoginHandler" ) }}
+{{ component( "GeniessBar::Customer.Components.UserLoginHandler" ) }}
 {{ component( "Ceres::PageDesign.Components.ShippingCountrySelect" ) }}
 {{ component( "Ceres::PageDesign.Components.MobileNavigation" ) }}
 {{ component( "GeniessBar::ItemList.Components.ItemSearch" ) }}
@@ -61,7 +61,7 @@
               <li id="searchBox">
                   <item-search template="#vue-item-search"></item-search>
               </li>
-              
+
           </ul>
         </div>
         {% if  services.template.isHome() %}
