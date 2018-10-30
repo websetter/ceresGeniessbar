@@ -28,10 +28,5 @@
         {% else %}
             {{ ImageCarouselOverride }}
         {% endif %}
-    </div>
-    <div slot="CrossSellingAccessory">
-       {{ component("GeniessBar::Containers.Components.ContainerItemList") }}
-       {{ LayoutContainer.show("Ceres::SingleItem.ItemListContainer", accessory) }}
-       <container-item-list :items="{{ accessory| json_encode }}"></container-item-list>
-   </div>
+    </div>    
 </single-item>
