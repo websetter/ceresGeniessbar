@@ -27,7 +27,7 @@
                             </a>
 
                             <div class="item-base-price">
-                                <strong>Einzelpreis:</strong>${ unitPrice | currency }
+                                <strong>Einzelpreis:</strong> ${ unitPrice | currency }
 
                             </div>
 
@@ -36,7 +36,7 @@
 
                             <div class="item-small-prices text-muted" v-if="!(basketItem.variation.data.unit.unitOfMeasurement === 'C62' && basketItem.variation.data.unit.content === 1) && basketItem.variation.data.variation.mayShowUnitPrice">
                                 <div>
-                                    <strong>Grundpreis</strong>${ basePrice }
+                                    <strong>Grundpreis:</strong> ${ basePrice }
                                 </div>
                                 <div>
                                     <strong>{{ trans("Ceres::Template.basketContent") }}: </strong>
@@ -53,17 +53,7 @@
                         </div>
                     </div>
 
-                    <div class="basket-item-container-right">
-                        <div class="qty-box-container">
-                            <quantity-input
-                                    template="#vue-quantity-input"
-                                    @quantity-change="updateQuantity"
-                                    :value="basketItem.quantity"
-                                    :waiting="isInputLocked"
-                                    :min="basketItem.variation.data.variation.minimumOrderQuantity"
-                                    :max="basketItem.variation.data.variation.maximumOrderQuantity"
-                                    :interval="basketItem.variation.data.variation.intervalOrderQuantity"></quantity-input>
-                        </div>
+                    <div class="basket-item-container-right">                    
 
                         <div class="price-box">
                             <div class="item-total-price">${ itemTotalPrice | currency(basketItem.variation.data.calculatedPrices.default.currency) }</div>
@@ -75,6 +65,16 @@
                                         <i v-waiting-animation="waitingForDelete" class="fa fa-trash-o" aria-hidden="true"></i>
                                     </span>
                                 </div>
+                            </div>
+                            <div class="qty-box-container">
+                                <quantity-input
+                                        template="#vue-quantity-input"
+                                        @quantity-change="updateQuantity"
+                                        :value="basketItem.quantity"
+                                        :waiting="isInputLocked"
+                                        :min="basketItem.variation.data.variation.minimumOrderQuantity"
+                                        :max="basketItem.variation.data.variation.maximumOrderQuantity"
+                                        :interval="basketItem.variation.data.variation.intervalOrderQuantity"></quantity-input>
                             </div>
                         </div>
                     </div>
