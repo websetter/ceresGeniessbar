@@ -2,22 +2,31 @@
 
 {% set lang = services.sessionStorage.getLang() %}
 {% set categoryBreadcrumbs = services.category.getHierarchy() %}
+{% set firstCategory = categoryBreadcrumbs | first %}
 
 {% set catContent = services.category.get( category.id, lang) %}
 
-<div id="kacheln">
-  <div class="row test">
+<div id="kacheln" class="row">
+  <div class="col-xs-12 col-sm-6 col-md-5">
+    {% if firstCategory.details is defined %}
+        <div class="kachelBig"><img src="/documents/{{ firstategory.details[0].image2Path }}" /></div>
+    {% endif %}
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-7">
     {% for category in categories %}
-      <div class="col-xs-6 col-sm-6 col-md-3">
-            {% if category.details[0].image2Path is not empty %}
+      {% if category.id == firstCategory.id %}
+      <!-- Nothing-->
+      {% else %}
+        <div class="kachel">
             <a href="https://www.geniess-bar.de/{{ category.details[0].nameUrl }}">
-                <span class="rabatt">{{ category.details[0].shortDescription | raw }}</span>
-            <img src="/documents/{{category.details[0].image2Path}}" alt="{{ category.details[0].name }}">
+              {% if category.details[0].image2Path is not empty %}
+              <img src="/documents/{{ category.details[0].image2Path }}" />
+              {% else %}
+              <p>{{ category.details[0].name }}</p>
+              {% endif %}
           </a>
-            {% else %}
-            <a href="https://www.geniess-bar.de/{{ category.details[0].nameUrl }}">{{ category.details[0].name }}</a>
-          {% endif %}
-      </div>
+        </div>
+      {% endif %}
     {% endfor %}
   </div>
 </div>
