@@ -125,12 +125,9 @@
                             </li>
                         {% endif %}
 
-                        <li class="nav-item">
-                           <a :class="{ 'active': !isDescriptionTabActive && !isTechnicalDataTabActive }" class="nav-link" data-toggle="tab" href="#assessments-details" role="tab">{{ trans("GenissBar::Template.singleItemRating") }}</a>
+                        <li class="nav-item isRating">
+                           <a :class="{ 'active': !isDescriptionTabActive }" class="nav-link" data-toggle="tab" href="#assessments-details" role="tab">{{ trans("GenissBar::Template.singleItemRating") }}</a>
                        </li>
-                        <li class="nav-item accessoryTab">
-                          <a class="nav-link" data-toggle="tab" :href="'#accessory-' +  currentVariation.variation.id" role="tab">Zubehör</a>
-                        </li>
 
                         <slot name="AddDetailTabs"></slot>
                     </ul>
@@ -143,7 +140,7 @@
                             </div>
                         {% endif %}
 
-                        <div :class="{ 'active': !isDescriptionTabActive && !isTechnicalDataTabActive }" class="tab-pane" id="assessments-details" role="tabpanel">
+                        <div :class="{ 'active': !isDescriptionTabActive }" class="tab-pane" id="assessments-details" role="tabpanel">
                             <slot name="FeedbackContainer"></slot>
                         </div>
                         <slot name="AddDetailTabsContent"></slot>
