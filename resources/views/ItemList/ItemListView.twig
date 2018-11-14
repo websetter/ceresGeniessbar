@@ -16,7 +16,9 @@
       <item-list-sorting template="#vue-item-list-sorting" :sorting-list="{{ searchOptions.sorting | json_encode }}" :default-sorting="{{ searchOptions.defaultSorting | json_encode }}"></item-list-sorting>
     </div>
     <div class="col-xs-12 col-sm-6">
-      <items-per-page template="#vue-items-per-page" :pagination-values="{{ searchOptions.itemsPerPage | json_encode }}"></items-per-page>
+      <items-per-page
+          template="#vue-items-per-page"
+          :pagination-values="{{ searchOptions.itemsPerPage | json_encode }}"></items-per-page>
       {% if ceresConfig.pagination.position in ['top', 'top_bottom'] %}
       <div class="list-controls row">
           <div class="col-xs-12">
