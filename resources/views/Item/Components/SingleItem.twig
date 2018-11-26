@@ -5,6 +5,7 @@
 {% set shippingCat = config("Ceres.global.shippingCostsCategoryId") %}
 {% set categories = services.category.getNavigationTree("item", "de", 0) %}
 
+
 <script type="x/template" id="vue-single-item">
     <div>
         <div class="single container-max page-content">
@@ -85,6 +86,10 @@
                             </div>
                         {% endif %}
                         <p class="vat">{{ trans("GeniessBar::Template.singleItemINKL") }}  ${currentVariation.prices.default.vat.value }%<br>{{ trans("GeniessBar::Template.singleItemZZGL") }} <a href="{{ trans("GeniessBar::Template.LinkFooterPaymentAndShipping") }}" target="blank">{{ trans("GeniessBar::Template.singleItemVersand") }}</a></p>
+
+
+                        <p class="notice"> ${ 50 - $store.state.basket.data.itemSum }</p>
+
                         <div class="base-price" v-if="currentVariation.unit">
                             <div v-if="currentVariation.variation.mayShowUnitPrice">
                                 {{ trans("Ceres::Template.singleItemUnitPrice") }}
