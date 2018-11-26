@@ -2,6 +2,7 @@
 
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 {% import "Ceres::PageDesign.Macros.ItemName" as ItemName %}
+{% import "Ceres::Basket.Macros.AddToBasket" as AddToBasket %}
 
 {% set image = item.data.images.all | first %}
 {% set itemUrl =  item.data | itemURL %}
@@ -86,9 +87,9 @@
               {% endif %}
           </div>
           {{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", item.data) }}
-          <a href="{{ itemUrl }}" class="basket btn">
-              <span class="fa fa-shopping-cart"></span><span class="hidden-md-up">Warenkorb</span>
-          </a>
+          <div class="basket btn">
+              {{ AddToBasket.printTwigComponent( item.data ) }}
+          </div>
         </div>
     </div>
 </article>
