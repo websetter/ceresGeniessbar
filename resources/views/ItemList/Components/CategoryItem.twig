@@ -2,6 +2,8 @@
 {{ component( "Ceres::ItemList.Components.CategoryImageCarousel") }}
 {{ component( "Ceres::ItemList.Components.ItemStoreSpecial" ) }}
 
+{% import "Ceres::Basket.Macros.AddToBasket" as AddToBasket %}
+
 {% set lang = services.sessionStorage.getLang() %}
 {% set shippingCat = config("Ceres.global.shippingCostsCategoryId") %}
 
@@ -59,9 +61,9 @@
                         <span v-if="itemData.variation.mayShowUnitPrice">Grundpreis ${ itemData.prices.default.basePrice }</span>
                     </div>
               </div>
-              <a :href="itemData | itemURL" class="basket btn">
-                  <span class="fa fa-shopping-cart"></span><span class="hidden-md-up">Warenkorb</span>
-              </a>
+              <div class="basket btn">
+                  {{ AddToBasket.printVueComponent( "itemData" ) }}
+              </div>
             </div>
         </div>
     </article>
