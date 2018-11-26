@@ -43,7 +43,7 @@
 
     <div class="home container-max">
       <div id="angebote">
-        {% set homepageContainer6 = LayoutContainer.show("Ceres::Homepage.Container6") %}
+        <!--{% set homepageContainer6 = LayoutContainer.show("Ceres::Homepage.Container6") %}
         {% if categoryList1 is not empty or homepageContainer6 | trim is not empty %}
             <div class="m-b-2 clearfix">
                 {% if homepageContainer6 | trim is empty %}
@@ -65,7 +65,11 @@
                     {{ homepageContainer6 }}
                 {% endif %}
             </div>
-        {% endif %}
+        {% endif %}-->
+
+        {% set angebote = services.category.get(246, lang) %}
+        {{ angebote.details.first.description2 | raw }}
+        
       </div>
 
 
@@ -123,7 +127,7 @@
                     {% endif %}
                 </div>
             {% endif %}
-      </div>    
+      </div>
   </div>
 {% else %}
     {{ overrideHomepageContainer | raw }}
