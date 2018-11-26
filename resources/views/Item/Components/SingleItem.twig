@@ -88,8 +88,8 @@
                         <p class="vat">{{ trans("GeniessBar::Template.singleItemINKL") }}  ${currentVariation.prices.default.vat.value }%<br>{{ trans("GeniessBar::Template.singleItemZZGL") }} <a href="{{ trans("GeniessBar::Template.LinkFooterPaymentAndShipping") }}" target="blank">{{ trans("GeniessBar::Template.singleItemVersand") }}</a></p>
 
 
-                        <p v-if="(50 - $store.state.basket.data.itemSum) > 0" class="notice">Jetzt noch  ${ 50 - $store.state.basket.data.itemSum } ${currentVariation.prices.default.currency}  in den Warenkorb legen und versandkostenfrei innerhalb Deutschalnds bestellen</p>
-                        <p v-if="(50 - $store.state.basket.data.itemSum) < 0" class="notice">Bestellen Sie jetzt versandkostenfrei innerhalb Deutschlands, solange Ihr Warenkorbbetrag über 50 € liegt</p>
+                        <p v-if="(50 - $store.state.basket.data.itemSum) > 0" class="notice">Jetzt noch <strong> ${ 50.00 - $store.state.basket.data.itemSum } €</strong>  in den Warenkorb legen und versandkostenfrei innerhalb Deutschalnds bestellen</p>
+                        <p v-if="(50 - $store.state.basket.data.itemSum) < 0" class="notice">Bestellen Sie jetzt versandkostenfrei innerhalb Deutschlands, da Ihr Warenkorbbetrag über 50 € liegt</p>
 
                         <div class="base-price" v-if="currentVariation.unit">
                             <div v-if="currentVariation.variation.mayShowUnitPrice">
