@@ -19,11 +19,11 @@
 <div id="shippingNoticeBox">
 <span class="hidden-md-down">Warenkorb |</span>
 {% if config("Ceres.header.basket_values") != "quantity" %}
-    <span class="badge" v-if="!$store.state.basket.showNetPrices" v-basket-item-sum="50 - $store.state.basket.data.itemSum">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
+    <span class="badge" v-if="!$store.state.basket.showNetPrices" v-basket-item-sum="$store.state.basket.data.itemSum">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
     <span class="badge" v-else v-cloak v-basket-item-sum="$store.state.basket.data.itemSumNet">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
 {% endif %}
 <br/>
-<span v-if="(50.00 - $store.state.basket.data.itemSum) > 0">Noch <strong >1: {{basket.data.itemSum}}, 2: {{basket.itemSum}}</strong> € für versandkostenfreie Bestellung innerhalb DE</p>
+<span v-if="(50.00 - $store.state.basket.data.itemSum) > 0">Noch <strong v-if="!$store.state.basket.showNetPrices" v-basket-item-sum="50 - $store.state.basket.data.itemSum">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</strong> € für versandkostenfreie Bestellung innerhalb DE</p>
 <span v-if="(50.00 - $store.state.basket.data.itemSum) < 0" >Ab jetzt versandkostenfrei innerhalb DE bestellen</p>
 
 </div>
