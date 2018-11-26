@@ -53,7 +53,7 @@
 
         <div class="category-list-view-port" v-if="!showQuantity && !useLargeScale">
             <div class="btn-group" role="group" aria-label="Thumb Control">
-                <button type="button" :class="{'no-pointer-events': waiting}" v-if="canBeAddedToBasket && !isVariationSelected" class="btn btn-primary mobile-width-button" @click="addToBasket()">
+                <button type="button" :class="{'no-pointer-events': waiting}" v-if="canBeAddedToBasket && variations.length > 0" class="btn btn-primary mobile-width-button" @click="addToBasket()">
                     <i class="fa fa-cart-plus fa-lg" aria-hidden="true"></i>
                 </button>
                 <button type="button" v-else class="btn btn-primary mobile-width-button" @click="directToItem()">
