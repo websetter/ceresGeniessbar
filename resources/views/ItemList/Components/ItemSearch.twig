@@ -9,12 +9,12 @@
                 @focus="isSearchFocused = true" @blur="setIsSearchFocused(false)">
 
             <div class="autocomplete-suggestions" v-if="isSearchFocused && autocompleteResult.length">
-                <a :href="item.url" class="autocomplete-suggestion" v-for="(item, index) in autocompleteResult" :key="index" @mousedown="selectAutocompleteItem(item)" :class="{ 'autocomplete-selected': selectedAutocompleteIndex === index }">
-                    <div class="autocomplete-image-container">
+                <div class="autocomplete-suggestion" v-for="(item, index) in autocompleteResult" :key="index" @mousedown="selectAutocompleteItem(item)" :class="{ 'autocomplete-selected': selectedAutocompleteIndex === index }">
+                    <a :href="item.url">
                         <img class="autocomplete-image" :src="item.img">
-                    </div>
                     <div class="autocomplete-item-name" v-html="item.displayName"></div>
-                </a>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
