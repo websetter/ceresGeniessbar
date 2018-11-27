@@ -4,16 +4,16 @@
         <button class="search-submit" type="submit" @click="search()">
             <i class="fa fa-search sm-up"></i>
         </button>
-            <input placeholder="Suchen Sie nach Ihrem Lieblingsprodukt..." type="search" class="search-input" @input="autocomplete($event.target.value)"
+            <input type="search" class="search-input" ref="searchInput" @input="autocomplete($event.target.value)"
                 @keyup.enter="prepareSearch()" @keyup.down="keydown()" @keyup.up="keyup()"
-                @focus="isSearchFocused = true" @blur="setIsSearchFocused(false)"
-                >
+                @focus="isSearchFocused = true" @blur="setIsSearchFocused(false)">
+
             <div class="autocomplete-suggestions" v-if="isSearchFocused && autocompleteResult.length">
-                <div class="autocomplete-suggestion" v-for="(item, index) in autocompleteResult" :key="index" @click="selectAutocompleteItem(item)" :class="{ 'autocomplete-selected': selectedAutocompleteIndex === index }">
-                  <a :href="item.url" :title="item.displayName">
-                  <img class="autocomplete-image" :src="item.img">
-                  <div class="autocomplete-item-name" v-html="item.displayName"></div>
-                  </a>
+                <div class="autocomplete-suggestion" v-for="(item, index) in autocompleteResult" :key="index" @mousedown="selectAutocompleteItem(item)" :class="{ 'autocomplete-selected': selectedAutocompleteIndex === index }">
+                    <div class="autocomplete-image-container">
+                        <img class="autocomplete-image" :src="item.img">
+                    </div>
+                    <div class="autocomplete-item-name" v-html="item.displayName"></div>
                 </div>
             </div>
         </div>
