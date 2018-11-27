@@ -23,8 +23,8 @@
     <span class="badge" v-else v-cloak v-basket-item-sum="$store.state.basket.data.itemSumNet">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
 {% endif %}
 <hr>
-<span v-if="(50.00 - $store.state.basket.data.itemSum) > 0">Noch <strong class="badge" v-basket-item-sum="50.00 - $store.state.basket.data.itemSum">0,00</strong> <strong>€</strong> bis portofreie Bestellung innerh. DE</span>
-<span v-else>Ab jetzt portofrei innerhalb DE bestellen</p>
+<span v-if="(50.00 - $store.state.basket.data.itemSum) > 0">Jetzt noch <strong class="badge" v-basket-item-sum="50.00 - $store.state.basket.data.itemSum">0,00</strong> <strong>€</strong> in den Warenkorb legen und versandkostenfrei innerh. DE bestellen</span>
+<span v-else>Ab jetzt versandkostenfrei innerh. DE bestellen</p>
 
 </div>
 <header id="page-header" class="top-bar">

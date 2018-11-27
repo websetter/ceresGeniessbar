@@ -12,7 +12,7 @@
                 <div class="autocomplete-suggestion" v-for="(item, index) in autocompleteResult" :key="index" @mousedown="selectAutocompleteItem(item)" :class="{ 'autocomplete-selected': selectedAutocompleteIndex === index }">
                     <a :href="item.url">
                         <img class="autocomplete-image" :src="item.img">
-                    <div class="autocomplete-item-name" v-html="item.displayName"></div>
+                        <div class="autocomplete-item-name" v-html="item.displayName"></div>
                     </a>
                 </div>
             </div>
