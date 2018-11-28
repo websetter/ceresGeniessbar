@@ -27,6 +27,8 @@
                 {{ shopBuilderTemplate | raw }}
             </div>
         </div>
-    {% endif %}
+        {% else %}
+              {% include category_template( category.id, lang, webstoreConfig.webstoreId ) ignore missing %}
+          {% endif %}
   </div>
 {% endblock %}
