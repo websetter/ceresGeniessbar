@@ -23,12 +23,10 @@
     {% set shopBuilderTemplate = shop_builder_category_template(category.id) %}
     {% if shopBuilderTemplate | trim is not empty %}
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col">
                 {{ shopBuilderTemplate | raw }}
             </div>
         </div>
-        {% else %}
-              {% include category_template( category.id, lang, webstoreConfig.webstoreId ) ignore missing %}
-          {% endif %}
+    {% endif %}
   </div>
 {% endblock %}
