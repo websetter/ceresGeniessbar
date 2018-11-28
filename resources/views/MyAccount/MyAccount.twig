@@ -114,6 +114,18 @@
           <hr>
           <!-- ./WISH LIST AREA -->
 
+        <!-- NEWSLETTER AREA -->        
+          <div class="row newsletter">
+            <div class="col-xs-12">
+              <h2>{{ trans("Ceres::Template.newsletter") }}</h2>
+                 <a class="btn btn-primary" href="/content/newsletter/" title="zum Newsletter Anmeldden">zum Newsletter anmelden</a>
+                 <hr>
+                 <a class="btn btn-danger" href="/?OrderShow=CancelNewsletter" title="Newletter abbestellen">Newsletter abbestellen</a>
+              </div>
+          </div>
+          <hr>
+          <!-- ./NEWSLETTER AREA -->
+
     </div>
 
     {% set ordersPerPage = config("Ceres.my_account.orders_per_page") %}
