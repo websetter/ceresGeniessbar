@@ -10,10 +10,9 @@
 {% endblock %}
 
 {% block PageBody %}
-{% if Content is not defined %}
-  {% set Content = services.category.get(category.id, lang) %}
-{% endif %}
-
+  {% if Content is not defined %}
+    {% set Content = services.category.get(category.id, lang) %}
+  {% endif %}
     <div class="container contentText">
       <div class="row">
         <div class="col-xs-12">
@@ -21,5 +20,13 @@
         {{ Content.details.first.description | raw }}
       </div>
     </div>
+    {% set shopBuilderTemplate = shop_builder_category_template(category.id) %}
+    {% if shopBuilderTemplate | trim is not empty %}
+        <div class="row">
+            <div class="col-xs-12">
+                {{ shopBuilderTemplate | raw }}
+            </div>
+        </div>
+    {% endif %}
   </div>
 {% endblock %}
