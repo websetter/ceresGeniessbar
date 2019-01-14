@@ -47,7 +47,6 @@
             </div>
           {% endif %}
         {% endfor %}
-
     </div>
   </div>
 </div>
@@ -57,14 +56,14 @@
       <div id="category-description-container" class="category-description">{{ category.details[0].description | raw }}</div>
       <div id="scollToMe"></div>
       <div class="row catNav">
-
-        <div class="col-xs-12">
-
-          <a href="{{lastCategory.details[0].url}}">
-            <p>zurück zu {{  lastCategory.details[0].name}} </p>
-            <p></p>
-          </a>
-        </div>
+        {% if lastCategory.details is defined %}
+          <div class="col-xs-12">
+            <a href="{{lastCategory.details[0].nameUrl }}">
+              <p>zurück zu {{  lastCategory.details[0].name}} </p>
+              <p></p>
+            </a>
+          </div>
+          {% endif %}
 
         <div class="col-xs-12 col-sm-3">
           <div class="sorting">
