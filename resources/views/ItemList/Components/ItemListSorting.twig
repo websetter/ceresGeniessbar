@@ -1,7 +1,7 @@
 <script type="x/template" id="vue-item-list-sorting">
     <div class="list-sort">
-    <span>Sortiert nach</span>
         <select class="custom-select" v-model="selectedSorting" @change="updateSorting()">
+            <span>Sortiert nach</span>
             <option :value="key" v-for="(value, key) in sortingList" :selected="selectedSorting == key">
                 ${ value }
             </option>
