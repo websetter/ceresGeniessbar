@@ -56,9 +56,9 @@
       <div id="category-description-container" class="category-description">{{ category.details[0].description | raw }}</div>
       <div id="scollToMe"></div>
       <div class="row catNav">
-        {% if lastCategory.details is defined %}
+        {% if category.parentCategoryId %}
           <div class="col-xs-12">
-            <a href="{{lastCategory.details[0].nameUrl }}">
+            <a href="{{lastCategory.url }}">
               <p>zurück zu {{  lastCategory.details[0].name}} </p>
               <p></p>
             </a>
