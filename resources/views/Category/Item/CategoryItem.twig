@@ -59,11 +59,12 @@
       <div class="row catNav">
 
         <div class="col-xs-12">
-          <a href="{{category.parent.url}}">
-            <p>zurück zu {{  category.parent.details[0].name }} </p>
+
+          <a href="{{category.parentUrl}}">
+            <p>zurück zu {{  category.parentName }} </p>
           </a>
         </div>
-        
+
         <div class="col-xs-12 col-sm-3">
           <div class="sorting">
             <item-list-sorting template="#vue-item-list-sorting" :sorting-list="{{ searchOptions.sorting | json_encode }}" :default-sorting="{{ searchOptions.defaultSorting | json_encode }}"></item-list-sorting>
