@@ -121,7 +121,8 @@
                                 {{ LayoutContainer.show("Ceres::Checkout.OptIns") }}
 
 
-                                <p>FSK ist {{basket.data.maxFsk}}</p>
+                                <p>FSK ist {{basketData.maxFsk}}</p>
+                                <p>FSK ist {{basket | raw }}</p>
 
                             </div>
                         </div>
