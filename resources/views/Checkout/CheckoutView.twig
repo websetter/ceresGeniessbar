@@ -118,8 +118,14 @@
                                 <div class="form-check">
                                     <accept-gtc-check template="#vue-accept-gtc-check"></accept-gtc-check>
                                 </div>
-                                {{ LayoutContainer.show("Ceres::Checkout.OptIns") }}                              
+                                {{ LayoutContainer.show("Ceres::Checkout.OptIns") }}
 
+                                {% if basket.maxFsk == 18 %}
+                                <label class="form-check-label" for="checkbox1" v-bind:class="{ 'error': this.showError }">
+                                  <input class="form-check-input" type="checkbox" value="checkbox1" id="checkbox1" v-model="isChecked">
+                                        Hiermit bestätige ich, dass der Empfänger das 18. Lebensjahr bereits vollendet hat und Lieferungen, die einen Artikel ohne Jugendfreigabe enthalten, vom Empfänger persönlich entgegengenommen werden.
+                                  </label>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
