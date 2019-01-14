@@ -10,6 +10,7 @@
 
     {{ component( "Ceres::Customer.Components.AddressSelect.AddressSelect" ) }}
     {{ component( "GeniessBar::Checkout.Components.AcceptGtcCheck" ) }}
+    {{ component( "GeniessBar::Checkout.Components.FskCheck" ) }}
     {{ component( "Ceres::Checkout.Components.PaymentProviderSelect" ) }}
     {{ component( "Ceres::Checkout.Components.ShippingPrivacyHintCheck" ) }}
     {{ component( "GeniessBar::Checkout.Components.ShippingProfileSelect" ) }}
@@ -120,11 +121,11 @@
                                 </div>
                                 {{ LayoutContainer.show("Ceres::Checkout.OptIns") }}
 
-                                {% if basket.maxFsk == 18 %}
+
                                 <div class="form-check">
                                     <fsk-check template="#vue-fsk-check"></fsk-check>
                                 </div>
-                                {% endif %}
+                                
                             </div>
                         </div>
                     </div>
