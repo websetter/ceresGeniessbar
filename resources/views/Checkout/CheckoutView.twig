@@ -10,7 +10,6 @@
 
     {{ component( "Ceres::Customer.Components.AddressSelect.AddressSelect" ) }}
     {{ component( "GeniessBar::Checkout.Components.AcceptGtcCheck" ) }}
-    {{ component( "GeniessBar::Checkout.Components.FskCheck" ) }}
     {{ component( "Ceres::Checkout.Components.PaymentProviderSelect" ) }}
     {{ component( "Ceres::Checkout.Components.ShippingPrivacyHintCheck" ) }}
     {{ component( "GeniessBar::Checkout.Components.ShippingProfileSelect" ) }}
@@ -122,10 +121,13 @@
                                 {{ LayoutContainer.show("Ceres::Checkout.OptIns") }}
 
 
-                                <div class="form-check">
-                                    <fsk-check template="#vue-fsk-check"></fsk-check>
+                                <div id="fsk" class="form-check">
+                                  <label class="form-check-label" for="fsk-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="fsk-check" v-model="isChecked">
+                                        Hiermit bestätige ich, dass der Empfänger das 18. Lebensjahr bereits vollendet hat und Lieferungen, die einen Artikel ohne Jugendfreigabe enthalten, vom Empfänger persönlich entgegengenommen werden.
+                                  </label>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
