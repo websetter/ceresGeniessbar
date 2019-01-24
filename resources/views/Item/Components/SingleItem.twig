@@ -15,12 +15,16 @@
         <div class="row singleNav">
           <div class="col-xs-12">
             <span class="toggleMenu">
+              <span class="wrap">
               <span class="fa fa-angle-down"></span>
               Kategorien anzeigen
+              </span>
             </span>
           <span class="toggleMenuClose hidden">
+            <span class="wrap">
             <span class="fa fa-angle-up"></span>
             Kategorien verbergen
+            </span>
           </span>
           </div>
           <div class="col-xs-12 col-sm-4 col-md-5"><a class="backLink" href="/{% for category in categoryBreadcrumbs[:categoryBreadcrumbs | length - 1] if not break %}{% if category.level == 1 %}{{ category.details[0].nameUrl }}{% else %}{% set break = true %}{% endif %}{% endfor %}" title="zurück"><span class="wrap"><span class="fa fa-angle-left"></span>Zurück zur Produktübersicht</span></a></div>
