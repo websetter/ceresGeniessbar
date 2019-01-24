@@ -56,13 +56,6 @@
       <div id="category-description-container" class="category-description">{{ category.details[0].description | raw }}</div>
       <div id="scollToMe"></div>
       <div class="row catNav">
-        {% if category.parentCategoryId %}
-          <div class="col-xs-12 col-sm-3">
-            <a class="btn" href="/{{lastCategory.details[0].nameUrl }}">
-              zurück zu {{  lastCategory.details[0].name}}
-            </a>
-          </div>
-          {% endif %}
 
         <div class="col-xs-12 col-sm-3">
           <div class="sorting">
@@ -80,6 +73,13 @@
             </div>
         {% endif %}
         </div>
+        {% if category.parentCategoryId %}
+          <div class="col-xs-12 col-sm-3">
+            <a class="btn" href="/{{lastCategory.details[0].nameUrl }}">
+              zurück zu {{  lastCategory.details[0].name}}
+            </a>
+          </div>
+          {% endif %}
         <div class="col-xs-12 col-sm-{% if category.parentCategoryId %}6{% else %}9{% endif %}  childCat">
           <div class="row">
           {% set childCat = services.category.getChildren(category.id, lang) %}
