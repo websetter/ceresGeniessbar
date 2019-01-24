@@ -114,7 +114,7 @@
         {% set list = services.itemList.getItemList( 'tag_list', 7, null, 4).documents %}
             {% for items in list %}
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                {% include "GeniessBar::Category.Item.Partials.CategoryListItem" with { 'item': item } %}
+                {% include "GeniessBar::Category.Item.Partials.CategoryListItem" with { 'item': items } %}
             </div>
         {% endfor %}
 
