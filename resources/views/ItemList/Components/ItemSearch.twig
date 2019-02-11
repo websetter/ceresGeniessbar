@@ -11,7 +11,9 @@
             <div class="searchPreview" v-if="isSearchFocused && autocompleteResult.length">
                 <div class="suggestion" v-for="(item, index) in autocompleteResult" :key="index" @mousedown="selectAutocompleteItem(item)" :class="{ 'autocomplete-selected': selectedAutocompleteIndex === index }">
                     <a :href="item.url">
-                      <img class="searchImage" :src="item.img">
+                      <div class="searchImageContainer">
+                        <img class="searchImage" :src="item.img">
+                      </div>
                       <span class="searchName" v-html="item.displayName"></span>
                     </a>
                 </div>
