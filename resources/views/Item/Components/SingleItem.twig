@@ -57,7 +57,7 @@
                   <p class="articleContent" v-if="currentVariation.unit">
                     <span class="tabStop">{{ trans("Ceres::Template.singleItemContent") }}:</span><span class="tabStop2">${ currentVariation.unit.content | numberFormat } ${ currentVariation.unit.names.name }</span>
                   </p>
-                  <p class="age" v-if="currentVariation.unit">
+                  <p class="age" v-if="currentVariation.item.ageRestriction == 18">
                     <span class="tabStop">Altersfreigabe:</span><span class="tabStop2">ab ${ currentVariation.item.ageRestriction } Jahre</span>
                   </p>
 
