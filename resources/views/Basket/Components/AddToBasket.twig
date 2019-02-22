@@ -53,10 +53,10 @@
 
         <div class="category-list-view-port" v-if="!showQuantity && !useLargeScale">
             <div class="btn-group" role="group" aria-label="Thumb Control">
-                <button type="button" :class="{'no-pointer-events': waiting}" v-if="!canBeAddedToBasket" class="btn btn-primary mobile-width-button" @click="addToBasket()">
+                <button type="button" :class="{'no-pointer-events': waiting}" v-if="canBeAddedToBasket" class="btn btn-primary mobile-width-button" @click="addToBasket()">
                     <i class="fa fa-cart-plus fa-lg" aria-hidden="true"></i>
                 </button>
-                <button type="button" v-if="canBeAddedToBasket" class="btn btn-primary mobile-width-button" @click="directToItem()">
+                <button type="button" v-if="!canBeAddedToBasket" class="btn btn-primary mobile-width-button" @click="directToItem()">
                     <i class="fa fa-info fa-lg" aria-hidden="true"></i>
                 </button>
             </div>
