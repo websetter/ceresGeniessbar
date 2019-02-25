@@ -97,7 +97,7 @@
                             </div>
                         {% endif %}
                         <p class="vat">
-                          {% if currentVariation.prices.default.price.value > 50 %}
+                          {% if currentVariation.prices.default.price.value < 50 %}
                             {{ trans("GeniessBar::Template.singleItemINKL") }}  ${currentVariation.prices.default.vat.value }%<br>{{ trans("GeniessBar::Template.singleItemZZGL") }} <a href="{{ trans("GeniessBar::Template.LinkFooterPaymentAndShipping") }}" target="blank">{{ trans("GeniessBar::Template.singleItemVersand") }}</a></p>
                           {% else %}
                             {{ trans("GeniessBar::Template.versandfrei") }}
