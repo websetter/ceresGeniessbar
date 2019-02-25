@@ -20,19 +20,20 @@
     {% endif %}
 
 <div id="shippingNoticeBox" v-if="$store.state.basket.data.itemQuantity > 0">
-<span class="hidden-md-down">Warenkorb:</span>
-{% if config("Ceres.header.basket_values") != "quantity" %}
-    <span class="badge" v-if="!$store.state.basket.showNetPrices" v-basket-item-sum="$store.state.basket.data.itemSum">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
-    <span class="badge" v-else v-cloak v-basket-item-sum="$store.state.basket.data.itemSumNet">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
-{% endif %}
-<hr>
-<div v-if="(50.00 - $store.state.basket.data.itemSum) > 0">
-  <span class="desktop">Noch  <strong class="badge" v-basket-item-sum="50.00 - $store.state.basket.data.itemSum">0,00</strong> <strong>€</strong> für versandkostenfreie Bestellung innerhalb DE</span>
-  <span class="mobile"> <strong class="badge" v-basket-item-sum="50.00 - $store.state.basket.data.itemSum">0,00</strong> <strong>€</strong> bis versandkostenfreie Bestellung</span>
-</div>
-<div v-else>
-  <span class="desktop">Ab jetzt versandkostenfrei innerhalb DE bestellen</span>
-  <span class="mobile">Versandkostenfreie Bestellung</span>
+  <span class="hidden-md-down">Warenkorb:</span>
+  {% if config("Ceres.header.basket_values") != "quantity" %}
+      <span class="badge" v-if="!$store.state.basket.showNetPrices" v-basket-item-sum="$store.state.basket.data.itemSum">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
+      <span class="badge" v-else v-cloak v-basket-item-sum="$store.state.basket.data.itemSumNet">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
+  {% endif %}
+  <hr>
+  <div v-if="(50.00 - $store.state.basket.data.itemSum) > 0">
+    <span class="desktop">Noch  <strong class="badge" v-basket-item-sum="50.00 - $store.state.basket.data.itemSum">0,00</strong> <strong>€</strong> für versandkostenfreie Bestellung innerhalb DE</span>
+    <span class="mobile"> <strong class="badge" v-basket-item-sum="50.00 - $store.state.basket.data.itemSum">0,00</strong> <strong>€</strong> bis versandkostenfreie Bestellung</span>
+  </div>
+  <div v-else>
+    <span class="desktop">Ab jetzt versandkostenfrei innerhalb DE bestellen</span>
+    <span class="mobile">Versandkostenfreie Bestellung</span>
+  </div>
 </div>
 <header id="page-header" class="top-bar">
       <div class="container-max">
