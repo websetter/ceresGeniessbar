@@ -19,7 +19,7 @@
       {% set redNavi = services.category.get(247, lang) %}
     {% endif %}
 
-<div id="shippingNoticeBox">
+<div id="shippingNoticeBox" v-if="$store.state.basket.items">
 <span class="hidden-md-down">Warenkorb:</span>
 {% if config("Ceres.header.basket_values") != "quantity" %}
     <span class="badge" v-if="!$store.state.basket.showNetPrices" v-basket-item-sum="$store.state.basket.data.itemSum">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
