@@ -96,13 +96,12 @@
                                 </span>
                             </div>
                         {% endif %}
-                        <p class="vat">
-                          {% if currentVariation.prices.default.price.value < 50 %}
+                        <p class="vat" v-if="currentVariation.prices.default.price.value < 50.0 ">
                             {{ trans("GeniessBar::Template.singleItemINKL") }}  ${currentVariation.prices.default.vat.value }%<br>{{ trans("GeniessBar::Template.singleItemZZGL") }} <a href="{{ trans("GeniessBar::Template.LinkFooterPaymentAndShipping") }}" target="blank">{{ trans("GeniessBar::Template.singleItemVersand") }}</a>
-                          {% else %}
-                            {{ trans("GeniessBar::Template.versandfrei") }}
-                          {% endif %}
-                        </p>
+                      </p>
+                      <p class="vat" v-else>
+                          {{ trans("GeniessBar::Template.versandfrei") }}
+                      </p>
 
 
                         <p v-if="(50 - $store.state.basket.data.itemSum) > 0" class="notice">Jetzt noch <strong></strong> in den Warenkorb legen und versandkostenfrei innerh. DE bestellen</p>
