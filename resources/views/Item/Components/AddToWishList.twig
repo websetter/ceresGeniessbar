@@ -1,9 +1,7 @@
 <script type="x/template" id="vue-add-to-wish-list">
     <div>
-        <a class="add-to-wish-list" :class="{active: isVariationInWishList}" @click.prevent="switchState()" data-toggle="tooltip" data-placement="top" title="">
-          <span class="wrap"><span class="fa fa-edit"></span>
-            {{ trans("GeniessBar::Template.singleItemWishList") }}
-            </span>
+        <a class="wishAdd" :class="{active: isVariationInWishList}" @click.prevent="switchState()" data-toggle="tooltip" data-placement="top" title="">
+        <span class="fa fa-edit"></span> {{ trans("GeniessBar::Template.singleItemWishList") }}
         </a>
     </div>
 </script>
