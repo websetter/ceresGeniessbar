@@ -9,7 +9,7 @@
 <script type="x/template" id="vue-single-item">
     <div>
         <div class="single container-max page-content">
-        <div class="row singleKachelmenu">
+        /*<div class="row singleKachelmenu">
           {{ include('GeniessBar::PageDesign.Partials.Header.SingleNavigation.twig') }}
         </div>
         <div class="row singleNav">
@@ -34,7 +34,7 @@
               <div class="col-xs-12 col-sm-6"><a class="printMe" href="javascript:window.print()" title="drucken"><span class="wrap"><span class="fa fa-print"></span>Angebot drucken</span></a></div>
             </div>
           </div>
-        </div>
+        </div>*/
             <div class="row">
                 <div class="col-md-5 single-leftside">
                     <div class="row">
@@ -119,6 +119,7 @@
                     </div>
 
                     <hr>
+                    <div class="qtyAndBuy"
                     <p>Menge:</p>
                     <slot name="BeforeAddToBasket"></slot>
 
@@ -135,6 +136,11 @@
 
                     <slot name="AdditionalContentAfterAddToBasket"></slot>
                     <slot name="AdditionalContentAfterVAT"></slot>
+                    </div>
+                    <div class="wishAndPrint">
+                      <add-to-wish-list :variation-id="currentVariation.variation.id"></add-to-wish-list>
+                      <a class="printMe" href="javascript:window.print()" title="drucken"><span class="wrap"><span class="fa fa-print"></span>Angebot drucken</span></a>
+                    </div>
                 </div>
                 </div>
 
