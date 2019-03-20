@@ -104,10 +104,19 @@
         {% endif %}
       <div id="bottomBar">
         <div class="container-max">
-          {{ redNavi.details.first.description | raw }}
+        <ul>
+          <li><a href="https://www.geniess-bar.de/" title="zur Startseite"><i class="fa fa-home"></i></a></li>
+          <li><span>Produkte</span>{% include "GeniessBar::PageDesign.Partials.Header.NavigationList" %}</li>
+          <li><a href="https://www.geniess-bar.de/content/gutscheine/" title="Geschenkgutscheine">Geschenkgutscheine</a></li>
+          <li><a href="https://www.geniess-bar.de/content/firmenkunden/" title="Firmenkunden">Firmenkunden</a></li>
+          <li><a href="https://www.geniess-bar.de/content/ihr-eigenes-logo/" title="Ihr eigenes Logo">Ihr eigenes Logo</a></li></ul>
       </div>
   </div>
-  <div class="hidden-md-up">{% include "GeniessBar::PageDesign.Partials.Header.Navigation" %}</div>
+  <div class="hidden-md-up">
+    <button id="btnMainMenuToggler" v-open-mobile-navigation class="navbar-toggler hidden-lg-up" type="button">
+        &#9776;
+    </button>
+  </div>
 </header>
 
 {% if category.linklist == "Y" %}

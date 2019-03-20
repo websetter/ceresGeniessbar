@@ -2,6 +2,6 @@
 
 {% set lang = services.sessionStorage.getLang() %}
 
-<ul class="mainmenu">  
-    {{ Tree.get_nav_bar(categories, "") }}
+<ul class="productMenu">
+  {{ Tree.get_menu(categoryBreadcrumbs, categories, "", 0) }}
 </ul>
