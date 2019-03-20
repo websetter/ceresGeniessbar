@@ -9,32 +9,6 @@
 <script type="x/template" id="vue-single-item">
     <div>
         <div class="single container-max page-content">
-        <!--<div class="row singleKachelmenu">
-          {{ include('GeniessBar::PageDesign.Partials.Header.SingleNavigation.twig') }}
-        </div>
-        <div class="row singleNav">
-          <div class="col-xs-12">
-            <span class="toggleMenu">
-              <span class="wrap">
-              <span class="fa fa-angle-down"></span>
-              Kategorien anzeigen
-              </span>
-            </span>
-          <span class="toggleMenuClose hidden">
-            <span class="wrap">
-            <span class="fa fa-angle-up"></span>
-            Kategorien verbergen
-            </span>
-          </span>
-          </div>
-          <div class="col-xs-12 col-sm-4 col-md-5"><a class="backLink" href="/{% for category in categoryBreadcrumbs[:categoryBreadcrumbs | length - 1] if not break %}{% if category.level == 1 %}{{ category.details[0].nameUrl }}{% else %}{% set break = true %}{% endif %}{% endfor %}" title="zurück"><span class="wrap"><span class="fa fa-angle-left"></span>Zurück zur Produktübersicht</span></a></div>
-          <div class="col-xs-12 col-sm-8 col-md-7">
-            <div class="row">
-              <div class="col-xs-12 col-sm-6"><add-to-wish-list :variation-id="currentVariation.variation.id"></add-to-wish-list></div>
-              <div class="col-xs-12 col-sm-6"><a class="printMe" href="javascript:window.print()" title="drucken"><span class="wrap"><span class="fa fa-print"></span>Angebot drucken</span></a></div>
-            </div>
-          </div>
-        </div>-->
             <div class="row">
                 <div class="col-md-5 single-leftside">
                     <div class="row">
@@ -120,28 +94,28 @@
 
                     <hr>
                     <div class="qtyAndBuy">
-                    <p>Menge:</p>
-                    <slot name="BeforeAddToBasket"></slot>
+                      <p>Menge:</p>
+                      <slot name="BeforeAddToBasket"></slot>
 
-                    {{ AddToBasket.printVueComponent(
-                         "currentVariation",
-                         false,
-                         true,
-                         {
-                             ":missing-order-properties":"variationMissingProperties",
-                             ":is-variation-selected": "isVariationSelected && currentVariation.filter.isSalable"
-                         }
-                     ) }}
-                       <slot name="AfterAddToBasket"></slot>
+                      {{ AddToBasket.printVueComponent(
+                           "currentVariation",
+                           false,
+                           true,
+                           {
+                               ":missing-order-properties":"variationMissingProperties",
+                               ":is-variation-selected": "isVariationSelected && currentVariation.filter.isSalable"
+                           }
+                       ) }}
+                         <slot name="AfterAddToBasket"></slot>
 
-                    <slot name="AdditionalContentAfterAddToBasket"></slot>
-                    <slot name="AdditionalContentAfterVAT"></slot>
+                      <slot name="AdditionalContentAfterAddToBasket"></slot>
+                      <slot name="AdditionalContentAfterVAT"></slot>
+                      </div>
+                      <div class="wishAndPrint">
+                        <add-to-wish-list :variation-id="currentVariation.variation.id"></add-to-wish-list>
+                        <a class="printMe" href="javascript:window.print()" title="drucken"><span class="wrap"><span class="fa fa-print"></span>Angebot drucken</span></a>
+                      </div>
                     </div>
-                    <div class="wishAndPrint">
-                      <add-to-wish-list :variation-id="currentVariation.variation.id"></add-to-wish-list>
-                      <a class="printMe" href="javascript:window.print()" title="drucken"><span class="wrap"><span class="fa fa-print"></span>Angebot drucken</span></a>
-                    </div>
-                </div>
                 </div>
 
                 <!-- ITEM DESCRIPTION -->
