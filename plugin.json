@@ -18,6 +18,11 @@
     "serviceProvider"   :   "GeniessBar\\Providers\\GeniessBarServiceProvider",
     "dataProviders"     :
     [
+      {
+            "key"           :"GeniessBar\\Containers\\GeniessBarContainer",
+            "name"          :"Stylesheet",
+            "description"   :"Add changes to the CSS file"
+        },
         {
             "key"           :"GeniessBar\\Containers\\GeniessBarItemListContainer1",
             "name"          :"First item list",
