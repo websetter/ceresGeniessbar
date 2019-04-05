@@ -121,7 +121,7 @@ class GeniessBarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.checkout', function (TemplateContainer $container)
             {
-                $container->setTemplate('GeniessBar::Checkout.Checkout');
+                $container->setTemplate('GeniessBar::Checkout.CheckoutView');
                 return false;
             }, self::PRIORITY);
         }
