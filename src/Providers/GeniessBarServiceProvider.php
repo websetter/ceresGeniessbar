@@ -11,7 +11,6 @@ use Plenty\Plugin\Templates\Twig;
 use IO\Helper\TemplateContainer;
 use IO\Extensions\Functions\Partial;
 use Plenty\Plugin\ConfigRepository;
-use GeniessBar\Contexts\MyContext;
 
 
 /**
@@ -32,7 +31,7 @@ class GeniessBarServiceProvider extends ServiceProvider
 
         $enabledOverrides = explode(", ", $config->get("GeniessBar.templates.override"));
 
-      
+
 
         // Override partials
         $dispatcher->listen('IO.init.templates', function (Partial $partial) use ($enabledOverrides)
