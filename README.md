@@ -1,2 +1,2 @@
 # GeniessBar
-Ceres Vanilla geklont für Geniessbar
+Theme for Ceres

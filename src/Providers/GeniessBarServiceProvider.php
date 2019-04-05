@@ -31,8 +31,6 @@ class GeniessBarServiceProvider extends ServiceProvider
 
         $enabledOverrides = explode(", ", $config->get("GeniessBar.templates.override"));
 
-
-
         // Override partials
         $dispatcher->listen('IO.init.templates', function (Partial $partial) use ($enabledOverrides)
         {
@@ -78,6 +76,12 @@ class GeniessBarServiceProvider extends ServiceProvider
             }, self::PRIORITY);
         }
 
+        // Override Contact
+        $dispatcher->listen('IO.tpl.contact', function (TemplateContainer $container) {
+          $container->setTemplate('GeniessBar::Customer.Contact');
+          return false;
+        });
+
         // Override template for content categories
         if (in_array("category_content", $enabledOverrides) || in_array("all", $enabledOverrides))
         {
@@ -117,7 +121,7 @@ class GeniessBarServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.checkout', function (TemplateContainer $container)
             {
-                $container->setTemplate('GeniessBar::Checkout.CheckoutView');
+                $container->setTemplate('GeniessBar::Checkout.Checkout');
                 return false;
             }, self::PRIORITY);
         }

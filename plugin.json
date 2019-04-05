@@ -2,13 +2,13 @@
     "version"           :   "1.0.0",
     "license"           :   "AGPL-3.0",
     "name"              :   "GeniessBar",
-    "marketplaceName"   :   {"de":"Ceres GeniessBar","en":"Ceres GeniessBar"},
+    "marketplaceName"   :   {"de":"GeniessBar","en":"GeniessBar"},
     "pluginIcon"        :   "icon_plugin_xs.png",
     "authorIcon"        :   "icon_author_xs.png",
     "email"             :   "sales@plentymarkets.com",
     "phone"             :   "+49 561 98 681 100",
-    "description"       :   "Theme für GeniessBar.",
-    "shortDescription"  :   { "de": "Theme für Ceres.", "en": "Theme for Ceres." },
+    "description"       :   "Theme for GeniessBar.",
+    "shortDescription"  :   { "de": "Theme for Ceres.", "en": "Theme for Ceres." },
     "namespace"         :   "GeniessBar",
     "author"            :   "werk38",
     "keywords"          :   ["plentymarkets", "plugins", "layout", "theme", "ceres"],
@@ -17,7 +17,6 @@
     "type"              :   "theme",
     "require"           :   ["Ceres"],
     "serviceProvider"   :   "GeniessBar\\Providers\\GeniessBarServiceProvider",
-    "javaScriptFiles"   :   [],
     "dataProviders"     :
     [
         {
