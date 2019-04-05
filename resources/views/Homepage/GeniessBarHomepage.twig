@@ -109,16 +109,7 @@
         <img class="hidden-md-up" src="https://cdn03.plentymarkets.com/9mle78gfrmwz/frontend/templateCeres/images/100-prozent-service-sm.jpg" alt="100% Service" />
       </div>
 
-      <div class="topProdukte">
-        <h2>Unsere beliebtesten Produkte</h2>
-        {% set list = services.itemList.getItemList( 'tag_list', 7, null, 4).documents %}
-            {% for items in list %}
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                {% include "GeniessBar::Category.Item.Partials.CategoryListItem" with { 'item': items } %}
-            </div>
-        {% endfor %}
-
-      </div>
+      
   </div>
 {% else %}
     {{ overrideHomepageContainer | raw }}
