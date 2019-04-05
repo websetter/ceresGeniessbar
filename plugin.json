@@ -1,6 +1,5 @@
 {
     "version"           :   "1.0.0",
-    "license"           :   "AGPL-3.0",
     "name"              :   "GeniessBar",
     "marketplaceName"   :   {"de":"GeniessBar","en":"GeniessBar"},
     "pluginIcon"        :   "icon_plugin_xs.png",
@@ -18,7 +17,7 @@
     "require"           :   ["Ceres"],
     "serviceProvider"   :   "GeniessBar\\Providers\\GeniessBarServiceProvider",
     "dataProviders"     :
-    [        
+    [
         {
             "key"           :"GeniessBar\\Containers\\GeniessBarItemListContainer1",
             "name"          :"First item list",
