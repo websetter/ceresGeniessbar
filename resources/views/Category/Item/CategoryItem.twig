@@ -16,7 +16,37 @@
     {% set shippingCat = config("Ceres.global.shippingCostsCategoryId") %}
     {% set lastCategory = categoryBreadcrumbs | first %}
 
-<div class="container">  
+<div class="container">
+  <div class="catMenu">
+    <div id="menuKacheln" class="row">
+      <div class="col-xs-12 col-sm-6 col-md-5">
+        {% if lastCategory.details is defined %}
+            <div class="kachelBig"><img src="/documents/{{ lastCategory.details[0].image2Path }}" /></div>
+        {% else %}
+            <div class="kachelBig" v-cloak v-if="$store.state.item.variation.documents">
+                <img src="/documents/${ $store.state.item.variation.documents[0].data | image2Path }" />
+            </div>
+        {% endif %}
+      </div>
+      <div class="hidden-xs-down col-sm-6 col-md-7">
+        {% for category in categories %}
+          {% if category.id == lastCategory.id %}
+          <!-- Nothing-->
+          {% else %}
+            <div class="kachel">
+                <a href="https://www.geniess-bar.de/{{ category.details[0].nameUrl }}">
+                  {% if category.details[0].image2Path is not empty %}
+                  <img src="/documents/{{ category.details[0].image2Path }}" />
+                  {% else %}
+                  <p>{{ category.details[0].name }}</p>
+                  {% endif %}
+              </a>
+            </div>
+          {% endif %}
+        {% endfor %}
+    </div>
+  </div>
+</div>
   <div class="row">
     <div class="col-xs-12 categoriegrid page-content categoryItem cat-id-{{ category.id}}">
       <h1 class="category-title">{{ category.details[0].name }}</h1>
