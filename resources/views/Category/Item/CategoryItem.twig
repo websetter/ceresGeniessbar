@@ -70,8 +70,30 @@
             </div>
         {% endif %}
         </div>
-
-      </div>
+        {% if category.parentCategoryId %}
+          <div class="col-xs-12 col-sm-3">
+            <a class="btn" href="/{{lastCategory.details[0].nameUrl }}">
+              zurück zu {{  lastCategory.details[0].name}}
+            </a>
+          </div>
+          {% endif %}
+        <div class="col-xs-12 col-sm-{% if category.parentCategoryId %}6{% else %}9{% endif %}  childCat">
+          <div class="row">
+          {% set childCat = services.category.getChildren(category.id, lang) %}
+          {% set count = 0 %}
+          {% for child in childCat %}
+            {% set count = count + 1 %}
+          {% endfor %}
+          {% for child in childCat %}
+            <div class="kachel {{ child.details[0].nameUrl }} col-xs-12 {% if count > 4 %} col-sm-2 five {% elseif count == 4 %}col-sm-3 four {% elseif count == 2 %} col-sm-6 {% else %}col-sm-4 {% endif %}">
+              <a href="{{category.details[0].nameUrl}}/{{ child.details[0].nameUrl }}">
+                <p>{{ child.details[0].name }} </p>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div
       <div id="twig-rendered-item-list" class="item-list-frame{% if ceresConfig.item.loadingAnimationType == "blur" %} blur-effect{% endif %}">
         {% if ceresConfig.item.loadingAnimationType != "blur" %}
             {% include "Ceres::ItemList.Partials.LoadingAnimation" %}
