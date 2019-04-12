@@ -1,17 +1,17 @@
 <script type="x/template" id="vue-item-store-special">
 <div  v-show="label.length || bundleType === 'bundle'">
-    <div class="special-tags bg-red" v-if="itemData.variation.storeSpecial.id == 1">
+    <div class="special-tags bg-red" v-if="storeSpecial.id == 1">
         <span class="tag ">Sale!</span>
     </div>
-    <div class="special-tags bg-green"  v-if="itemData.variation.storeSpecial.id == 2">
+    <div class="special-tags bg-green"  v-if="storeSpecial.id == 2">
         <span class="tag ">Neu!</span>
     </div>
-    <div class="special-tags bg-success" v-if="itemData.variation.storeSpecial.id == 3">
+    <div class="special-tags bg-success" v-if="storeSpecial.id == 3">
         <span class="tag ">
             ${ label }
         </span>
     </div>
-    <div class="special-tags bg-green test" v-else>
+    <div :class="'special-tags bg-green test_' +  storeSpecial.id" v-else>
         <span class="tag ">
             ${ label }
         </span>
