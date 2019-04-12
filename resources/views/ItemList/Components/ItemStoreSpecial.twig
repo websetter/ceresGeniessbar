@@ -1,4 +1,5 @@
 <script type="x/template" id="vue-item-store-special">
+<div>
     <div class="special-tags bg-red" v-show="label.length || bundleType === 'bundle'" v-if="storeSpecial.id === 1">
         <span class="tag ">Sale!</span>
     </div>
@@ -15,4 +16,5 @@
             ${ label }
         </span>
     </div>
+  </div>
 </script>
