@@ -4,60 +4,66 @@
 {% set overrideSearchFilters = LayoutContainer.show("Ceres::Search.Filter", facets) %}
 {% set shippingCat = config("Ceres.global.shippingCostsCategoryId") %}
 
-
 {% block PageBody %}
 
-    {{ component( "GeniessBar::ItemList.Components.CategoryItem" ) }}
-    {{ component( "Ceres::ItemList.Components.Filter.ItemFilterList") }}
-    {{ component( "Ceres::ItemList.Components.Filter.ItemFilterTagList") }}
+{{ component( "GeniessBar::ItemList.Components.CategoryItem") }}
+{{ component( "Ceres::ItemList.Components.Filter.ItemFilterList") }}
+{{ component( "Ceres::ItemList.Components.Filter.ItemFilterTagList") }}
 
-<div class="page-content container {% if isSearch %} searchPage{% endif %}">
-  <h1 id="searchPageTitle">{{ trans("Ceres::Template.itemSearchResults") }} {{ searchString }}</h1>
-    <div class="row isSortingRow">
-      <div class="col-xs-12 col-sm-6">
-        {% include "Ceres::Category.Item.Partials.ItemSorting" with { 'sortingData': searchOptions.sorting, 'selectedSorting': itemSorting } %}
-      </div>
-      <div class="col-xs-12 col-sm-6">
-      {% include "Ceres::Category.Item.Partials.ItemsPerPage" with { 'itemsPerPage': searchOptions.itemsPerPage, 'selectedValue': itemsPerPage } %}
-        {% if ceresConfig.pagination.position in ['top', 'top_bottom'] %}
-        <div class="list-controls row">
-            <div class="col-xs-12">
-                  <pagination template="#vue-pagination"></pagination>
-                  <noscript>
-                      {% include "Ceres::Category.Item.Partials.Pagination" %}
-                  </noscript>
-              </div>
+
+
+    <div class="categoriestart">
+      <div class="grey">
+          <div class="container-fluid">
+            <h1>{{ trans("Ceres::Template.itemSearchResults") }}</h1>
+            <p>{{ searchString }}</p>
           </div>
-      {% endif %}
       </div>
     </div>
-    <div class="categoriegrid itemListView">
-      <ul class="product-list row grid">
-            {% for item in itemList %}
-                <li class="col-12 col-sm-6 col-md-4 col-lg-4">
-                    <category-item
-                        :item-data="{{ item.data | json_encode }}"
-                        :decimal-count="{{ decimalCount }}">
-                        <template slot="BeforePrices">{{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", item.data) }}</template>
-                        <template slot="AfterPrices">{{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", item.data) }}</template>
-                    </category-item>
-                </li>
-            {% endfor %}
-        </ul>
-        {% if ceresConfig.pagination.position in ['bottom', 'top_bottom'] %}
-            <div class="list-controls row">
-                <div class="col-xs-12">
-                    <pagination template="#vue-pagination"></pagination>
-                </div>
+    <div class="categoriegrid page-content searchpage container-fluid">
+      <div class="row">
+
+        <div class="col-12">
+          <h2 class="pull-left">{{ trans("MesleB2B::Template.article") }}</h2>
+          <button class="btn btn-primary articleDefineBtn"><i class=" fa fa-sliders"></i>{{ trans("MesleB2B::Template.filterandsort") }}</button>
+          <div class="articleDefineBody">
+              <div class="closeMe"><i class="fa fa-times"></i></div>
+            {% include "Ceres::Category.Item.Partials.ItemSorting" with { 'sortingData': searchOptions.sorting, 'selectedSorting': itemSorting } %}
+            <span class="hidden">{% include "Ceres::Category.Item.Partials.ItemsPerPage" with { 'itemsPerPage': searchOptions.itemsPerPage, 'selectedValue': itemsPerPage } %}</span>
+          </div>
+          <ul class="product-list row grid">
+              {% for item in itemList %}
+                  <li class="col-12 col-sm-6 col-md-4 col-lg-4">
+                      <category-item
+                          :item-data="{{ item.data | json_encode }}"
+                          :decimal-count="{{ decimalCount }}">
+                          <template slot="BeforePrices">{{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", item.data) }}</template>
+                          <template slot="AfterPrices">{{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", item.data) }}</template>
+                      </category-item>
+                  </li>
+              {% endfor %}
+          </ul>
+
+          {% if category is not defined and itemList is empty %}
+              <p class="h3 text-muted mb-5 text-center">{{ trans("Ceres::Template.itemSearchNoResults", {"searchString": searchString}) }}</p>
+          {% endif %}
+
+        <div class="list-controls mb-5 row">
+            <div class="col-12">
+                {% include "Ceres::Category.Item.Partials.Pagination" %}
             </div>
-        {% endif %}
+        </div>
+      </div>
     </div>
+
 </div>
+
 {% endblock %}
 
 {% block PartialHead %}
 <script type="application/ld+json">{"@context": "http://schema.org","@type": "WebSite","url": "{{ webstoreConfig.domainSsl }}","potentialAction":{"@type": "SearchAction","target": "{{ webstoreConfig.domainSsl }}/search?query={search_term}","query-input": "required name=search_term"}}</script>
     {% if isSearch %}
-        <title>{{ trans("Ceres::Template.itemSearchResults") }} {{ searchString }} | {{ trans("Ceres::Template.headerCompanyName") }}</title>
+        <meta name="robots" content="{{ config("Ceres.meta.robots_search_result") }}">
+        <title>{{ trans("Ceres::Template.itemSearchResults") }} {{ searchString }}</title>
     {% endif %}
 {% endblock %}
