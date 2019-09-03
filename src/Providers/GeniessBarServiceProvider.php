@@ -253,5 +253,11 @@ class GeniessBarServiceProvider extends ServiceProvider
                 return false;
             }, self::PRIORITY);
         }
+
+        $dispatcher->listen( 'IO.ResultFields.CategoryTree', function(ResultFieldTemplate $templateContainer)
+        {
+            $templateContainer->setTemplate(ResultFieldTemplate::TEMPLATE_CATEGORY_TREE, 'GeniessBar::ResultFields.CategoryTree');
+            return false;
+        });
     }
 }
