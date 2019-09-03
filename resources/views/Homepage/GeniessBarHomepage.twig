@@ -91,18 +91,20 @@
         {% set list = services.itemList.getItemList( 'tag_list',6, "texts.name1_asc", 8).documents %}
         {% if list is not empty %}
             <div class="m-b-2 clearfix">
-                    <carousel :items-per-page="4">
-                      {% for item in list %}
+              <carousel :items-per-page="3">
+                  {% for item in list %}
                       <template slot="items">
-                      <category-item
-                          :item-data="{{ items.data | json_encode }}"
-                          :decimal-count="{{ decimalCount }}">
-                          <template slot="BeforePrices">{{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", items.data) }}</template>
-                          <template slot="AfterPrices">{{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", items.data) }}</template>
-                      </category-item>
-                    </template>
-                      {% endfor %}
-                    </carousel>
+                          <category-item
+                              :item-data="{{ item.data | json_encode }}"
+                              :decimal-count="{{ ceresConfig.item.storeSpecial }}"
+                              :disable-carousel-on-mobile="true"
+                              :items-per-page="3">
+                              <template #before-prices>{{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", item.data) }}</template>
+                              <template #after-prices>{{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", item.data) }}</template>
+                          </category-item>
+                      </template>
+                  {% endfor %}
+              </carousel>
             </div>
         {% endif %}
 
