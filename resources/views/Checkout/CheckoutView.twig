@@ -11,9 +11,9 @@
 
     {{ component( "Ceres::Customer.Components.AddressSelect.AddressSelect" ) }}
     {{ component( "Ceres::Checkout.Components.AcceptGtcCheck" ) }}
-    {{ component( "Ceres::Checkout.Components.PaymentProviderSelect" ) }}
+    {{ component( "GeniessBar::Checkout.Components.PaymentProviderSelect" ) }}
     {{ component( "Ceres::Checkout.Components.ShippingPrivacyHintCheck" ) }}
-    {{ component( "Ceres::Checkout.Components.ShippingProfileSelect" ) }}
+    {{ component( "GeniessBar::Checkout.Components.ShippingProfileSelect" ) }}
     {{ component( "Ceres::Checkout.Components.PlaceOrder" ) }}
     {{ component( "Ceres::Checkout.Components.ContactWishInput" ) }}
     {{ component( "Ceres::Basket.Components.Coupon" ) }}
@@ -159,7 +159,12 @@
                                 <shipping-privacy-hint-check></shipping-privacy-hint-check>
 
                                 <accept-gtc-check></accept-gtc-check>
-                                {{ LayoutContainer.show("Ceres::Checkout.OptIns") }}
+                                {% if basket.maxFsk == 18 %}
+                               <div id="fsk">
+                                 {{ LayoutContainer.show("Ceres::Checkout.OptIns") }}
+                               </div>
+                               {% endif %}
+
                             </div>
                         </div>
                     </div>
