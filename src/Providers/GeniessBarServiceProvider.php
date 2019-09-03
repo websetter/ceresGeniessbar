@@ -72,11 +72,7 @@ class GeniessBarServiceProvider extends ServiceProvider
             }, self::PRIORITY);
         }
 
-        // Override Contact
-        $dispatcher->listen('IO.tpl.contact', function (TemplateContainer $container) {
-          $container->setTemplate('GeniessBar::Customer.Contact');
-          return false;
-        });
+      
 
         // Override template for content categories
         if (in_array("category_content", $enabledOverrides) || in_array("all", $enabledOverrides))
