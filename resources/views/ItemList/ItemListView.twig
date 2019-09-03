@@ -10,16 +10,10 @@
 {{ component( "Ceres::ItemList.Components.Filter.ItemFilterList") }}
 {{ component( "Ceres::ItemList.Components.Filter.ItemFilterTagList") }}
 
-
-
-
-
-
-
     <div class="categoriegrid page-content searchpage container-max">
         <h1>{{ trans("Ceres::Template.itemSearchResults") }} {{ searchString }}</h1>
       <div class="row">
-        <div class="col-12">        >
+        <div class="col-12">
           <ul class="product-list row grid">
               {% for item in itemList %}
                   <li class="col-12 col-sm-6 col-md-4 col-lg-3">
