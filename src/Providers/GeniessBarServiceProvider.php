@@ -12,7 +12,7 @@ use Plenty\Plugin\ConfigRepository;
 
 
 /**
- * Class GeniessBarServiceProvider
+ * Class MesleServiceProvider
  * @package GeniessBar\Providers
  */
 class GeniessBarServiceProvider extends ServiceProvider
@@ -29,10 +29,11 @@ class GeniessBarServiceProvider extends ServiceProvider
 
         $enabledOverrides = explode(", ", $config->get("GeniessBar.templates.override"));
 
+
+
         // Override partials
         $dispatcher->listen('IO.init.templates', function (Partial $partial) use ($enabledOverrides)
         {
-
             $partial->set('head', 'Ceres::PageDesign.Partials.Head');
             $partial->set('header', 'Ceres::PageDesign.Partials.Header.Header');
             $partial->set('page-design', 'Ceres::PageDesign.PageDesign');
@@ -72,8 +73,6 @@ class GeniessBarServiceProvider extends ServiceProvider
             }, self::PRIORITY);
         }
 
-
-
         // Override template for content categories
         if (in_array("category_content", $enabledOverrides) || in_array("all", $enabledOverrides))
         {
@@ -85,14 +84,16 @@ class GeniessBarServiceProvider extends ServiceProvider
             }, self::PRIORITY);
         }
 
-
+        // Override category view
+        if (in_array("category_view", $enabledOverrides) || in_array("all", $enabledOverrides))
+        {
 
             $dispatcher->listen('IO.tpl.category.item', function (TemplateContainer $container)
             {
                 $container->setTemplate('GeniessBar::Category.Item.CategoryItem');
                 return false;
             }, self::PRIORITY);
-
+        }
 
         // Override shopping cart
         if (in_array("basket", $enabledOverrides) || in_array("all", $enabledOverrides))
@@ -160,15 +161,16 @@ class GeniessBarServiceProvider extends ServiceProvider
             }, self::PRIORITY);
         }
 
-        // Override category view
-
+        // Override search view
+        if (in_array("search", $enabledOverrides) || in_array("all", $enabledOverrides))
+        {
 
             $dispatcher->listen('IO.tpl.search', function (TemplateContainer $container)
             {
                 $container->setTemplate('GeniessBar::ItemList.ItemListView');
                 return false;
             }, self::PRIORITY);
-        
+        }
 
         // Override my account
         if (in_array("my_account", $enabledOverrides) || in_array("all", $enabledOverrides))
@@ -181,6 +183,50 @@ class GeniessBarServiceProvider extends ServiceProvider
             }, self::PRIORITY);
         }
 
+        // Override wish list
+        if (in_array("wish_list", $enabledOverrides) || in_array("all", $enabledOverrides))
+        {
+
+            $dispatcher->listen('IO.tpl.wish-list', function (TemplateContainer $container)
+            {
+                $container->setTemplate('GeniessBar::WishList.WishListView');
+                return false;
+            }, self::PRIORITY);
+        }
+
+        // Override contact page
+        if (in_array("contact", $enabledOverrides) || in_array("all", $enabledOverrides))
+        {
+
+            $dispatcher->listen('IO.tpl.contact', function (TemplateContainer $container)
+            {
+                $container->setTemplate('GeniessBar::Customer.Contact');
+                return false;
+            }, self::PRIORITY);
+        }
+
+        // Override order return view
+        if (in_array("order_return", $enabledOverrides) || in_array("all", $enabledOverrides))
+        {
+
+            $dispatcher->listen('IO.tpl.order.return', function (TemplateContainer $container)
+            {
+                $container->setTemplate('GeniessBar::OrderReturn.OrderReturnView');
+                return false;
+            }, self::PRIORITY);
+        }
+
+        // Override order return confirmation
+        if (in_array("order_return_confirmation", $enabledOverrides) || in_array("all", $enabledOverrides))
+        {
+
+            $dispatcher->listen('IO.tpl.order.return.confirmation', function (TemplateContainer $container)
+            {
+                $container->setTemplate('GeniessBar::OrderReturn.OrderReturnConfirmation');
+                return false;
+            }, self::PRIORITY);
+        }
+
         // Override cancellation rights
         if (in_array("cancellation_rights", $enabledOverrides) || in_array("all", $enabledOverrides))
         {
@@ -188,6 +234,17 @@ class GeniessBarServiceProvider extends ServiceProvider
             $dispatcher->listen('IO.tpl.cancellation-rights', function (TemplateContainer $container)
             {
                 $container->setTemplate('GeniessBar::StaticPages.CancellationRights');
+                return false;
+            }, self::PRIORITY);
+        }
+
+        // Override cancellation form
+        if (in_array("cancellation_form", $enabledOverrides) || in_array("all", $enabledOverrides))
+        {
+
+            $dispatcher->listen('IO.tpl.cancellation-form', function (TemplateContainer $container)
+            {
+                $container->setTemplate('GeniessBar::StaticPages.CancellationForm');
                 return false;
             }, self::PRIORITY);
         }
@@ -247,10 +304,73 @@ class GeniessBarServiceProvider extends ServiceProvider
             }, self::PRIORITY);
         }
 
-        $dispatcher->listen( 'IO.ResultFields.CategoryTree', function(ResultFieldTemplate $templateContainer)
+        // Override newsletter opt-out page
+        if (in_array("newsletter_opt_out", $enabledOverrides) || in_array("all", $enabledOverrides))
         {
-            $templateContainer->setTemplate(ResultFieldTemplate::TEMPLATE_CATEGORY_TREE, 'GeniessBar::ResultFields.CategoryTree');
-            return false;
-        });
+
+            $dispatcher->listen('IO.tpl.newsletter.opt-out', function (TemplateContainer $container)
+            {
+                $container->setTemplate('GeniessBar::Newsletter.NewsletterOptOut');
+                return false;
+            }, self::PRIORITY);
+        }
+
+        $enabledResultFields = explode(", ", $config->get("GeniessBar.result_fields.override"));
+
+        // Override auto complete list item result fields
+        if (in_array("auto_complete_list_item", $enabledResultFields) || in_array("all", $enabledResultFields))
+        {
+
+          $dispatcher->listen( 'IO.ResultFields.AutoCompleteListItem', function(ResultFieldTemplate $templateContainer)
+          {
+              $templateContainer->setTemplate(ResultFieldTemplate::TEMPLATE_AUTOCOMPLETE_ITEM_LIST, 'GeniessBar::ResultFields.AutoCompleteListItem');
+              return false;
+          });
+        }
+
+        // Override basket item result fields
+        if (in_array("basket_item", $enabledResultFields) || in_array("all", $enabledResultFields))
+        {
+
+          $dispatcher->listen( 'IO.ResultFields.BasketItem', function(ResultFieldTemplate $templateContainer)
+          {
+              $templateContainer->setTemplate(ResultFieldTemplate::TEMPLATE_BASKET_ITEM, 'GeniessBar::ResultFields.BasketItem');
+              return false;
+          });
+        }
+
+        // Override category tree result fields
+        if (in_array("category_tree", $enabledResultFields) || in_array("all", $enabledResultFields))
+        {
+
+          $dispatcher->listen( 'IO.ResultFields.CategoryTree', function(ResultFieldTemplate $templateContainer)
+          {
+              $templateContainer->setTemplate(ResultFieldTemplate::TEMPLATE_CATEGORY_TREE, 'GeniessBar::ResultFields.CategoryTree');
+              return false;
+          });
+        }
+
+        // Override list item result fields
+
+        if (in_array("list_item", $enabledResultFields) || in_array("all", $enabledResultFields))
+        {
+          $dispatcher->listen( 'IO.ResultFields.ListItem', function(ResultFieldTemplate $templateContainer)
+          {
+              $templateContainer->setTemplate(ResultFieldTemplate::TEMPLATE_LIST_ITEM, 'GeniessBar::ResultFields.ListItem');
+              return false;
+          });
+        }
+
+        // Override single item view result fields
+
+        if (in_array("single_item", $enabledResultFields) || in_array("all", $enabledResultFields))
+        {
+          $dispatcher->listen( 'IO.ResultFields.SingleItem', function(ResultFieldTemplate $templateContainer)
+          {
+              $templateContainer->setTemplate(ResultFieldTemplate::TEMPLATE_SINGLE_ITEM, 'GeniessBar::ResultFields.SingleItem');
+              return false;
+          });
+        }
+
     }
 }

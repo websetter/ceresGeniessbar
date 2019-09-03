@@ -199,6 +199,7 @@
     </div>
 </div>
 
+<div>
 {% if category.linklist == "Y" %}
       {% set initialCategory = { id: category.id } %}
   {% else %}
@@ -211,3 +212,4 @@
   {% endif %}
 
   <mobile-navigation :initial-category="{{ initialCategory | json_encode }}"></mobile-navigation>
+</div>
