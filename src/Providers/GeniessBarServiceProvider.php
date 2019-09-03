@@ -72,7 +72,7 @@ class GeniessBarServiceProvider extends ServiceProvider
             }, self::PRIORITY);
         }
 
-      
+
 
         // Override template for content categories
         if (in_array("category_content", $enabledOverrides) || in_array("all", $enabledOverrides))
@@ -85,16 +85,14 @@ class GeniessBarServiceProvider extends ServiceProvider
             }, self::PRIORITY);
         }
 
-        // Override template for item categories
-        if (in_array("category_item", $enabledOverrides) || in_array("all", $enabledOverrides))
-        {
+
 
             $dispatcher->listen('IO.tpl.category.item', function (TemplateContainer $container)
             {
                 $container->setTemplate('GeniessBar::Category.Item.CategoryItem');
                 return false;
             }, self::PRIORITY);
-        }
+
 
         // Override shopping cart
         if (in_array("basket", $enabledOverrides) || in_array("all", $enabledOverrides))
@@ -163,15 +161,14 @@ class GeniessBarServiceProvider extends ServiceProvider
         }
 
         // Override category view
-        if (in_array("category_view", $enabledOverrides) || in_array("all", $enabledOverrides))
-        {
+
 
             $dispatcher->listen('IO.tpl.search', function (TemplateContainer $container)
             {
                 $container->setTemplate('GeniessBar::ItemList.ItemListView');
                 return false;
             }, self::PRIORITY);
-        }
+        
 
         // Override my account
         if (in_array("my_account", $enabledOverrides) || in_array("all", $enabledOverrides))
