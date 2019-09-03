@@ -1,24 +1,16 @@
 <script type="x/template" id="vue-item-image-carousel">
   <div itemscope="itemscope" itemtype="http://schema.org/Thing">
-    <div class="row">
-      <div class="col-xs-12">
-        <div id="single-carousel" class="owl-carousel owl-theme owl-single-item" ref="single">
-          <div v-for="image in singleImages">
-            <a :href="image.url" data-lightbox="single-big-image-gallery">
-              <img :alt="getAltText(image)" class="owl-lazy" :data-src="image.url" itemprop="image">
-            </a>
-          </div>
+      <div id="single-carousel" class="owl-carousel owl-theme owl-single-item" ref="single">
+        <div v-for="image in singleImages">
+          <a :href="image.url" data-lightbox="single-big-image-gallery">
+            <img :alt="getAltText(image)" class="owl-lazy" :data-src="image.url" itemprop="image">
+          </a>
         </div>
       </div>
-      </div>
-      <div class="row">
-      <div class="col-xs-12"  v-if="carouselImages.length > 1">
-        <div id="thumbs">
+      <div id="thumbs" v-if="carouselImages.length > 1">
         <div class="border" v-for="(imagePreview, index) in carouselImages">
           <img :alt="getAltText(imagePreview)" @click="goTo(index)" class="thumb" v-bind:class="{ 'active': currentItem === index }" :src="imagePreview.url" >
-          </div>
         </div>
       </div>
-    </div>
   </div>
 </script>
