@@ -36,6 +36,19 @@
             {% include 'GeniessBar::Containers.Partials.ItemLists.ItemListHeader' with { itemListNo: itemListNo, listType: listType, isHome: isHome } %}
         </div>
     {% endif %}
-        <container-item-list :items="{{ itemList | json_encode }}"></container-item-list>
+    <carousel :items-per-page="4">
+            {% for item in itemList %}
+                <template slot="items">
+                    <category-item
+                        :item-data="{{ item.data | json_encode }}"
+                        :decimal-count="{{ ceresConfig.item.storeSpecial }}"
+                        :disable-carousel-on-mobile="true"
+                        :items-per-page="3">
+                        <template #before-prices>{{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", item.data) }}</template>
+                        <template #after-prices>{{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", item.data) }}</template>
+                    </category-item>
+                </template>
+            {% endfor %}
+        </carousel>
     {% endif %}
 </div>
