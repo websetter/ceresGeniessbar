@@ -12,28 +12,17 @@
 
 
 
-    <div class="categoriestart">
-      <div class="grey">
-          <div class="container-fluid">
-            <h1>{{ trans("Ceres::Template.itemSearchResults") }}</h1>
-            <p>{{ searchString }}</p>
-          </div>
-      </div>
-    </div>
-    <div class="categoriegrid page-content searchpage container-fluid">
-      <div class="row">
 
-        <div class="col-12">
-          <h2 class="pull-left">{{ trans("MesleB2B::Template.article") }}</h2>
-          <button class="btn btn-primary articleDefineBtn"><i class=" fa fa-sliders"></i>{{ trans("MesleB2B::Template.filterandsort") }}</button>
-          <div class="articleDefineBody">
-              <div class="closeMe"><i class="fa fa-times"></i></div>
-            {% include "Ceres::Category.Item.Partials.ItemSorting" with { 'sortingData': searchOptions.sorting, 'selectedSorting': itemSorting } %}
-            <span class="hidden">{% include "Ceres::Category.Item.Partials.ItemsPerPage" with { 'itemsPerPage': searchOptions.itemsPerPage, 'selectedValue': itemsPerPage } %}</span>
-          </div>
+
+
+
+    <div class="categoriegrid page-content searchpage container-max">
+        <h1>{{ trans("Ceres::Template.itemSearchResults") }} {{ searchString }}</h1>
+      <div class="row">
+        <div class="col-12">        >
           <ul class="product-list row grid">
               {% for item in itemList %}
-                  <li class="col-12 col-sm-6 col-md-4 col-lg-4">
+                  <li class="col-12 col-sm-6 col-md-4 col-lg-3">
                       <category-item
                           :item-data="{{ item.data | json_encode }}"
                           :decimal-count="{{ decimalCount }}">
