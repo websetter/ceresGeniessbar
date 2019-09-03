@@ -1,5 +1,10 @@
 {% extends getPartial('page-design') %}
 
+{% set decimalCount = ceresConfig.item.storeSpecial %}
+{% set overrideSearchFilters = LayoutContainer.show("Ceres::Search.Filter", facets) %}
+{% set shippingCat = config("Ceres.global.shippingCostsCategoryId") %}
+
+
 {% block PageBody %}
 
     {{ component( "GeniessBar::ItemList.Components.CategoryItem" ) }}
@@ -8,23 +13,24 @@
 
 <div class="page-content container {% if isSearch %} searchPage{% endif %}">
   <h1 id="searchPageTitle">{{ trans("Ceres::Template.itemSearchResults") }} {{ searchString }}</h1>
-  <div class="row isSortingRow">
-    <div class="col-xs-12 col-sm-6">
-{% include "Ceres::Category.Item.Partials.ItemSorting" with { 'sortingData': searchOptions.sorting, 'selectedSorting': itemSorting } %}    </div>
-    <div class="col-xs-12 col-sm-6">
-    {% include "Ceres::Category.Item.Partials.ItemsPerPage" with { 'itemsPerPage': searchOptions.itemsPerPage, 'selectedValue': itemsPerPage } %}
-      {% if ceresConfig.pagination.position in ['top', 'top_bottom'] %}
-      <div class="list-controls row">
-          <div class="col-xs-12">
-                <pagination template="#vue-pagination"></pagination>
-                <noscript>
-                    {% include "Ceres::Category.Item.Partials.Pagination" %}
-                </noscript>
-            </div>
-        </div>
-    {% endif %}
+    <div class="row isSortingRow">
+      <div class="col-xs-12 col-sm-6">
+        {% include "Ceres::Category.Item.Partials.ItemSorting" with { 'sortingData': searchOptions.sorting, 'selectedSorting': itemSorting } %}
+      </div>
+      <div class="col-xs-12 col-sm-6">
+      {% include "Ceres::Category.Item.Partials.ItemsPerPage" with { 'itemsPerPage': searchOptions.itemsPerPage, 'selectedValue': itemsPerPage } %}
+        {% if ceresConfig.pagination.position in ['top', 'top_bottom'] %}
+        <div class="list-controls row">
+            <div class="col-xs-12">
+                  <pagination template="#vue-pagination"></pagination>
+                  <noscript>
+                      {% include "Ceres::Category.Item.Partials.Pagination" %}
+                  </noscript>
+              </div>
+          </div>
+      {% endif %}
+      </div>
     </div>
-  </div>
     <div class="categoriegrid itemListView">
       <ul class="product-list row grid">
             {% for item in itemList %}
