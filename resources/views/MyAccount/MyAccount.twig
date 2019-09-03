@@ -10,9 +10,8 @@
     {{ component( "Ceres::Customer.Components.AddressSelect.AddressSelect" ) }}
     {{ component( "Ceres::MyAccount.Components.AccountSettings" ) }}
     {{ component( "Ceres::MyAccount.Components.History" ) }}
-    {{ component( "GeniessBar::MyAccount.Components.BankDataSelect" ) }}
-   {{ component( "GeniessBar::WishList.Components.WishList" ) }}
-
+    {{ component( "Ceres::MyAccount.Components.BankDataSelect" ) }}
+    {{ component( "GeniessBar::WishList.Components.WishList" ) }}
 
     {% set userObject = services.customer.getContact() %}
     {% set userBankData = services.contactBank.getBanksOfContact(frontend.Account.AccountContactId) %}
@@ -114,7 +113,7 @@
           <hr>
           <!-- ./WISH LIST AREA -->
 
-        <!-- NEWSLETTER AREA -->
+  <!-- NEWSLETTER AREA -->
           <div class="row newsletter">
             <div class="col-xs-12">
               <h2>{{ trans("GeniessBar::Template.newsletter") }}</h2>
