@@ -91,7 +91,7 @@
         {% set list = services.itemList.getItemList( 'tag_list',6, "texts.name1_asc", 8).documents %}
         {% if list is not empty %}
             <div class="m-b-2 clearfix">
-              <carousel :items-per-page="3">
+              <carousel :items-per-page="4">
                   {% for item in list %}
                       <template slot="items">
                           <category-item
