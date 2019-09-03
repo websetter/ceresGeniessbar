@@ -32,7 +32,7 @@
 
 
             <div class="col-md-5">
-                <div class="p-y-2 bg-white" v-stick-in-parent="$store.state.basket.isBasketInitiallyLoaded">
+                <div class="p-y-2 bg-white">
                     <shipping-country-select template="#vue-basket-shipping-country-select"></shipping-country-select>
                     <hr class="hidden-md-up">
                     <basket-totals class="m-b-2" template="#vue-basket-totals"></basket-totals>
@@ -47,6 +47,7 @@
                         <i class="fa fa-arrow-right" aria-hidden="true"></i>
                         {{ trans("Ceres::Template.basketCheckout") }}
                     </a>
+                    <hr>
                     {{ LayoutContainer.show("Ceres::Basket.AfterCheckoutButton") }}
                 </div>
             </div>
