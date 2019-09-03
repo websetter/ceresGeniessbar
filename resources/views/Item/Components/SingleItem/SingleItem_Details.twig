@@ -1,0 +1,99 @@
+  <div class="border">
+  <h1>${ currentVariation | itemName }</h1>
+  <slot name="before-price"></slot>
+  <slot name="after-price"></slot>
+  <p class="articlenumber">
+    <span class="tabStop">{{ trans("Ceres::Template.singleItemNumber") }}: </span><span class="tabStop2">${ currentVariation.variation.number }</span>
+  </p>
+  <p v-if="currentVariation.variation.availability" class="availability">
+    <span class="tabStop">{{ trans("GeniessBar::Template.singleItemAvailability") }}: </span><span class="tabStop2">${ currentVariation.variation.availability.names.name }</span>
+  </p>
+  <p class="articleContent" v-if="currentVariation.unit">
+    <span class="tabStop">{{ trans("Ceres::Template.singleItemContent") }}:</span><span class="tabStop2">${ currentVariation.unit.content | numberFormat } ${ currentVariation.unit.names.name }</span>
+  </p>
+  <p class="age" v-if="currentVariation.item.ageRestriction == 18">
+    <span class="tabStop">Altersfreigabe:</span><span class="tabStop2">ab ${ currentVariation.item.ageRestriction } Jahre</span>
+  </p>
+
+  <!-- Variation -->
+  <div class="variation" v-if="attributes.length || Object.keys(units).length">
+      <variation-select></variation-select>
+  </div>
+  <!-- /Variation -->
+
+  <!-- Item Bundle -->
+    <item-bundle :bundle-type="currentVariation.variation.bundleType" :bundle-components="currentVariation.bundleComponents"></item-bundle>
+  <!-- /Item Bundle -->
+
+  <div class="row" v-if="currentVariation.filter.isSalable && variationGroupedProperties.length">
+      <order-property-list></order-property-list>
+  </div>
+
+
+
+    <graduated-prices template="#vue-graduated-prices"></graduated-prices>
+
+
+    <hr>
+    <div class="prices">
+      <span class="tabStop">Preis: </span>
+      <div class="price">
+        <span ref="variationTotalPrice" :content="currentVariation.prices.default.price.value">
+            ${ variationTotalPrice | currency(currentVariation.prices.default.currency) }
+        </span>
+        <span :content="currentVariation.prices.default.currency"></span>
+      </div>
+        {% if ('item.recommendedPrice' in itemData or 'all' in itemData) %}
+            <div class="crossprice" v-if="currentVariation.prices.rrp && currentVariation.prices.rrp.price.value > 0 && currentVariation.prices.rrp.price.value > currentVariation.prices.default.price.value">
+                <span>
+                    statt ${ currentVariation.prices.rrp.price.formatted }
+                </span>
+            </div>
+        {% endif %}
+        <p class="vat" v-if="currentVariation.prices.default.price.value < 50 ">
+            {{ trans("GeniessBar::Template.singleItemINKL") }}  ${currentVariation.prices.default.vat.value }%<br>{{ trans("GeniessBar::Template.singleItemZZGL") }} <a href="{{ trans("GeniessBar::Template.LinkFooterPaymentAndShipping") }}" target="blank">{{ trans("GeniessBar::Template.singleItemVersand") }}</a>
+      </p>
+      <p class="vat" v-else>
+        {{ trans("GeniessBar::Template.singleItemINKL") }}  ${currentVariation.prices.default.vat.value }%<br>
+          {{ trans("GeniessBar::Template.versandfrei") }}
+      </p>
+
+
+        <p v-if="(50 - $store.state.basket.data.itemSum) > 0" class="notice">Jetzt noch <strong></strong> in den Warenkorb legen und versandkostenfrei innerh. DE bestellen</p>
+        <p v-else class="notice">Bestellen Sie jetzt versandkostenfrei innerh. DE, da Ihr Warenkorbbetrag über 50 € liegt</p>
+
+        <div class="base-price" v-if="currentVariation.unit">
+            <div v-if="currentVariation.variation.mayShowUnitPrice">
+                {{ trans("Ceres::Template.singleItemUnitPrice") }}
+                <span class="base-price-value">
+                    ${ variationGraduatedPrice.basePrice }
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="qtyAndBuy">
+      <p>Menge:</p>
+      <slot name="before-add-to-basket"></slot>
+
+      {{ AddToBasket.printVueComponent(
+          "currentVariation",
+          false,
+          true,
+          {
+              ":missing-order-properties":"variationMissingProperties",
+              ":is-variation-selected": "isVariationSelected && currentVariation.filter.isSalable",
+              ":has-price": "currentVariation | hasItemDefaultPrice"
+          }
+      ) }}
+        <slot name="after-add-to-basket"></slot>
+
+      <slot name="additional-content-after-add-to-basket"></slot>
+      <slot name="additional-content-after-vat"></slot>
+      </div>
+      <div class="wishAndPrint">
+        <add-to-wish-list :variation-id="currentVariation.variation.id"></add-to-wish-list>
+        <a class="print" href="javascript:window.print()" title="drucken"><span class="fa fa-print"></span>Angebot drucken</a>
+      </div>
+    </div>

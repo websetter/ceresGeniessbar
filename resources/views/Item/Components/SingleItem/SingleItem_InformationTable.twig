@@ -1,0 +1,29 @@
+<div class="col-md-12">
+    <ul class="nav nav-tabs" role="tablist">
+        {% if 'item.description' in itemData or 'all' in itemData %}
+            <li class="nav-item" v-if="isDescriptionTabActive">
+                <a class="nav-link active" data-toggle="tab" :href="'#details-' +  currentVariation.variation.id" role="tab">{{ trans("Ceres::Template.singleItemDescription") }}</a>
+            </li>
+        {% endif %}
+
+        <li class="nav-item isRating">
+           <a :class="{ 'active': !isDescriptionTabActive }" class="nav-link" data-toggle="tab" href="#assessments-details" role="tab">{{ trans("GeniessBar::Template.singleItemRating") }}</a>
+       </li>
+
+        <slot name="add-detail-tabs"></slot>
+    </ul>
+
+    <div class="tab-content">
+        {% if 'item.description' in itemData or 'all' in itemData %}
+            <div class="tab-pane active" :id="'details-' + currentVariation.variation.id" role="tabpanel" v-if="isDescriptionTabActive">
+                <div v-html="currentVariation.texts.description">
+                </div>
+            </div>
+        {% endif %}
+
+        <div :class="{ 'active': !isDescriptionTabActive }" class="tab-pane" id="assessments-details" role="tabpanel">
+            <slot name="feedback-container"></slot>
+        </div>
+        <slot name="add-detail-tabs-content"></slot>
+    </div>
+</div>
