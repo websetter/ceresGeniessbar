@@ -1,20 +1,31 @@
 <script type="x/template" id="vue-variation-select">
     <div>
-    <hr>
-        <div v-for="(attribute, attributeId) in attributes">
-            <div class="input-unit">
-              <label>${ attribute.name }</label>
-                <select class="custom-select" v-model="selectedAttributes[attributeId]" @change="onSelectionChange(selectedAttributes[attributeId])">
-                        <option :value="null">{{ trans("Ceres::Template.singleItemPleaseSelect") }}</option>
-                        <option
-                            v-for="(attributeValue, attributeValueId) in attribute.values"
-                            :value="attributeValueId"
-                            :disabled="!isEnabled(attributeId, attributeValueId)">
-                            ${ attributeValue }
-                        </option>
-                </select>
+      <div v-if="attributes.length || Object.keys(possibleUnits).length > 1" >
+      <hr>
+          <div v-for="attribute in attributes">
+              <div class="input-unit">
+                <label>${ attribute.name }</label>
+                  <select class="custom-select" @change="selectAttribute(attribute.attributeId, $event.target.value)">
+                  <option :value="null" v-if="hasEmptyOption || selectedAttributes[attribute.attributeId] === null" :selected="selectedAttributes[attribute.attributeId] === null">{{ trans("Ceres::Template.singleItemPleaseSelect") }}</option>
+                   <option
+                       v-for="value in attribute.values"
+                       :value="value.attributeValueId"
+                       :selected="value.attributeValueId === selectedAttributes[attribute.attributeId]">
+                       <template v-if="isAttributeSelectionValid(attribute.attributeId, value.attributeValueId)">
+                           ${ value.name }
+                       </template>
+                       <template v-else>
+                           {{ trans("Ceres::Template.singleItemInvalidAttribute", { "name": "${ value.name }" }) }}
+                       </template>
+                   </option>
+                  </select>
 
-            </div>
-        </div>
-    </div>
+              </div>
+          </div>
+      </div>
+
+      <div v-else>
+          <slot></slot>
+      </div>
+  </div>
 </script>

@@ -2,8 +2,6 @@
 
 namespace GeniessBar\Providers;
 
-use Ceres\Caching\NavigationCacheSettings;
-use Ceres\Caching\SideNavigationCacheSettings;
 use IO\Services\ContentCaching\Services\Container;
 use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Events\Dispatcher;
@@ -34,8 +32,6 @@ class GeniessBarServiceProvider extends ServiceProvider
         // Override partials
         $dispatcher->listen('IO.init.templates', function (Partial $partial) use ($enabledOverrides)
         {
-            pluginApp(Container::class)->register('GeniessBar::PageDesign.Partials.Header.NavigationList.twig', NavigationCacheSettings::class);
-            pluginApp(Container::class)->register('GeniessBar::PageDesign.Partials.Header.SideNavigation.twig', SideNavigationCacheSettings::class);
 
             $partial->set('head', 'Ceres::PageDesign.Partials.Head');
             $partial->set('header', 'Ceres::PageDesign.Partials.Header.Header');

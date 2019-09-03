@@ -13,15 +13,15 @@
                 <div class="col-md-5 single-leftside">
                     <div class="row">
                         <div class="col-xs-12">
-                          <slot name="ImageCarousel"></slot>
+                          <slot name="image-carousel"></slot>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-7 single-rightside">
                   <div class="border">
                   <h1>${ currentVariation | itemName }</h1>
-                  <slot name="BeforePrice"></slot>
-                  <slot name="AfterPrice"></slot>
+                  <slot name="before-price"></slot>
+                  <slot name="after-price"></slot>
                   <p class="articlenumber">
                     <span class="tabStop">{{ trans("Ceres::Template.singleItemNumber") }}: </span><span class="tabStop2">${ currentVariation.variation.number }</span>
                   </p>
@@ -36,8 +36,8 @@
                   </p>
 
                   <!-- Variation -->
-                  <div class="variation" v-if="variations.length > 1">
-                    <variation-select template="#vue-variation-select" :attributes="attributeNameMap" :variation-units="variationUnits" :variations="variations" :preselect="currentVariation.variation.id" :unitPreselect="currentVariation.variation.unitCombinationId" @is-valid-change="isVariationSelected = $event"></variation-select>
+                  <div class="variation" v-if="attributes.length || Object.keys(units).length">
+                      <variation-select></variation-select>
                   </div>
                   <!-- /Variation -->
 
@@ -95,21 +95,22 @@
                     <hr>
                     <div class="qtyAndBuy">
                       <p>Menge:</p>
-                      <slot name="BeforeAddToBasket"></slot>
+                      <slot name="before-add-to-basket"></slot>
 
                       {{ AddToBasket.printVueComponent(
-                           "currentVariation",
-                           false,
-                           true,
-                           {
-                               ":missing-order-properties":"variationMissingProperties",
-                               ":is-variation-selected": "isVariationSelected && currentVariation.filter.isSalable"
-                           }
-                       ) }}
-                         <slot name="AfterAddToBasket"></slot>
+                          "currentVariation",
+                          false,
+                          true,
+                          {
+                              ":missing-order-properties":"variationMissingProperties",
+                              ":is-variation-selected": "isVariationSelected && currentVariation.filter.isSalable",
+                              ":has-price": "currentVariation | hasItemDefaultPrice"
+                          }
+                      ) }}
+                        <slot name="after-add-to-basket"></slot>
 
-                      <slot name="AdditionalContentAfterAddToBasket"></slot>
-                      <slot name="AdditionalContentAfterVAT"></slot>
+                      <slot name="additional-content-after-add-to-basket"></slot>
+                      <slot name="additional-content-after-vat"></slot>
                       </div>
                       <div class="wishAndPrint">
                         <add-to-wish-list :variation-id="currentVariation.variation.id"></add-to-wish-list>
@@ -131,7 +132,7 @@
                            <a :class="{ 'active': !isDescriptionTabActive }" class="nav-link" data-toggle="tab" href="#assessments-details" role="tab">{{ trans("GeniessBar::Template.singleItemRating") }}</a>
                        </li>
 
-                        <slot name="AddDetailTabs"></slot>
+                        <slot name="add-detail-tabs"></slot>
                     </ul>
 
                     <div class="tab-content">
@@ -143,13 +144,13 @@
                         {% endif %}
 
                         <div :class="{ 'active': !isDescriptionTabActive }" class="tab-pane" id="assessments-details" role="tabpanel">
-                            <slot name="FeedbackContainer"></slot>
+                            <slot name="feedback-container"></slot>
                         </div>
-                        <slot name="AddDetailTabsContent"></slot>
+                        <slot name="add-detail-tabs-content"></slot>
                     </div>
                 </div>
                 <div class="col-xs-12 crossselling">
-                  <slot name="ItemListContainer"></slot>
+                <slot name="item-list-container"></slot>
                 </div>
             </div>
             <!-- ./ITEM DESCRIPTION -->
