@@ -205,6 +205,7 @@
                             </aside>
 
                             {{ LayoutContainer.show("Ceres::Checkout.BeforePlaceOrder") }}
+                            <p class="fskHint hidden">Verkauf von FSK 18 Artikeln nur an volljährige Käufer.</p>
                             <div id="buyNowBtn">
                             <place-order target-continue="{{ homepageURL }}{% if homepageURL | last != '/'%}/{% endif %}place-order{% if urls.appendTrailingSlash %}/{% endif %}{% if services.checkout.getReadOnlyCheckout() == 1 %}?readonlyCheckout=1{% endif %}" @payment-response="checkoutComp.showModal($event)"></place-order>
                           </div>
