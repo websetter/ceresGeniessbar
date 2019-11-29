@@ -66,12 +66,12 @@
             </div>
 
             <checkout
-                v-cloak
-                :initial-checkout="{{ checkout | json_encode() }}"
-                :delivery-address-list="{{ services.customer.getAddresses(2) | json_encode }}"
-                :selected-delivery-address="{{ services.checkout.getDeliveryAddressId() | json_encode }}"
-                :billing-address-list="{{ services.customer.getAddresses(1) | json_encode }}"
-                :selected-billing-address="{{ services.checkout.getBillingAddressId() | json_encode }}">
+            v-cloak
+             :initial-checkout="{{ checkout | json_encode() }}"
+             :delivery-address-list="{{ services.customer.getAddresses(2) | json_encode }}"
+             :selected-delivery-address="{{ services.checkout.getDeliveryAddressId() | json_encode }}"
+             :billing-address-list="{{ services.customer.getAddresses(1) | json_encode }}"
+             :selected-billing-address="{{ services.checkout.getBillingAddressId() | json_encode }}">
                 <div class="row" slot-scope="checkoutComp">
                     <!-- ADDRESS SELECT -->
                     <div class="col-md-7">
@@ -128,7 +128,9 @@
                                 {{ LayoutContainer.show("Ceres::Checkout.BeforeShippingProfileList") }}
                                 {% if overrideShippingProfiles|trim is empty %}
                                     <div class="shipping-method-select">
-                                        <shipping-profile-select></shipping-profile-select>
+                                      <shipping-profile-select
+                                         :payment-container-is-overwritten="{{ isOverwritten | json_encode }}"
+                                     ></shipping-profile-select>
                                     </div>
                                 {% else %}
                                     {{ overrideShippingProfiles }}
@@ -163,7 +165,7 @@
                               </div>
                                 {% if basket.maxFsk == 18 %}
                                  <div id="fsk">
-                                   {{ LayoutContainer.show("Ceres::Checkout.OptIns") }}
+                                  {{ LayoutContainer.show("Ceres::Checkout.OptIns") }}
                                  </div>
                                {% endif %}
 
@@ -181,11 +183,11 @@
                             <aside class="sidebar">
                                 <div class="cmp cmp-checkout-sidebar">
                                     <div class="cmp cmp-basket-preview-list">
-                                        <basket-list size="small"></basket-list>
+                                        <basket-list></basket-list>
                                     </div>
                                     <hr>
                                     <h3 class="m-t-1 m-b-0">Gutschein</h3>
-                                    <coupon class="cmp cmp-coupon"></coupon>
+                                    <coupon></coupon>
                                     <hr class="mb-0">
                                 </div>
                             </aside>
@@ -203,7 +205,7 @@
                             {{ LayoutContainer.show("Ceres::Checkout.BeforePlaceOrder") }}
 
                             <div id="buyNowBtn" class="mb-2">
-                            <place-order target-continue="{{ homepageURL }}{% if homepageURL | last != '/'%}/{% endif %}place-order{% if urls.appendTrailingSlash %}/{% endif %}{% if services.checkout.getReadOnlyCheckout() == 1 %}?readonlyCheckout=1{% endif %}" @payment-response="checkoutComp.showModal($event)"></place-order>
+                              <place-order target-continue="{{ homepageURL }}{% if homepageURL | last != '/'%}/{% endif %}place-order{% if urls.appendTrailingSlash %}/{% endif %}{% if services.checkout.getReadOnlyCheckout() == 1 %}?readonlyCheckout=1{% endif %}" @payment-response="checkoutComp.showModal($event)"></place-order>
                           </div>
                             {{ LayoutContainer.show("Ceres::Checkout.AfterPlaceOrder") }}
 
