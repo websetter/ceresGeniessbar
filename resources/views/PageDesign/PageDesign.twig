@@ -230,6 +230,10 @@
 
 {{ LayoutContainer.show("Ceres::Script.AfterScriptsLoaded") }}
 
+{% if basket.maxFsk == 18  and services.template.getCurrentTemplate() == 'tpl.checkout' %}
+  <script src="https://cdn03.plentymarkets.com/9mle78gfrmwz/frontend/templateCeres/js/fsk-check.js" ></script>
+{% endif %}
+
 <script>
     window.vueEventHub = new Vue();
 
