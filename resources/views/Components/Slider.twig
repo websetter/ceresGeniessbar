@@ -1,0 +1,50 @@
+{% set categorySlider = services.category.get(272, lang) %}
+
+<script type="x/template" id="vue-slider">
+    <div id="slider" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner"  v-if="window.width > 768">
+        {{ categorySlider.details.first.description | raw }}
+      </div>
+      <div class="carousel-inner"  v-else>
+        {{ categorySlider.details.first.description2 | raw }}
+      </div>
+      <a class="carousel-control-prev" href="#slider" role="button" data-slide="prev">
+        <span class="fa fa-angle-left" aria-hidden="true"></span>
+        <span class="sr-only">Zurück</span>
+      </a>
+      <a class="carousel-control-next" href="#slider" role="button" data-slide="next">
+        <span class="fa fa-angle-right" aria-hidden="true"></span>
+        <span class="sr-only">Weiter</span>
+      </a>
+    </div>
+</script>
+
+<script>
+  "use strict";
+
+  Vue.component("slider", {
+    template: "#vue-slider",
+    delimiters: ["${", "}"],
+    data: function data() {
+      return {
+        window: {
+          width: 0,
+          height: 0
+        }
+      };
+    },
+    created: function created() {
+      window.addEventListener('resize', this.handleResize);
+      this.handleResize();
+    },
+    destroyed: function destroyed() {
+      window.removeEventListener('resize', this.handleResize);
+    },
+    methods: {
+      handleResize: function handleResize() {
+        this.window.width = window.innerWidth;
+        this.window.height = window.innerHeight;
+      }
+    }
+  });
+</script>

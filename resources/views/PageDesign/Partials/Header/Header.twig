@@ -21,7 +21,7 @@
 
 <div id="shippingNoticeBox" v-if="$store.state.basket.data.itemQuantity > 0">
   <span class="hidden-md-down">Warenkorb:</span>
-      <span class="badge">{{ basket.itemSum }} {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>  
+      <span class="badge">{{ basket.itemSum }} {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
   <hr>
   <div v-if="(50.00 - $store.state.basket.data.itemSum) > 0">
     <span class="desktop">Noch  <strong class="badge" v-basket-item-sum="50.00 - $store.state.basket.data.itemSum">0,00</strong> <strong>€</strong> für versandkostenfreie Bestellung innerhalb DE</span>
@@ -81,24 +81,12 @@
 
           </ul>
         </div>
+        
         {% if  services.template.isHome() %}
-          {% if categorySlider is not defined %}
-            {% set categorySlider = services.category.get(246, lang) %}
-          {% endif %}
-          <div id="slider" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              {{ categorySlider.details.first.description | raw }}
-            </div>
-            <a class="carousel-control-prev" href="#slider" role="button" data-slide="prev">
-              <span class="fa fa-angle-left" aria-hidden="true"></span>
-              <span class="sr-only">Zurück</span>
-            </a>
-            <a class="carousel-control-next" href="#slider" role="button" data-slide="next">
-              <span class="fa fa-angle-right" aria-hidden="true"></span>
-              <span class="sr-only">Weiter</span>
-            </a>
-          </div>
+          {% set categorySlider = services.category.get(272, lang) %}
+          <slider></slider>
         {% endif %}
+
       <div id="bottomBar">
         <div class="container-max">
         <ul>

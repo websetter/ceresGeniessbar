@@ -37,6 +37,11 @@
             "key"           :"GeniessBar\\Containers\\GeniessBarItemListContainer3",
             "name"          :"Third item list",
             "description"   :"Display a configurable list of items in your online store"
-        }
+        },
+        {
+            "key"           :"GeniessBar\\Containers\\GeniessBarSlider",
+            "name"          :"Slider",
+            "description"   :"Container for Slider Script"
+      }
     ]
 }
