@@ -7,9 +7,7 @@
         <span class="tag ">Neu!</span>
     </div>
     <div  v-else-if="storeSpecial.id == 3" class="special-tags bg-success">
-        <span class="tag ">
-            ${ label }
-        </span>
+        <span class="tag ">Top!</span>
     </div>
     <div :class="'special-tags bg-green id_' +  storeSpecial.id" v-else>
         <span class="tag ">
