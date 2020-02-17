@@ -1,0 +1,64 @@
+{{ component( "GeniessBar::Basket.Components.AddToBasket" ) }}
+{{ component( "Ceres::ItemList.Components.CategoryImageCarousel") }}
+{{ component( "GeniessBar::ItemList.Components.ItemStoreSpecial" ) }}
+
+{% import "Ceres::Basket.Macros.AddToBasket" as AddToBasket %}
+
+{% set lang = services.sessionStorage.getLang() %}
+{% set shippingCat = config("Ceres.global.shippingCostsCategoryId") %}
+
+{% if enableCarousel is not defined %}
+    {% if config("Ceres.item.enable_image_carousel") == "true" %}
+        {% set enableCarousel = "true" %}
+    {% else %}
+        {% set enableCarousel = "false" %}
+    {% endif %}
+{% endif %}
+
+<script type="x/template" id="vue-category-item">
+    <article class="product-inner themefromItemList">
+        <div class="thumb-inner">
+            <div class="thumb-image">
+                <div class="square-container">
+                    <div class="square-inner main-image">
+                      <a :href="item | itemURL">
+                        <img class="c_image_1" :src="item.images.all[0].urlMiddle" />
+                    </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STORE SPECIALS -->
+               <item-store-special v-if="storeSpecial || item.variation.bundleType == 'bundle'"
+                                   :store-special="storeSpecial"
+                                   :recommended-retail-price="item.prices.rrp"
+                                   :variation-retail-price="item.prices.default"
+                                   :decimal-count="decimalCount"
+                                   :bundle-type="item.variation.bundleType"></item-store-special>
+               <!-- ./STORE SPECIALS -->
+
+            <div class="thumb-content">
+              <a :href="item | itemURL" class="thumb-title">
+                  ${ item | itemName }
+              </a>
+              <p class="short">${ item.texts.shortDescription }</p>
+              <div class="prices">
+                  <div class="price">
+                     <span class="small">ab</span> ${ item.prices.default.unitPrice.formatted | specialOffer(item.prices, "unitPrice", "formatted") } *
+                  </div>
+                  <div v-if="item.prices.rrp && item.prices.rrp.price.value > 0 && item.prices.rrp.price.value > item.prices.default.unitPrice.value" class="price-view-port">
+                      <span class="crossprice small">
+                         {{ trans("GeniessBar::Template.UVP") }} ${ item.prices.rrp.price.formatted }
+                      </span>
+                  </div>
+                  <div class="category-unit-price small" v-if="!(item.unit.unitOfMeasurement === 'C62' && item.unit.content === 1)">
+                        <span v-if="item.variation.mayShowUnitPrice">Grundpreis ${ item.prices.default.basePrice }</span>
+                    </div>
+              </div>
+              <div class="basket-btn">
+                  {{ AddToBasket.printVueComponent( "item", false, false, { ":has-price": "item | hasItemDefaultPrice" } ) }}
+              </div>
+            </div>
+        </div>
+    </article>
+</script>
