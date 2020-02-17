@@ -11,8 +11,8 @@
 
     {% set lang = services.sessionStorage.getLang() %}
 
-    {{ component( "Ceres::ItemList.Components.ItemList") }}
     {{ component( "Ceres::ItemList.Components.CategoryImageCarousel") }}
+    {{ component( "GeniessBar::ItemList.Components.CategoryItem" ) }}
     {{ component( "GeniessBar::Basket.Components.AddToBasket" ) }}
 
 
@@ -69,14 +69,17 @@
               <carousel :items-per-page="4">
                   {% for item in list %}
                       <template slot="items">
-                          <category-item
-                              :item-data="{{ item.data | json_encode }}"
-                              :decimal-count="{{ ceresConfig.item.storeSpecial }}"
-                              :disable-carousel-on-mobile="true"
-                              :items-per-page="3">
-                              <template #before-prices>{{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", item.data) }}</template>
-                              <template #after-prices>{{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", item.data) }}</template>
-                          </category-item>
+                        <category-item
+                            item-data-ref="{{ item.data | json_data }}"
+                            :decimal-count="{{ ceresConfig.item.storeSpecial }}">
+                            <template #before-prices>{{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", item.data) }}</template>
+                            <template #after-prices>{{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", item.data) }}</template>
+
+                            <a href="{{ item.data | itemURL }}" class="small">
+                                <i class="fa fa-image"></i>
+                                <span>{{ item.data | itemName }}</span>
+                            </a>
+                        </category-item>
                       </template>
                   {% endfor %}
               </carousel>
