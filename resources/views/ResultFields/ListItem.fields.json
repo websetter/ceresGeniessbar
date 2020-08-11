@@ -1,5 +1,4 @@
 [
-    "*",
     "images.all.urlMiddle",
     "images.all.position",
     "images.all.path",
@@ -35,6 +34,7 @@
     "item.storeSpecial",
     "item.manufacturer.position",
     "item.manufacturer.externalName",
+    "item.variationCount",
 
     "texts.lang",
     "texts.name1",
