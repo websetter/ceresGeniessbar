@@ -188,9 +188,10 @@
               <div class="modal" id="popupModal" tabindex="-1" role="dialog">
                   <div class="modal-dialog">
                       <div class="modal-content">
-                          <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">{{ trans("GeniessBar::Template.popupButton") }}</button>
+                          <div class="modal-body">
                               {{ popup.details.first.description | raw }}
+                              <hr>
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">{{ trans("GeniessBar::Template.popupButton") }}</button>
                           </div>
                       </div>
                   </div>
