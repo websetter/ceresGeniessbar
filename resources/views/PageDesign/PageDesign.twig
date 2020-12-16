@@ -298,8 +298,9 @@
 <script>
 
   jQuery(document).ready(function($) {
+    var banner = sessionStorage.getItem('banner');
     var popupModal = $('#popupModal').length;
-    if( popupModal ) {
+    if( banner != 1 && popupModal ) {
       setTimeout(function(){
         $('#popupModal').addClass('show');
         $('<div class="modal-backdrop fade show"></div>').appendTo('body');
